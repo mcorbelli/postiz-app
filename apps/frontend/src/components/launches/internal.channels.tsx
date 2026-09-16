@@ -196,7 +196,7 @@ const Plug: FC<{
               </div>
             )}
             <div>
-              {t('accounts_that_will_engage', 'Accounts that will engage:')}
+              {t('accounts_that_will_engage')}
             </div>
             <PickPlatforms
               hide={false}

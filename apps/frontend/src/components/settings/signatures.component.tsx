@@ -30,7 +30,7 @@ export const SignaturesComponent: FC<{
   const addSignature = useCallback(
     (data?: any) => () => {
       modal.openModal({
-        title: data ? t('edit_signature', 'Edit Signature') : t('add_signature', 'Add Signature'),
+        title: data ? t('edit_signature') : t('add_signature'),
         withCloseButton: true,
         children: <AddOrRemoveSignature data={data} reload={mutate} />,
       });
@@ -44,7 +44,6 @@ export const SignaturesComponent: FC<{
         await deleteDialog(
           t(
             'are_you_sure_you_want_to_delete',
-            `Are you sure you want to delete?`,
             { name: data.content.slice(0, 15) + '...' }
           )
         )
@@ -53,7 +52,7 @@ export const SignaturesComponent: FC<{
           method: 'DELETE',
         });
         mutate();
-        toaster.show(t('signature_deleted_successfully', 'Signature deleted successfully'), 'success');
+        toaster.show(t('signature_deleted_successfully'), 'success');
       }
     },
     []
@@ -61,11 +60,10 @@ export const SignaturesComponent: FC<{
 
   return (
     <div className="flex flex-col">
-      <h3 className="text-[20px]">{t('signatures', 'Signatures')}</h3>
+      <h3 className="text-[20px]">{t('signatures')}</h3>
       <div className="text-customColor18 mt-[4px]">
         {t(
-          'you_can_add_signatures_to_your_account_to_be_used_in_your_posts',
-          'You can add signatures to your account to be used in your posts.'
+          'you_can_add_signatures_to_your_account_to_be_used_in_your_posts'
         )}
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
@@ -78,13 +76,13 @@ export const SignaturesComponent: FC<{
                   : 'grid-cols-[1fr,1fr,1fr,1fr]'
               } w-full gap-y-[10px]`}
             >
-              <div>{t('content', 'Content')}</div>
-              <div className="text-center">{t('auto_add', 'Auto Add?')}</div>
+              <div>{t('content')}</div>
+              <div className="text-center">{t('auto_add')}</div>
               {!!appendSignature && (
-                <div className="text-center">{t('actions', 'Actions')}</div>
+                <div className="text-center">{t('actions')}</div>
               )}
-              <div className="text-center">{t('edit', 'Edit')}</div>
-              <div className="text-center">{t('delete', 'Delete')}</div>
+              <div className="text-center">{t('edit')}</div>
+              <div className="text-center">{t('delete')}</div>
               {data?.map((p: any) => (
                 <Fragment key={p.id}>
                   <div className="relative flex-1 me-[20px] overflow-x-hidden">
@@ -94,27 +92,27 @@ export const SignaturesComponent: FC<{
                   </div>
                   <div className="flex flex-col justify-center relative me-[20px]">
                     <div className="text-center w-full absolute start-0 line-clamp-1 top-[50%] -translate-y-[50%]">
-                      {p.autoAdd ? t('yes', 'Yes') : t('no', 'No')}
+                      {p.autoAdd ? t('yes') : t('no')}
                     </div>
                   </div>
                   {!!appendSignature && (
                     <div className="flex justify-center">
                       <Button onClick={() => appendSignature(p.content)}>
-                        {t('use_signature', 'Use Signature')}
+                        {t('use_signature')}
                       </Button>
                     </div>
                   )}
                   <div className="flex justify-center">
                     <div>
                       <Button onClick={addSignature(p)}>
-                        {t('edit', 'Edit')}
+                        {t('edit')}
                       </Button>
                     </div>
                   </div>
                   <div className="flex justify-center">
                     <div>
                       <Button onClick={deleteSignature(p)}>
-                        {t('delete', 'Delete')}
+                        {t('delete')}
                       </Button>
                     </div>
                   </div>
@@ -127,7 +125,7 @@ export const SignaturesComponent: FC<{
               onClick={addSignature()}
               className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
             >
-              {t('add_a_signature', 'Add a signature')}
+              {t('add_a_signature')}
             </Button>
           </div>
         </div>
@@ -165,8 +163,8 @@ const AddOrRemoveSignature: FC<{
       });
       toast.show(
         data?.id
-          ? t('signature_updated_successfully', 'Signature updated successfully')
-          : t('signature_added_successfully', 'Signature added successfully'),
+          ? t('signature_updated_successfully')
+          : t('signature_added_successfully'),
         'success'
       );
       modal.closeCurrent();
@@ -210,7 +208,7 @@ const AddOrRemoveSignature: FC<{
               onChange={(e) => {
                 form.setValue('content', e.target.value);
               }}
-              placeholder={t('write_your_signature', 'Write your signature...')}
+              placeholder={t('write_your_signature')}
               autosuggestionsConfig={{
                 textareaPurpose: `Assist me in writing social media signature`,
                 chatApiConfigs: {},
@@ -226,14 +224,14 @@ const AddOrRemoveSignature: FC<{
             })}
           >
             <option value="false">
-              {t('no', 'No')}
+              {t('no')}
             </option>
             <option value="true">
-              {t('yes', 'Yes')}
+              {t('yes')}
             </option>
           </Select>
 
-          <Button type="submit">{t('save', 'Save')}</Button>
+          <Button type="submit">{t('save')}</Button>
         </div>
       </form>
     </FormProvider>

@@ -127,7 +127,7 @@ export const LanguageComponent = () => {
   const t = useT();
   const openModal = () => {
     modal.openModal({
-      title: t('change_language', 'Change Language'),
+      title: t('change_language'),
       withCloseButton: true,
       children: <ChangeLanguageComponent />,
     });

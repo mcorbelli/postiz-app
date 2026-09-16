@@ -29,8 +29,7 @@ const LemmySettings: FC = () => {
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_you_want_to_delete_this_subreddit',
-            'Are you sure you want to delete this Subreddit?'
+            'are_you_sure_you_want_to_delete_this_subreddit'
           )
         ))
       )
@@ -54,12 +53,11 @@ const LemmySettings: FC = () => {
           </div>
         ))}
       </div>
-      <Button onClick={addField}>{t('add_community', 'Add Community')}</Button>
+      <Button onClick={addField}>{t('add_community')}</Button>
       {fields.length === 0 && (
         <div className="text-red-500 text-[12px] mt-[10px]">
           {t(
-            'please_add_at_least_one_subreddit',
-            'Please add at least one Subreddit'
+            'please_add_at_least_one_subreddit'
           )}
         </div>
       )}

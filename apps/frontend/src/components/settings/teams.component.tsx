@@ -58,12 +58,12 @@ export const AddMember = () => {
       ).json();
       if (values.sendEmail) {
         modals.closeAll();
-        toast.show(t('invitation_link_sent', 'Invitation link sent'));
+        toast.show(t('invitation_link_sent'));
         return;
       }
       copy(url);
       modals.closeAll();
-      toast.show(t('link_copied_to_clipboard', 'Link copied to clipboard'));
+      toast.show(t('link_copied_to_clipboard'));
     },
     []
   );
@@ -77,12 +77,12 @@ export const AddMember = () => {
           {sendEmail && (
             <Input
               label="Email"
-              placeholder={t('enter_email', 'Enter email')}
+              placeholder={t('enter_email')}
               name="email"
             />
           )}
           <Select label="Role" name="role">
-            <option value="">{t('select_role', 'Select Role')}</option>
+            <option value="">{t('select_role')}</option>
             {roles.map((role) => (
               <option key={role.value} value={role.value}>
                 {role.name}
@@ -94,11 +94,11 @@ export const AddMember = () => {
               <Checkbox name="sendEmail" />
             </div>
             <div>
-              {t('send_invitation_via_email', 'Send invitation via email?')}
+              {t('send_invitation_via_email')}
             </div>
           </div>
           <Button type="submit" className="mt-[18px]">
-            {sendEmail ? t('send_invitation_link', 'Send Invitation Link') : t('copy_link', 'Copy Link')}
+            {sendEmail ? t('send_invitation_link') : t('copy_link')}
           </Button>
         </div>
       </form>
@@ -131,7 +131,7 @@ export const TeamsComponent = () => {
       classNames: {
         modal: 'bg-transparent text-textColor',
       },
-      title: t('top_title_add_member', 'Add Member'),
+      title: t('top_title_add_member'),
       withCloseButton: true,
       children: <AddMember />,
     });
@@ -150,7 +150,7 @@ export const TeamsComponent = () => {
       async () => {
         if (
           !(await deleteDialog(
-            t('are_you_sure_remove_team_member', 'Are you sure you want to remove this team member?')
+            t('are_you_sure_remove_team_member')
           ))
         ) {
           return;
@@ -165,11 +165,10 @@ export const TeamsComponent = () => {
 
   return (
     <div className="flex flex-col">
-      <h3 className="text-[20px]">{t('team_members', 'Team Members')}</h3>
+      <h3 className="text-[20px]">{t('team_members')}</h3>
       <div className="text-customColor18 mt-[4px]">
         {t(
-          'invite_your_assistant_or_team_member_to_manage_your_account',
-          'Invite your assistant or team member to manage your account'
+          'invite_your_assistant_or_team_member_to_manage_your_account'
         )}
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px] flex flex-col gap-[24px]">
@@ -181,10 +180,10 @@ export const TeamsComponent = () => {
               </div>
               <div className="flex-1">
                 {p.role === 'USER'
-                  ? t('user', 'User')
+                  ? t('user')
                   : p.role === 'ADMIN'
-                  ? t('admin', 'Admin')
-                  : t('super_admin', 'Super Admin')}
+                  ? t('admin')
+                  : t('super_admin')}
               </div>
               {+myLevel > +getLevel(p.role) ? (
                 <div className="flex-1 flex justify-end">
@@ -208,7 +207,7 @@ export const TeamsComponent = () => {
                           />
                         </svg>
                       </div>
-                      <div>{t('remove', 'Remove')}</div>
+                      <div>{t('remove')}</div>
                     </div>
                   </Button>
                 </div>
@@ -220,7 +219,7 @@ export const TeamsComponent = () => {
         </div>
         <div>
           <Button onClick={addMember}>
-            {t('add_another_member', 'Add another member')}
+            {t('add_another_member')}
           </Button>
         </div>
       </div>

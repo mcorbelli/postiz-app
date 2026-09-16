@@ -37,7 +37,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
                     index === 0 ? char.toUpperCase() : char
                   )
                   .join('')}
-                {t('stars', 'Stars')}
+                {t('stars')}
               </div>
             </div>
             <div className="flex-1 relative">
@@ -46,7 +46,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
                   <Chart list={item.stars} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-3xl">
-                    {t('processing_stars', 'Processing stars...')}
+                    {t('processing_stars')}
                   </div>
                 )}
               </div>
@@ -80,7 +80,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
                     index === 0 ? char.toUpperCase() : char
                   )
                   .join('')}
-                {t('forks', 'Forks')}
+                {t('forks')}
               </div>
             </div>
             <div className="flex-1 relative">
@@ -89,7 +89,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
                   <Chart list={item.forks} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-3xl">
-                    {t('processing_stars', 'Processing stars...')}
+                    {t('processing_stars')}
                   </div>
                 )}
               </div>
@@ -138,8 +138,8 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
               </div>
               <div className="text-[20px]">
                 {p === 0
-                  ? t('last_github_trending', 'Last Github Trending')
-                  : t('next_predicted_github_trending', 'Next Predicted GitHub Trending')}
+                  ? t('last_github_trending')
+                  : t('next_predicted_github_trending')}
               </div>
             </div>
             <div className="flex items-center">

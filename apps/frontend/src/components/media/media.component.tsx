@@ -127,7 +127,7 @@ export const Pagination: FC<{
           onClick={() => setPage(current - 1)}
         >
           <ChevronLeftIcon className="lucide lucide-chevron-left h-4 w-4" />
-          <span>{t('previous', 'Previous')}</span>
+          <span>{t('previous')}</span>
         </div>
       </li>
       {paginationItems.map((item, index) => (
@@ -162,7 +162,7 @@ export const Pagination: FC<{
           aria-label="Go to next page"
           onClick={() => setPage(current + 1)}
         >
-          <span>{t('next', 'Next')}</span>
+          <span>{t('next')}</span>
           <ChevronRightIcon className="lucide lucide-chevron-right h-4 w-4" />
         </a>
       </li>
@@ -284,8 +284,7 @@ export const MediaBox: FC<{
       if (totalSize > MAX_UPLOAD_SIZE) {
         toaster.show(
           t(
-            'upload_size_limit_exceeded',
-            'Upload size limit exceeded. Maximum 1 GB per upload session.'
+            'upload_size_limit_exceeded'
           ),
           'warning'
         );
@@ -327,8 +326,7 @@ export const MediaBox: FC<{
       if (totalSize > MAX_UPLOAD_SIZE) {
         toaster.show(
           t(
-            'upload_size_limit_exceeded',
-            'Upload size limit exceeded. Maximum 1 GB per upload session.'
+            'upload_size_limit_exceeded'
           ),
           'warning'
         );
@@ -379,8 +377,7 @@ export const MediaBox: FC<{
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_you_want_to_delete_the_image',
-            'Are you sure you want to delete the image?'
+            'are_you_sure_you_want_to_delete_the_image'
           )
         ))
       ) {
@@ -408,7 +405,7 @@ export const MediaBox: FC<{
         ) : (
           <PlusIcon size={14} />
         )}
-        <div className={loading ? 'invisible' : undefined}>{t('upload', 'Upload')}</div>
+        <div className={loading ? 'invisible' : undefined}>{t('upload')}</div>
       </button>
     );
   }, [t, loading]);
@@ -430,7 +427,7 @@ export const MediaBox: FC<{
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder={t('search_media_by_name', 'Search by file name')}
+              placeholder={t('search_media_by_name')}
               className="w-full h-[44px] px-[14px] rounded-[8px] bg-newBgColorInner border border-newColColor text-[14px] outline-none focus:border-[#612BD3]"
             />
           </div>
@@ -484,23 +481,19 @@ export const MediaBox: FC<{
                 <div className="text-[20px] font-[600]">
                   {debouncedSearch
                     ? t(
-                        'no_media_match_search',
-                        'No media matches your search'
+                        'no_media_match_search'
                       )
                     : t(
-                        'you_dont_have_any_media_yet',
-                        "You don't have any media yet"
+                        'you_dont_have_any_media_yet'
                       )}
                 </div>
                 <div className="whitespace-pre-line text-newTextColor/[0.6] text-center">
                   {t(
-                    'select_or_upload_pictures_max_1gb',
-                    'Select or upload pictures (maximum 1 GB per upload).'
+                    'select_or_upload_pictures_max_1gb'
                   )}{' '}
                   {'\n'}
                   {t(
-                    'you_can_drag_drop_pictures',
-                    'You can also drag & drop pictures.'
+                    'you_can_drag_drop_pictures'
                   )}
                 </div>
                 <div className="forceChange flex gap-[8px]">
@@ -610,7 +603,7 @@ export const MediaBox: FC<{
               onClick={() => modals.closeCurrent()}
               className="cursor-pointer h-[52px] px-[20px] items-center justify-center border border-newTextColor/10 flex rounded-[10px]"
             >
-              {t('cancel', 'Cancel')}
+              {t('cancel')}
             </button>
             {!isLoading && !!data?.results?.length && (
               <button
@@ -618,7 +611,7 @@ export const MediaBox: FC<{
                 disabled={selected.length === 0}
                 className="cursor-pointer text-white disabled:opacity-80 disabled:cursor-not-allowed h-[52px] px-[20px] items-center justify-center bg-[#612BD3] flex rounded-[10px]"
               >
-                {t('add_selected_media', 'Add selected media')}
+                {t('add_selected_media')}
               </button>
             )}
           </div>
@@ -713,7 +706,7 @@ export const MultiMediaComponent: FC<{
   );
   const showModal = useCallback(() => {
     modals.openModal({
-      title: t('media_library', 'Media Library'),
+      title: t('media_library'),
       askClose: false,
       closeOnEscape: true,
       fullScreen: true,
@@ -743,7 +736,7 @@ export const MultiMediaComponent: FC<{
     if (!!user?.tier?.ai && !dummy) {
       modals.openModal({
         askClose: false,
-        title: t('design_media', 'Design Media'),
+        title: t('design_media'),
         size: '80%',
         children: (close) => (
           <Polonto setMedia={changeMedia} closeModal={close} />
@@ -775,7 +768,7 @@ export const MultiMediaComponent: FC<{
                       <div
                         onClick={async () => {
                           modals.openModal({
-                            title: t('media_settings', 'Media Settings'),
+                            title: t('media_settings'),
                             children: (close) => (
                               <MediaComponentInner
                                 media={media as any}
@@ -835,7 +828,7 @@ export const MultiMediaComponent: FC<{
                     <InsertMediaIcon />
                   </div>
                   <div className="text-[10px] font-[600] maxMedia:hidden block">
-                    {t('insert_media', 'Insert Media')}
+                    {t('insert_media')}
                   </div>
                 </div>
               </div>
@@ -848,7 +841,7 @@ export const MultiMediaComponent: FC<{
                     <DesignMediaIcon />
                   </div>
                   <div className="text-[10px] font-[600] iconBreak:hidden block">
-                    {t('design_media', 'Design Media')}
+                    {t('design_media')}
                   </div>
                 </div>
               </div>
@@ -923,7 +916,7 @@ export const MediaComponent: FC<{
 
   const showDesignModal = useCallback(() => {
     modals.openModal({
-      title: t('media_editor', 'Media Editor'),
+      title: t('media_editor'),
       askClose: false,
       closeOnEscape: true,
       fullScreen: true,
@@ -950,7 +943,7 @@ export const MediaComponent: FC<{
   }, []);
   const showModal = useCallback(() => {
     modals.openModal({
-      title: t('media_library', 'Media Library'),
+      title: t('media_library'),
       askClose: false,
       closeOnEscape: true,
       fullScreen: true,
@@ -984,12 +977,12 @@ export const MediaComponent: FC<{
         </div>
       )}
       <div className="flex gap-[5px]">
-        <Button onClick={showModal}>{t('select', 'Select')}</Button>
+        <Button onClick={showModal}>{t('select')}</Button>
         <Button onClick={showDesignModal} className="!bg-customColor45">
-          {t('editor', 'Editor')}
+          {t('editor')}
         </Button>
         <Button secondary={true} onClick={clearMedia}>
-          {t('clear', 'Clear')}
+          {t('clear')}
         </Button>
       </div>
     </div>

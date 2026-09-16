@@ -58,7 +58,7 @@ const ShortlinkPreferenceComponent = () => {
       });
 
       mutate({ shortlink: newValue });
-      toaster.show(t('settings_updated', 'Settings updated'), 'success');
+      toaster.show(t('settings_updated'), 'success');
     },
     [fetch, mutate, toaster, t]
   );
@@ -66,7 +66,7 @@ const ShortlinkPreferenceComponent = () => {
   if (isLoading) {
     return (
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px]">
-        <div className="animate-pulse">{t('loading', 'Loading...')}</div>
+        <div className="animate-pulse">{t('loading')}</div>
       </div>
     );
   }
@@ -74,17 +74,16 @@ const ShortlinkPreferenceComponent = () => {
   return (
     <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px] flex flex-col gap-[24px]">
       <div className="mt-[4px]">
-        {t('shortlink_settings', 'Shortlink Settings')}
+        {t('shortlink_settings')}
       </div>
       <div className="flex items-center justify-between gap-[24px]">
         <div className="flex flex-col flex-1">
           <div className="text-[14px]">
-            {t('shortlink_preference', 'Shortlink Preference')}
+            {t('shortlink_preference')}
           </div>
           <div className="text-[12px] text-customColor18">
             {t(
-              'shortlink_preference_description',
-              'Control how URLs in your posts are handled. Shortlinks provide click statistics.'
+              'shortlink_preference_description'
             )}
           </div>
         </div>
@@ -98,13 +97,13 @@ const ShortlinkPreferenceComponent = () => {
             onChange={handleChange}
           >
             <option value="ASK">
-              {t('shortlink_ask', 'Ask every time')}
+              {t('shortlink_ask')}
             </option>
             <option value="YES">
-              {t('shortlink_yes', 'Always shortlink')}
+              {t('shortlink_yes')}
             </option>
             <option value="NO">
-              {t('shortlink_no', 'Never shortlink')}
+              {t('shortlink_no')}
             </option>
           </Select>
         </div>

@@ -9,8 +9,8 @@ import { LoginWithOidc } from '@gitroom/frontend/components/auth/login.with.oidc
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
-    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} ${t('register', 'Register')}`,
-    description: t('register_description', 'Create your Postiz account'),
+    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} ${t('register')}`,
+    description: t('register_description'),
   };
 }
 export default async function Auth(params: {searchParams: Promise<{provider: string}>}) {
@@ -24,10 +24,10 @@ export default async function Auth(params: {searchParams: Promise<{provider: str
         <>
           <LoginWithOidc />
           <div className="text-center">
-            {t('registration_is_disabled', 'Registration is disabled')}
+            {t('registration_is_disabled')}
             <br />
             <Link className="underline hover:font-bold" href="/auth/login">
-              {t('login_instead', 'Login instead')}
+              {t('login_instead')}
             </Link>
           </div>
         </>

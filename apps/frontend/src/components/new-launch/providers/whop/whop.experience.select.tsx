@@ -59,7 +59,7 @@ export const WhopExperienceSelect: FC<{
       onChange={onChangeInner}
       value={currentExperience}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {experiences.map((experience: any) => (
         <option key={experience.id} value={experience.id}>
           {experience.name}

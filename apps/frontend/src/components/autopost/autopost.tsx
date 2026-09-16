@@ -29,7 +29,7 @@ export const Autopost: FC = () => {
   const addWebhook = useCallback(
     (data?: any) => () => {
       modal.openModal({
-        title: data ? t('edit_autopost', 'Edit Autopost') : t('add_autopost_title', 'Add Autopost'),
+        title: data ? t('edit_autopost') : t('add_autopost_title'),
         withCloseButton: true,
         children: <AddOrEditWebhook data={data} reload={mutate} />,
       });
@@ -42,7 +42,6 @@ export const Autopost: FC = () => {
         await deleteDialog(
           t(
             'are_you_sure_you_want_to_delete',
-            `Are you sure you want to delete ${data.name}?`,
             { name: data.name }
           )
         )
@@ -51,7 +50,7 @@ export const Autopost: FC = () => {
           method: 'DELETE',
         });
         mutate();
-        toaster.show(t('webhook_deleted_successfully', 'Webhook deleted successfully'), 'success');
+        toaster.show(t('webhook_deleted_successfully'), 'success');
       }
     },
     []
@@ -70,22 +69,21 @@ export const Autopost: FC = () => {
   );
   return (
     <div className="flex flex-col">
-      <h3 className="text-[20px]">{t('autopost', 'Autopost')}</h3>
+      <h3 className="text-[20px]">{t('autopost')}</h3>
       <div className="text-customColor18 mt-[4px]">
         {t(
-          'autopost_can_automatically_posts_your_rss_new_items_to_social_media',
-          'Autopost can automatically posts your RSS new items to social media'
+          'autopost_can_automatically_posts_your_rss_new_items_to_social_media'
         )}
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
           {!!data?.length && (
             <div className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr] w-full gap-y-[10px]">
-              <div>{t('title', 'Title')}</div>
-              <div>{t('url', 'URL')}</div>
-              <div>{t('edit', 'Edit')}</div>
-              <div>{t('delete', 'Delete')}</div>
-              <div>{t('active', 'Active')}</div>
+              <div>{t('title')}</div>
+              <div>{t('url')}</div>
+              <div>{t('edit')}</div>
+              <div>{t('delete')}</div>
+              <div>{t('active')}</div>
               {data?.map((p: any) => (
                 <Fragment key={p.id}>
                   <div className="flex flex-col justify-center">{p.title}</div>
@@ -93,14 +91,14 @@ export const Autopost: FC = () => {
                   <div className="flex flex-col justify-center">
                     <div>
                       <Button onClick={addWebhook(p)}>
-                        {t('edit', 'Edit')}
+                        {t('edit')}
                       </Button>
                     </div>
                   </div>
                   <div className="flex flex-col justify-center">
                     <div>
                       <Button onClick={deleteHook(p)}>
-                        {t('delete', 'Delete')}
+                        {t('delete')}
                       </Button>
                     </div>
                   </div>
@@ -120,7 +118,7 @@ export const Autopost: FC = () => {
               onClick={addWebhook()}
               className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
             >
-              {t('add_an_autopost', 'Add an autopost')}
+              {t('add_an_autopost')}
             </Button>
           </div>
         </div>
@@ -143,33 +141,33 @@ const details = object().shape({
     })
   ),
 });
-const getOptions = (t: (key: string, fallback: string) => string) => [
+const getOptions = (t: (key: string, fallback?: string) => string) => [
   {
-    label: t('all_integrations', 'All integrations'),
+    label: t('all_integrations'),
     value: 'all',
   },
   {
-    label: t('specific_integrations', 'Specific integrations'),
+    label: t('specific_integrations'),
     value: 'specific',
   },
 ];
-const getOptionsChoose = (t: (key: string, fallback: string) => string) => [
+const getOptionsChoose = (t: (key: string, fallback?: string) => string) => [
   {
-    label: t('yes', 'Yes'),
+    label: t('yes'),
     value: true,
   },
   {
-    label: t('no', 'No'),
+    label: t('no'),
     value: false,
   },
 ];
-const getPostImmediately = (t: (key: string, fallback: string) => string) => [
+const getPostImmediately = (t: (key: string, fallback?: string) => string) => [
   {
-    label: t('post_on_next_available_slot', 'Post on the next available slot'),
+    label: t('post_on_next_available_slot'),
     value: true,
   },
   {
-    label: t('post_immediately', 'Post Immediately'),
+    label: t('post_immediately'),
     value: false,
   },
 ];
@@ -260,8 +258,8 @@ export const AddOrEditWebhook: FC<{
       });
       toast.show(
         data?.id
-          ? t('autopost_updated_successfully', 'Autopost updated successfully')
-          : t('autopost_added_successfully', 'Autopost added successfully'),
+          ? t('autopost_updated_successfully')
+          : t('autopost_added_successfully'),
         'success'
       );
       modal.closeAll();
@@ -282,10 +280,10 @@ export const AddOrEditWebhook: FC<{
       ).json();
       if (!success) {
         setValid('');
-        toast.show(t('could_not_use_rss_feed', 'Could not use this RSS feed'), 'warning');
+        toast.show(t('could_not_use_rss_feed'), 'warning');
         return;
       }
-      toast.show(t('rss_valid', 'RSS valid!'), 'success');
+      toast.show(t('rss_valid'), 'success');
       setValid(url);
       setLastUrl(newUrl);
     } catch (e: any) {
@@ -352,7 +350,7 @@ export const AddOrEditWebhook: FC<{
             {!generateContent && (
               <>
                 <div className={`text-[14px] mb-[6px]`}>
-                  {t('post_content', 'Post content')}
+                  {t('post_content')}
                 </div>
                 <CopilotTextarea
                   disableBranding={true}
@@ -363,7 +361,7 @@ export const AddOrEditWebhook: FC<{
                   onChange={(e) => {
                     form.setValue('content', e.target.value);
                   }}
-                  placeholder={t('write_your_post_placeholder', 'Write your post...')}
+                  placeholder={t('write_your_post_placeholder')}
                   autosuggestionsConfig={{
                     textareaPurpose: `Assist me in writing social media post`,
                     chatApiConfigs: {},
@@ -420,7 +418,7 @@ export const AddOrEditWebhook: FC<{
                       !integrations?.length)
                   }
                 >
-                  {t('save', 'Save')}
+                  {t('save')}
                 </Button>
               )}
               <Button
@@ -433,7 +431,7 @@ export const AddOrEditWebhook: FC<{
                     !integrations?.length)
                 }
               >
-                {t('send_test', 'Send Test')}
+                {t('send_test')}
               </Button>
             </div>
           </div>

@@ -12,29 +12,26 @@ export const PreConditionComponentModal: FC = () => {
     <div className="flex flex-col gap-[16px]">
       <div className="whitespace-pre-line">
         {t(
-          'precondition_channel_connected_warning',
-          'This social channel was connected previously to another Postiz account.'
+          'precondition_channel_connected_warning'
         )}
         {'\n'}
         {t(
-          'precondition_fast_track_trial',
-          'To continue, please fast-track your trial for an immediate charge.'
+          'precondition_fast_track_trial'
         )}
         {'\n'}
         {'\n'}
         {t(
-          'precondition_no_refund_warning',
-          '** Please be advised that the account will not eligible for a refund, and the charge is final.'
+          'precondition_no_refund_warning'
         )}
       </div>
       <div className="flex gap-[2px] justify-center">
         <Button
           onClick={() => (window.location.href = '/billing?finishTrial=true')}
         >
-          {t('fast_track_charge_me_now', 'Fast track - Charge me now')}
+          {t('fast_track_charge_me_now')}
         </Button>
         <Button onClick={modal.closeCurrent} secondary={true}>
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
       </div>
     </div>
@@ -47,7 +44,7 @@ export const PreConditionComponent: FC = () => {
   useEffect(() => {
     if (query.get('precondition')) {
       modal.openModal({
-        title: t('suspicious_activity_detected', 'Suspicious activity detected'),
+        title: t('suspicious_activity_detected'),
         withCloseButton: true,
         classNames: {
           modal: 'text-textColor',

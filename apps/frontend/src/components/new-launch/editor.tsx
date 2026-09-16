@@ -286,10 +286,9 @@ export const EditorWrapper: FC<{
     if (
       await deleteDialog(
         t(
-          'are_you_sure_go_back_to_global_mode',
-          'This action is irreversible. Are you sure you want to go back to global mode?'
+          'are_you_sure_go_back_to_global_mode'
         ),
-        t('yes_go_back_to_global_mode', 'Yes, go back to global mode')
+        t('yes_go_back_to_global_mode')
       )
     ) {
       setLoaded(false);
@@ -333,10 +332,9 @@ export const EditorWrapper: FC<{
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_delete_this_post',
-            'Are you sure you want to delete this post?'
+            'are_you_sure_delete_this_post'
           ),
-          t('yes_delete_it', 'Yes, delete it!')
+          t('yes_delete_it')
         ))
       ) {
         return;
@@ -377,8 +375,7 @@ export const EditorWrapper: FC<{
             </div>
             <div className="text-[14px] font-[600] text-white">
               {t(
-                'cant_edit_networks_when_creating_set',
-                "You can't edit networks when creating a set"
+                'cant_edit_networks_when_creating_set'
               )}
             </div>
           </div>
@@ -402,13 +399,12 @@ export const EditorWrapper: FC<{
             </div>
             <div className="text-[14px] font-[600] text-white">
               {t(
-                'click_to_exit_global_editing',
-                'Click this button to exit global editing and customize the post for this channel'
+                'click_to_exit_global_editing'
               )}
             </div>
             <div>
               <div className="text-white rounded-[8px] h-[44px] px-[20px] bg-[#D82D7E] cursor-pointer flex justify-center items-center">
-                {t('edit_content', 'Edit content')}
+                {t('edit_content')}
               </div>
             </div>
           </div>
@@ -474,8 +470,7 @@ export const EditorWrapper: FC<{
                               <div className="w-[8px] h-[8px] rounded-full bg-[#FC69FF]" />
                               <div className="text-[14px] font-[600]">
                                 {t(
-                                  'editing_a_specific_network',
-                                  'Editing a Specific Network'
+                                  'editing_a_specific_network'
                                 )}
                               </div>
                             </div>
@@ -484,7 +479,7 @@ export const EditorWrapper: FC<{
                                 <ResetIcon />
                               </div>
                               <div className="text-[13px] font-[600]">
-                                {t('back_to_global', 'Back to global')}
+                                {t('back_to_global')}
                               </div>
                             </div>
                           </div>
@@ -507,8 +502,7 @@ export const EditorWrapper: FC<{
                     onClick={deletePost(index)}
                     data-tooltip-id="tooltip"
                     data-tooltip-content={t(
-                      'delete_post_tooltip',
-                      'Delete Post'
+                      'delete_post_tooltip'
                     )}
                     className="cursor-pointer text-[#FF3F3F]"
                   />
@@ -582,8 +576,7 @@ export const Editor: FC<{
       if (totalSize > MAX_UPLOAD_SIZE) {
         toaster.show(
           t(
-            'upload_size_limit_exceeded',
-            'Upload size limit exceeded. Maximum 1 GB per upload session.'
+            'upload_size_limit_exceeded'
           ),
           'warning'
         );
@@ -626,8 +619,7 @@ export const Editor: FC<{
       if (totalSize > MAX_UPLOAD_SIZE) {
         toaster.show(
           t(
-            'upload_size_limit_exceeded',
-            'Upload size limit exceeded. Maximum 1 GB per upload session.'
+            'upload_size_limit_exceeded'
           ),
           'warning'
         );
@@ -711,7 +703,7 @@ export const Editor: FC<{
                 !isDragActive ? 'pointer-events-none opacity-0' : 'opacity-100'
               )}
             >
-              {t('drop_files_here_to_upload', 'Drop your files here to upload')}
+              {t('drop_files_here_to_upload')}
             </div>
             <div className="px-[10px] pt-[10px] bg-newBgColorInner rounded-t-[6px] relative z-[99]">
               <OnlyEditor
@@ -761,7 +753,7 @@ export const Editor: FC<{
                   mediaNotAvailable={num > 0 && comments === 'no-media'}
                   allData={allValues}
                   text={valueWithoutHtml}
-                  label={t('attachments', 'Attachments')}
+                  label={t('attachments')}
                   description=""
                   value={props.pictures}
                   dummy={dummy}
@@ -809,7 +801,7 @@ export const Editor: FC<{
                         )}
                       <div
                         data-tooltip-id="tooltip"
-                        data-tooltip-content={t('insert_emoji', 'Insert Emoji')}
+                        data-tooltip-content={t('insert_emoji')}
                         className="select-none cursor-pointer rounded-[6px] w-[30px] h-[30px] bg-newColColor flex justify-center items-center"
                         onClick={() => setEmojiPickerOpen(!emojiPickerOpen)}
                       >
@@ -916,7 +908,7 @@ export const OnlyEditor = forwardRef<
       BulletList,
       ListItem,
       Placeholder.configure({
-        placeholder: t('write_something', 'Write something …'),
+        placeholder: t('write_something'),
         emptyEditorClass: 'is-editor-empty',
       }),
       ...(editorType === 'html' || editorType === 'markdown'

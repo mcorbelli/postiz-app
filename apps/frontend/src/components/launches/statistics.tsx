@@ -52,9 +52,9 @@ export const StatisticsModal: FC<{
 
   const dateOptions = useMemo(() => {
     return [
-      { key: 7, value: t('7_days', '7 Days') },
-      { key: 30, value: t('30_days', '30 Days') },
-      { key: 90, value: t('90_days', '90 Days') },
+      { key: 7, value: t('7_days') },
+      { key: 30, value: t('30_days') },
+      { key: 90, value: t('90_days') },
     ];
   }, [t]);
 
@@ -88,7 +88,7 @@ export const StatisticsModal: FC<{
             <div className="flex flex-col gap-[14px]">
               <div className="flex items-center justify-between">
                 <h3 className="text-[18px] font-[500]">
-                  {t('post_analytics', 'Post Analytics')}
+                  {t('post_analytics')}
                 </h3>
                 <div className="max-w-[150px]">
                   <Select
@@ -149,22 +149,22 @@ export const StatisticsModal: FC<{
           {/* Short Links Statistics Section */}
           <div className="flex flex-col gap-[14px]">
             <h3 className="text-[18px] font-[500]">
-              {t('short_links_statistics', 'Short Links Statistics')}
+              {t('short_links_statistics')}
             </h3>
             {statisticsData?.clicks?.length === 0 ? (
               <div className="text-gray-400">
-                {t('no_short_link_results', 'No short link results')}
+                {t('no_short_link_results')}
               </div>
             ) : (
               <div className="grid grid-cols-3">
                 <div className="bg-forth p-[4px] rounded-tl-lg">
-                  {t('short_link', 'Short Link')}
+                  {t('short_link')}
                 </div>
                 <div className="bg-forth p-[4px]">
-                  {t('original_link', 'Original Link')}
+                  {t('original_link')}
                 </div>
                 <div className="bg-forth p-[4px] rounded-tr-lg">
-                  {t('clicks', 'Clicks')}
+                  {t('clicks')}
                 </div>
                 {statisticsData?.clicks?.map((p: any) => (
                   <Fragment key={p.short}>
@@ -187,7 +187,7 @@ export const StatisticsModal: FC<{
           {(!analyticsData || !Array.isArray(analyticsData) || analyticsData.length === 0) &&
             (!statisticsData?.clicks || statisticsData.clicks.length === 0) && (
               <div className="text-center text-gray-400 py-[20px]">
-                {t('no_statistics_available', 'No statistics available for this post')}
+                {t('no_statistics_available')}
               </div>
             )}
         </div>

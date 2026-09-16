@@ -79,7 +79,7 @@ export const TagsComponentInner: FC<{
   const addTag = useCallback(async () => {
     const val: string | undefined = await new Promise((resolve) => {
       modals.openModal({
-        title: t('add_new_tag', 'Add New Tag'),
+        title: t('add_new_tag'),
         children: (close) => (
           <ShowModal tag="" close={close} resolve={resolve} />
         ),
@@ -111,7 +111,7 @@ export const TagsComponentInner: FC<{
       e.stopPropagation();
       const confirmed: boolean = await new Promise((resolve) => {
         modals.openModal({
-          title: t('delete_tag', 'Delete Tag'),
+          title: t('delete_tag'),
           children: (close) => (
             <ConfirmDeleteModal
               tagName={tag.name}
@@ -174,7 +174,7 @@ export const TagsComponentInner: FC<{
         </div>
         <div className="cursor-pointer flex gap-[4px]">
           {tagValue.length === 0 ? (
-            t('add_new_tag', 'Add New Tag')
+            t('add_new_tag')
           ) : (
             <>
               <div
@@ -249,7 +249,7 @@ export const TagsComponentInner: FC<{
               <PlusIcon />
             </div>
             <div className="text-[13px] font-[600]">
-              {t('add_new_tag', 'Add New Tag')}
+              {t('add_new_tag')}
             </div>
           </div>
         </div>
@@ -431,7 +431,7 @@ export const TagsComponentA: FC<{
       {showModal && <ShowModal {...showModal} />}
       <div className="flex-1 flex tags-top">
         <ReactTags
-          placeholderText={t('add_a_tag', 'Add a tag')}
+          placeholderText={t('add_a_tag')}
           suggestions={suggestionsArray}
           selected={tagValue}
           onAdd={onAddition}
@@ -453,7 +453,7 @@ export const TagsComponentA: FC<{
                   className="absolute -top-[5px] start-[10px] text-[12px] text-red-600 bg-white px-[3px] rounded-full"
                   onClick={edit(findTag)}
                 >
-                  {t('edit', 'Edit')}
+                  {t('edit')}
                 </div>
                 <div
                   className="absolute -top-[5px] -start-[5px] text-[12px] text-red-600 bg-white px-[3px] rounded-full"
@@ -484,7 +484,6 @@ const ConfirmDeleteModal: FC<{
       <p className="text-[14px]">
         {t(
           'confirm_delete_tag',
-          'Are you sure you want to delete the tag "{{tagName}}"?',
           { tagName }
         )}
       </p>
@@ -495,7 +494,7 @@ const ConfirmDeleteModal: FC<{
             close();
           }}
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
         <Button
           onClick={() => {
@@ -504,7 +503,7 @@ const ConfirmDeleteModal: FC<{
           }}
           className="bg-red-500 hover:bg-red-600"
         >
-          {t('delete', 'Delete')}
+          {t('delete')}
         </Button>
       </div>
     </div>
@@ -540,20 +539,20 @@ const ShowModal: FC<{
       <Input
         name="name"
         disableForm={true}
-        label={t('tag_name', 'Name')}
+        label={t('tag_name')}
         value={tagName}
         onChange={(e) => setTagName(e.target.value)}
       />
       <ColorPicker
         onChange={(e) => setColor(e.target.value)}
-        label={t('label_tag_color', 'Tag Color')}
+        label={t('label_tag_color')}
         name="color"
         value={color}
         enabled={true}
         canBeCancelled={false}
       />
       <Button onClick={save} className="mt-[16px]">
-        {t('save', 'Save')}
+        {t('save')}
       </Button>
     </div>
   );

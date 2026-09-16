@@ -68,7 +68,7 @@ export const NotificationOpenComponent = () => {
       <div
         className={`p-[16px] border-b border-tableBorder font-bold`}
       >
-        {t('notifications', 'Notifications')}
+        {t('notifications')}
       </div>
 
       <div className="flex flex-col max-h-[400px] overflow-y-auto scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor">
@@ -79,7 +79,7 @@ export const NotificationOpenComponent = () => {
         )}
         {!isLoading && !data.notifications.length && (
           <div className="text-center p-[16px] text-textColor flex-1 flex justify-center items-center mt-[20px]">
-            {t('no_notifications', 'No notifications')}
+            {t('no_notifications')}
           </div>
         )}
         {!isLoading &&

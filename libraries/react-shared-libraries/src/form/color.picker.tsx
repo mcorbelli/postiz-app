@@ -63,7 +63,7 @@ export const ColorPicker: FC<{
     return (
       <div>
         <Button onClick={enable}>
-          {t('enable_color_picker', 'Enable color picker')}
+          {t('enable_color_picker')}
         </Button>
       </div>
     );
@@ -84,7 +84,7 @@ export const ColorPicker: FC<{
       {canBeCancelled && (
         <div>
           <Button onClick={cancel}>
-            {t('cancel_the_color_picker', 'Cancel the color picker')}
+            {t('cancel_the_color_picker')}
           </Button>
         </div>
       )}

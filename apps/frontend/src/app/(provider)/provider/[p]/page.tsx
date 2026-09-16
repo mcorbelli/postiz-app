@@ -65,8 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: isGeneralServerSide() ? 'Postiz' : 'Gitroom',
     description: t(
-      'provider_settings_bridge_description',
-      'Configure your integration settings'
+      'provider_settings_bridge_description'
     ),
   };
 }

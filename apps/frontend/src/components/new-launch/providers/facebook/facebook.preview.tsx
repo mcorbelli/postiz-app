@@ -128,7 +128,7 @@ export const FacebookPreview: FC<{
         <div className="w-[36px] h-[36px]">
           <img
             src={integration?.picture || '/no-picture.jpg'}
-            alt={t('social_icon_alt', 'social')}
+            alt={t('social_icon_alt')}
             className="rounded-full relative z-[2] w-[36px] h-[36px]"
           />
         </div>
@@ -186,10 +186,10 @@ export const FacebookPreview: FC<{
       <div className="flex text-textLinkedin text-[12px] font-[400] items-center">
         <div className="flex flex-1 gap-[10px] items-center">
           <Icons />
-          <div className="">{t('you_and_12_other', 'You & 12 other')}</div>
+          <div className="">{t('you_and_12_other')}</div>
         </div>
         <div className="gap-[9px] items-center flex">
-          <div>{t('twenty_comments', '20 Comments')}</div>
+          <div>{t('twenty_comments')}</div>
         </div>
       </div>
       <div className="pt-[8px] flex text-[14px] font-[700] px-[32px] justify-between border-t border-borderLinkedin text-textLinkedin">
@@ -206,7 +206,7 @@ export const FacebookPreview: FC<{
               fill="currentColor"
             />
           </svg>
-          <div>{t('like', 'Like')}</div>
+          <div>{t('like')}</div>
         </div>
         <div className="flex gap-[4px] items-center">
           <svg
@@ -240,7 +240,7 @@ export const FacebookPreview: FC<{
               />
             </g>
           </svg>
-          <div>{t('comments', 'Comments')}</div>
+          <div>{t('comments')}</div>
         </div>
         <div className="flex gap-[4px] items-center">
           <svg
@@ -255,14 +255,14 @@ export const FacebookPreview: FC<{
               fill="currentColor"
             />
           </svg>
-          <div>{t('share', 'Share')}</div>
+          <div>{t('share')}</div>
         </div>
       </div>
       {renderContent.length > 1 && (
         <>
           <div className="flex items-center">
             <div className="text-[14px] font-[700]">
-              {t('most_relevant', 'Most relevant')}
+              {t('most_relevant')}
             </div>
             <div>
               <svg
@@ -285,7 +285,7 @@ export const FacebookPreview: FC<{
                 <div className="h-[34px]">
                   <img
                     src={integration?.picture || '/no-picture.jpg'}
-                    alt={t('social_icon_alt', 'social')}
+                    alt={t('social_icon_alt')}
                     className="rounded-full relative z-[2] h-[34px] w-[34px]"
                   />
                 </div>
@@ -325,8 +325,8 @@ export const FacebookPreview: FC<{
                   <div className="flex font-[400] text-[12px] text-textLinkedin items-center">
                     <div className="flex gap-[16px] flex-1">
                       <div className="font-[700]">9h</div>
-                      <div className="font-[700]">{t('like', 'Like')}</div>
-                      <div className="font-[700]">{t('reply', 'Reply')}</div>
+                      <div className="font-[700]">{t('like')}</div>
+                      <div className="font-[700]">{t('reply')}</div>
                     </div>
                     <div className="flex gap-[4px]">
                       <div>2</div>

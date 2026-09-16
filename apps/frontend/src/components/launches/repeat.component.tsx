@@ -7,46 +7,46 @@ import { useClickOutside } from '@mantine/hooks';
 import { isUSCitizen } from '@gitroom/frontend/components/launches/helpers/isuscitizen.utils';
 import clsx from 'clsx';
 import { RepeatIcon, DropdownArrowIcon } from '@gitroom/frontend/components/ui/icons';
-const getList = (t: (key: string, fallback: string) => string) => [
+const getList = (t: (key: string, fallback?: string) => string) => [
   {
     value: 1,
-    label: t('day', 'Day'),
+    label: t('day'),
   },
   {
     value: 2,
-    label: t('two_days', 'Two Days'),
+    label: t('two_days'),
   },
   {
     value: 3,
-    label: t('three_days', 'Three Days'),
+    label: t('three_days'),
   },
   {
     value: 4,
-    label: t('four_days', 'Four Days'),
+    label: t('four_days'),
   },
   {
     value: 5,
-    label: t('five_days', 'Five Days'),
+    label: t('five_days'),
   },
   {
     value: 6,
-    label: t('six_days', 'Six Days'),
+    label: t('six_days'),
   },
   {
     value: 7,
-    label: t('week', 'Week'),
+    label: t('week'),
   },
   {
     value: 14,
-    label: t('two_weeks', 'Two Weeks'),
+    label: t('two_weeks'),
   },
   {
     value: 30,
-    label: t('month', 'Month'),
+    label: t('month'),
   },
   {
     value: null,
-    label: t('cancel', 'Cancel'),
+    label: t('cancel'),
   },
 ];
 export const RepeatComponent: FC<{
@@ -89,8 +89,8 @@ export const RepeatComponent: FC<{
         </div>
         <div className="cursor-pointer">
           {repeat
-            ? `${t('repeat_post_every_label', 'Repeat Post Every')} ${everyLabel}`
-            : t('repeat_post_every', 'Repeat Post Every...')}
+            ? `${t('repeat_post_every_label')} ${everyLabel}`
+            : t('repeat_post_every')}
         </div>
         <div className="cursor-pointer">
           <DropdownArrowIcon rotated={isOpen} />

@@ -42,7 +42,7 @@ export const Support = () => {
           />
         </svg>
       </div>
-      <div>{t('discord_support', 'Discord Support')}</div>
+      <div>{t('discord_support')}</div>
     </div>
   );
 };

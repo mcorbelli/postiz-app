@@ -110,8 +110,8 @@ export const Menu: FC<{
   const disableChannel = useCallback(async () => {
     if (
       !(await deleteDialog(
-        t('are_you_sure_disable_channel', 'Are you sure you want to disable this channel?'),
-        t('disable_channel_title', 'Disable Channel')
+        t('are_you_sure_disable_channel'),
+        t('disable_channel_title')
       ))
     ) {
       return;
@@ -122,15 +122,15 @@ export const Menu: FC<{
         id,
       }),
     });
-    toast.show(t('channel_disabled', 'Channel Disabled'), 'success');
+    toast.show(t('channel_disabled'), 'success');
     setShow(false);
     onChange(false);
   }, [t]);
   const deleteChannel = useCallback(async () => {
     if (
       !(await deleteDialog(
-        t('are_you_sure_delete_channel', 'Are you sure you want to delete this channel?'),
-        t('delete_channel_title', 'Delete Channel')
+        t('are_you_sure_delete_channel'),
+        t('delete_channel_title')
       ))
     ) {
       return;
@@ -143,7 +143,7 @@ export const Menu: FC<{
     });
     if (deleteIntegration.status === 406) {
       toast.show(
-        t('delete_posts_before_channel', 'You have to delete all the posts associated with this channel before deleting it'),
+        t('delete_posts_before_channel'),
         'warning'
       );
       return;
@@ -164,7 +164,7 @@ export const Menu: FC<{
         // Silently ignore
       }
     }
-    toast.show(t('channel_deleted', 'Channel Deleted'), 'success');
+    toast.show(t('channel_deleted'), 'success');
     setShow(false);
     onChange(true);
   }, [t, extensionId, id]);
@@ -176,7 +176,7 @@ export const Menu: FC<{
         id,
       }),
     });
-    toast.show(t('channel_enabled', 'Channel Enabled'), 'success');
+    toast.show(t('channel_enabled'), 'success');
     setShow(false);
     onChange(false);
   }, [t]);
@@ -190,7 +190,7 @@ export const Menu: FC<{
       closeOnEscape: false,
       closeOnClickOutside: false,
       askClose: true,
-      title: t('time_table_slots', 'Time Table Slots'),
+      title: t('time_table_slots'),
       children: <TimeTable integration={findIntegration!} mutate={mutate} />,
     });
     setShow(false);
@@ -201,7 +201,7 @@ export const Menu: FC<{
       setShow(false);
       const channelId = integration.id;
       copy(channelId);
-      toast.show(t('channel_id_copied', 'Channel ID copied to clipboard'), 'success');
+      toast.show(t('channel_id_copied'), 'success');
     },
     [t]
   );
@@ -273,14 +273,14 @@ export const Menu: FC<{
       (integration) => integration.id === id
     );
     modal.openModal({
-      title: t('additional_settings', 'Additional Settings'),
+      title: t('additional_settings'),
       children: (
         <SettingsModal
           // @ts-ignore
           integration={findIntegration}
           onClose={() => {
             mutate();
-            toast.show(t('settings_updated', 'Settings Updated'), 'success');
+            toast.show(t('settings_updated'), 'success');
           }}
         />
       ),
@@ -295,7 +295,7 @@ export const Menu: FC<{
       classNames: {
         modal: 'md',
       },
-      title: t('move_add_to_group', 'Move / Add to group'),
+      title: t('move_add_to_group'),
       withCloseButton: false,
       closeOnEscape: true,
       closeOnClickOutside: true,
@@ -305,7 +305,7 @@ export const Menu: FC<{
           integration={findIntegration}
           onClose={() => {
             mutate();
-            toast.show(t('customer_updated', 'Customer Updated'), 'success');
+            toast.show(t('customer_updated'), 'success');
           }}
         />
       ),
@@ -314,7 +314,7 @@ export const Menu: FC<{
   }, [integrations, t]);
   const updateCredentials = useCallback(() => {
     modal.openModal({
-      title: t('custom_url', 'Custom URL'),
+      title: t('custom_url'),
       withCloseButton: false,
       classNames: {
         modal: 'md',
@@ -378,7 +378,7 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('create_new_post', 'Create a new post')}
+                {t('create_new_post')}
               </div>
             </div>
           )}
@@ -408,7 +408,7 @@ export const Menu: FC<{
                 />
               </svg>
             </div>
-            <div className="text-[14px]">{t('copy_id', 'Copy Channel ID')}</div>
+            <div className="text-[14px]">{t('copy_id')}</div>
           </div>
           {canDisable &&
             findIntegration?.refreshNeeded &&
@@ -432,7 +432,7 @@ export const Menu: FC<{
                   </svg>
                 </div>
                 <div className="text-[14px]">
-                  {t('reconnect_channel', 'Reconnect channel')}
+                  {t('reconnect_channel')}
                 </div>
               </div>
             )}
@@ -456,7 +456,7 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('update_credentials', 'Update Credentials')}
+                {t('update_credentials')}
               </div>
             </div>
           )}
@@ -480,7 +480,7 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('additional_settings', 'Additional Settings')}
+                {t('additional_settings')}
               </div>
             </div>
           )}
@@ -504,10 +504,10 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('change_bot', 'Change Bot')}{' '}
+                {t('change_bot')}{' '}
                 {[
-                  canChangeProfilePicture && t('picture', 'Picture'),
-                  canChangeNickName && t('label_nickname', 'Nickname'),
+                  canChangeProfilePicture && t('picture'),
+                  canChangeNickName && t('label_nickname'),
                 ]
                   .filter((f) => f)
                   .join(' / ')}
@@ -533,7 +533,7 @@ export const Menu: FC<{
               </svg>
             </div>
             <div className="text-[14px]">
-              {t('move_add_to_group', 'Move / add to group')}
+              {t('move_add_to_group')}
             </div>
           </div>
           <div
@@ -555,7 +555,7 @@ export const Menu: FC<{
               </svg>
             </div>
             <div className="text-[14px]">
-              {t('edit_time_slots', 'Edit Time Slots')}
+              {t('edit_time_slots')}
             </div>
           </div>
           {canEnable && (
@@ -578,7 +578,7 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('enable_channel', 'Enable Channel')}
+                {t('enable_channel')}
               </div>
             </div>
           )}
@@ -603,7 +603,7 @@ export const Menu: FC<{
                 </svg>
               </div>
               <div className="text-[14px]">
-                {t('disable_channel', 'Disable Channel')}
+                {t('disable_channel')}
               </div>
             </div>
           )}
@@ -626,7 +626,7 @@ export const Menu: FC<{
                 />
               </svg>
             </div>
-            <div className="text-[14px]">{t('delete', 'Delete')}</div>
+            <div className="text-[14px]">{t('delete')}</div>
           </div>
         </div>
       )}

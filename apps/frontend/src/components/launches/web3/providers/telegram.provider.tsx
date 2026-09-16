@@ -54,7 +54,7 @@ export const TelegramProvider: FC<Web3ProviderInterface> = (props) => {
   };
   const copyText = useCallback(() => {
     copy(`/connect ${word.current}`);
-    toaster.show(t('copied_to_clipboard', 'Copied to clipboard'), 'success');
+    toaster.show(t('copied_to_clipboard'), 'success');
   }, []);
   useEffect(() => {
     return () => {
@@ -65,10 +65,9 @@ export const TelegramProvider: FC<Web3ProviderInterface> = (props) => {
     <>
       <div className="justify-center items-center flex flex-col pt-[16px]">
         <div>
-          {t('please_add', 'Please add')} <strong>@{telegramBotName}</strong>{' '}
+          {t('please_add')} <strong>@{telegramBotName}</strong>{' '}
           {t(
-            'to_your_telegram_group_channel_and_click_here',
-            'to your\n          telegram group / channel and click here:'
+            'to_your_telegram_group_channel_and_click_here'
           )}
         </div>
         {!step ? (
@@ -96,14 +95,13 @@ export const TelegramProvider: FC<Web3ProviderInterface> = (props) => {
                   fill="#CFD8DC"
                 />
               </svg>
-              <div>{t('connect_telegram', 'Connect Telegram')}</div>
+              <div>{t('connect_telegram')}</div>
             </div>
           </div>
         ) : (
           <div className="w-full text-center" onClick={copyText}>
             {t(
-              'please_add_the_following_command_in_your_chat',
-              'Please add the following command in your chat:'
+              'please_add_the_following_command_in_your_chat'
             )}
             <div className="mt-[16px] flex">
               <div className="flex-1">
@@ -114,7 +112,7 @@ export const TelegramProvider: FC<Web3ProviderInterface> = (props) => {
                   disableForm={true}
                 />
               </div>
-              <Button>{t('copy', 'Copy')}</Button>
+              <Button>{t('copy')}</Button>
             </div>
           </div>
         )}

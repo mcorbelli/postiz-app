@@ -32,7 +32,6 @@ export const ApprovedAppsComponent: FC = () => {
         await deleteDialog(
           t(
             'are_you_sure_revoke_access',
-            `Are you sure you want to revoke access for ${app.oauthApp?.name}?`,
             { name: app.oauthApp?.name }
           )
         )
@@ -42,12 +41,12 @@ export const ApprovedAppsComponent: FC = () => {
             method: 'DELETE',
           });
           toaster.show(
-            t('access_revoked', 'Access revoked successfully'),
+            t('access_revoked'),
             'success'
           );
           mutate();
         } catch {
-          toaster.show(t('failed_to_revoke', 'Failed to revoke access'), 'warning');
+          toaster.show(t('failed_to_revoke'), 'warning');
         }
       }
     },
@@ -62,12 +61,11 @@ export const ApprovedAppsComponent: FC = () => {
     <div className="flex flex-col gap-[20px]">
       <div className="flex flex-col">
         <h3 className="text-[20px]">
-          {t('approved_apps', 'Approved Apps')}
+          {t('approved_apps')}
         </h3>
         <div className="text-customColor18 mt-[4px]">
           {t(
-            'apps_you_have_authorized',
-            'Applications you have authorized to access your Postiz account.'
+            'apps_you_have_authorized'
           )}
         </div>
       </div>
@@ -75,7 +73,7 @@ export const ApprovedAppsComponent: FC = () => {
       <div className="bg-sixth border-fifth border rounded-[4px] p-[24px]">
         {!apps?.length ? (
           <div className="text-customColor18">
-            {t('no_approved_apps', 'No approved apps yet.')}
+            {t('no_approved_apps')}
           </div>
         ) : (
           <div className="flex flex-col gap-[16px]">
@@ -106,13 +104,13 @@ export const ApprovedAppsComponent: FC = () => {
                       </div>
                     )}
                     <div className="text-customColor18 text-[12px]">
-                      {t('authorized_on', 'Authorized on')}{' '}
+                      {t('authorized_on')}{' '}
                       {new Date(app.createdAt).toLocaleDateString()}
                     </div>
                   </div>
                 </div>
                 <Button onClick={revokeApp(app)}>
-                  {t('revoke', 'Revoke')}
+                  {t('revoke')}
                 </Button>
               </div>
             ))}

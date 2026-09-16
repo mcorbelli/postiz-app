@@ -84,8 +84,8 @@ export const DelayComponent: FC<{
         data-tooltip-id="tooltip"
         data-tooltip-content={
           !currentDelay
-            ? t('delay_comment', 'Delay comment')
-            : `${t('delay_comment_by', 'Comment delayed by')} ${getCurrentDelayLabel()}`
+            ? t('delay_comment')
+            : `${t('delay_comment_by')} ${getCurrentDelayLabel()}`
         }
         className={clsx(
           'cursor-pointer flex items-center gap-[4px]',
@@ -118,7 +118,7 @@ export const DelayComponent: FC<{
                 value={customValue}
                 onChange={(e) => setCustomValue(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
-                placeholder={t('custom_min', 'Custom min')}
+                placeholder={t('custom_min')}
                 className={clsx(
                   'flex-1 w-full h-[32px] px-[8px] rounded-[4px] bg-newBgColor border text-[13px] outline-none focus:border-btnPrimary',
                   isCustomDelay ? 'border-btnPrimary' : 'border-newTextColor/10'
@@ -135,7 +135,7 @@ export const DelayComponent: FC<{
                 }}
                 className="h-[32px] px-[10px] rounded-[4px] bg-btnPrimary text-white text-[12px] font-[600] hover:bg-[#612BD3]/80"
               >
-                {t('set', 'Set')}
+                {t('set')}
               </button>
             </div>
           </div>
@@ -144,7 +144,7 @@ export const DelayComponent: FC<{
               onClick={() => handleSelectDelay(0)}
               className="mt-[8px] h-[32px] w-full rounded-[4px] text-[13px] text-red-400 hover:bg-red-400/10"
             >
-              {t('remove_delay', 'Remove delay')}
+              {t('remove_delay')}
             </button>
           )}
         </div>

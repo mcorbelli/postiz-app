@@ -9,8 +9,8 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
-    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} - ${t('connect_integration', 'Connect your account')}`,
-    description: t('connect_integration_description', 'Connect your social media account to Postiz'),
+    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} - ${t('connect_integration')}`,
+    description: t('connect_integration_description'),
   };
 }
 

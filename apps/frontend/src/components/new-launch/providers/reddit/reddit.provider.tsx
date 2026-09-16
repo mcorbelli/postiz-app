@@ -47,7 +47,7 @@ const RenderRedditComponent: FC<{
     case 'link':
       return (
         <div className="h-[375px] bg-primary rounded-[16px] flex justify-center items-center">
-          {t('link', 'Link')}
+          {t('link_label')}
         </div>
       );
     case 'media':
@@ -64,7 +64,7 @@ const RenderRedditComponent: FC<{
                 <img
                   className="w-full h-full object-cover"
                   src={showMedia.set(image.path)}
-                  alt={t('media_alt', 'media')}
+                  alt={t('media_alt')}
                 />
               </a>
             ))}
@@ -90,8 +90,7 @@ const RedditPreview: FC = (props) => {
     return (
       <>
         {t(
-          'please_add_at_least_one_subreddit_from_the_settings',
-          'Please add at least one Subreddit from the settings'
+          'please_add_at_least_one_subreddit_from_the_settings'
         )}
       </>
     );
@@ -180,8 +179,7 @@ const RedditSettings: FC = () => {
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_you_want_to_delete_this_subreddit',
-            'Are you sure you want to delete this Subreddit?'
+            'are_you_sure_you_want_to_delete_this_subreddit'
           )
         ))
       )
@@ -205,12 +203,11 @@ const RedditSettings: FC = () => {
           </div>
         ))}
       </div>
-      <Button onClick={addField}>{t('add_subreddit', 'Add Subreddit')}</Button>
+      <Button onClick={addField}>{t('add_subreddit')}</Button>
       {fields.length === 0 && (
         <div className="text-red-500 text-[12px] mt-[10px]">
           {t(
-            'please_add_at_least_one_subreddit',
-            'Please add at least one Subreddit'
+            'please_add_at_least_one_subreddit'
           )}
         </div>
       )}

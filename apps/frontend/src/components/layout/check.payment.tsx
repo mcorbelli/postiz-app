@@ -51,12 +51,11 @@ export const CheckPaymentInner: FC<{
     }
     if (status === 1) {
       modal.open({
-        title: t('invalid_payment', 'Invalid Payment'),
+        title: t('invalid_payment'),
         onlyApprove: true,
-        approveLabel: t('ok', 'OK'),
+        approveLabel: t('ok'),
         description: t(
-          'we_could_not_validate_your_payment_method',
-          'We could not validate your payment method, please try again'
+          'we_could_not_validate_your_payment_method'
         ),
       });
       setShowLoader(false);

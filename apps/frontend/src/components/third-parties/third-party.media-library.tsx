@@ -67,14 +67,14 @@ const ThirdPartyMediaLibraryBrowser: FC<{
         }),
       });
       toaster.show(
-        t('media_imported_successfully', 'Media imported successfully'),
+        t('media_imported_successfully'),
         'success'
       );
       onImported();
       modals.closeCurrent();
     } catch {
       toaster.show(
-        t('media_import_failed', 'Failed to import media'),
+        t('media_import_failed'),
         'warning'
       );
     } finally {
@@ -85,7 +85,7 @@ const ThirdPartyMediaLibraryBrowser: FC<{
   return (
     <div className="flex flex-col gap-[16px] h-full">
       <div className="text-[14px] font-[600]">
-        {t('select_media_to_import', 'Select media to import from')}{' '}
+        {t('select_media_to_import')}{' '}
         {integration.title}: {integration.name}
       </div>
       <div className="flex-1 relative">
@@ -102,7 +102,7 @@ const ThirdPartyMediaLibraryBrowser: FC<{
           )}
           {!isLoading && (!data?.results || !data.results.length) && (
             <div className="flex items-center justify-center h-full text-textColor/60">
-              {t('no_media_found', 'No media found')}
+              {t('no_media_found')}
             </div>
           )}
           {!isLoading && !!data?.results?.length && (
@@ -162,7 +162,7 @@ const ThirdPartyMediaLibraryBrowser: FC<{
           onClick={() => modals.closeCurrent()}
           className="cursor-pointer h-[52px] px-[20px] items-center justify-center border border-newTextColor/10 flex rounded-[10px]"
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </button>
         <button
           onClick={importSelected}
@@ -172,7 +172,7 @@ const ThirdPartyMediaLibraryBrowser: FC<{
           {importing && (
             <div className="animate-spin h-[16px] w-[16px] border-2 border-white border-t-transparent rounded-full" />
           )}
-          {t('import_selected', 'Import Selected')} ({selected.length})
+          {t('import_selected')} ({selected.length})
         </button>
       </div>
     </div>
@@ -193,7 +193,7 @@ const ThirdPartyMediaLibraryPicker: FC<{
           className="cursor-pointer mb-[10px]"
           onClick={() => setSelected(null)}
         >
-          {'<'} {t('back', 'Back')}
+          {'<'} {t('back')}
         </div>
         <ThirdPartyMediaLibraryBrowser
           integration={selected}
@@ -260,7 +260,7 @@ export const ThirdPartyMediaLibrary: FC<{
     <button
       onClick={() => {
         modals.openModal({
-          title: t('import_from', 'Import From'),
+          title: t('import_from'),
           fullScreen: true,
           size: 'calc(100% - 80px)',
           height: 'calc(100% - 80px)',
@@ -286,7 +286,7 @@ export const ThirdPartyMediaLibrary: FC<{
           fill="currentColor"
         />
       </svg>
-      <div>{t('import', 'Import')}</div>
+      <div>{t('import')}</div>
     </button>
   );
 };

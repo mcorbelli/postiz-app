@@ -73,54 +73,52 @@ const FirstStep: FC = (props) => {
           if (data?.error) {
             throw new Error(
               data.message ||
-                t('generation_failed', 'Failed to generate posts, please try again.')
+                t('generation_failed')
             );
           }
 
           {
             switch (data.name) {
               case 'agent':
-                setShowStep(t('agent_starting', 'Agent starting'));
+                setShowStep(t('agent_starting'));
                 break;
               case 'research':
                 setShowStep(
-                  t('researching_your_content', 'Researching your content...')
+                  t('researching_your_content')
                 );
                 break;
               case 'find-category':
                 setShowStep(
                   t(
-                    'understanding_the_category',
-                    'Understanding the category...'
+                    'understanding_the_category'
                   )
                 );
                 break;
               case 'find-topic':
-                setShowStep(t('finding_the_topic', 'Finding the topic...'));
+                setShowStep(t('finding_the_topic'));
                 break;
               case 'find-popular-posts':
                 setShowStep(
                   t(
-                    'finding_popular_posts_to_match_with',
-                    'Finding popular posts to match with...'
+                    'finding_popular_posts_to_match_with'
                   )
                 );
                 break;
               case 'generate-hook':
-                setShowStep(t('generating_hook', 'Generating hook...'));
+                setShowStep(t('generating_hook'));
                 break;
               case 'generate-content':
-                setShowStep(t('generating_content', 'Generating content...'));
+                setShowStep(t('generating_content'));
                 break;
               case 'generate-picture':
-                setShowStep(t('generating_pictures', 'Generating pictures...'));
+                setShowStep(t('generating_pictures'));
                 break;
               case 'upload-pictures':
-                setShowStep(t('uploading_pictures', 'Uploading pictures...'));
+                setShowStep(t('uploading_pictures'));
                 break;
               case 'post-time':
                 setShowStep(
-                  t('finding_time_to_post', 'Finding time to post...')
+                  t('finding_time_to_post')
                 );
                 break;
             }
@@ -143,14 +141,14 @@ const FirstStep: FC = (props) => {
         });
         if (!response.body) {
           throw new Error(
-            t('generation_failed', 'Failed to generate posts, please try again.')
+            t('generation_failed')
           );
         }
         const reader = response.body.getReader();
         const load = await generateStep(reader);
         if (!load?.content) {
           throw new Error(
-            t('generation_failed', 'Failed to generate posts, please try again.')
+            t('generation_failed')
           );
         }
         const messages = load.content.map((p: any, index: number) => {
@@ -204,7 +202,7 @@ const FirstStep: FC = (props) => {
       } catch (e: any) {
         toaster.show(
           e?.message ||
-            t('generation_failed', 'Failed to generate posts, please try again.'),
+            t('generation_failed'),
           'warning'
         );
       } finally {
@@ -235,48 +233,44 @@ const FirstStep: FC = (props) => {
                   </div>
                 )}
                 <Textarea
-                  label={t('write_anything', 'Write anything')}
+                  label={t('write_anything')}
                   disabled={loading}
                   placeholder={t(
-                    'you_can_write_anything_you_want_and_also_add_links_we_will_do_the_research_for_you',
-                    'You can write anything you want, and also add links, we will do the research for you...'
+                    'you_can_write_anything_you_want_and_also_add_links_we_will_do_the_research_for_you'
                   )}
                   {...form.register('research')}
                 />
                 <Select
-                  label={t('output_format', 'Output format')}
+                  label={t('output_format')}
                   {...form.register('format')}
                 >
                   <option value="one_short">
-                    {t('short_post', 'Short post')}
+                    {t('short_post')}
                   </option>
                   <option value="one_long">
-                    {t('long_post', 'Long post')}
+                    {t('long_post')}
                   </option>
                   <option value="thread_short">
                     {t(
-                      'a_thread_with_short_posts',
-                      'A thread with short posts'
+                      'a_thread_with_short_posts'
                     )}
                   </option>
                   <option value="thread_long">
-                    {t('a_thread_with_long_posts', 'A thread with long posts')}
+                    {t('a_thread_with_long_posts')}
                   </option>
                 </Select>
                 <Select
-                  label={t('output_format', 'Output format')}
+                  label={t('output_format')}
                   {...form.register('tone')}
                 >
                   <option value="personal">
                     {t(
-                      'personal_voice_i_am_happy_to_announce',
-                      'Personal voice ("I am happy to announce")'
+                      'personal_voice_i_am_happy_to_announce'
                     )}
                   </option>
                   <option value="company">
                     {t(
-                      'company_voice_we_are_happy_to_announce',
-                      'Company voice ("We are happy to announce")'
+                      'company_voice_we_are_happy_to_announce'
                     )}
                   </option>
                 </Select>
@@ -286,7 +280,7 @@ const FirstStep: FC = (props) => {
                   <Checkbox
                     disabled={loading}
                     {...form.register('isPicture')}
-                    label={t('add_pictures', 'Add pictures?')}
+                    label={t('add_pictures')}
                   />
                 </div>
               </div>
@@ -299,7 +293,7 @@ const FirstStep: FC = (props) => {
             disabled={research.length < 10}
             loading={loading}
           >
-            {t('generate', 'Generate')}
+            {t('generate')}
           </Button>
         </div>
       </FormProvider>
@@ -329,9 +323,9 @@ export const GeneratorComponent = () => {
     if (!user?.tier?.ai) {
       if (
         await deleteDialog(
-          t('upgrade_required', 'You need to upgrade to use this feature'),
-          t('move_to_billing', 'Move to billing'),
-          t('payment_required', 'Payment Required')
+          t('upgrade_required'),
+          t('move_to_billing'),
+          t('payment_required')
         )
       ) {
         router.push('/billing');
@@ -339,7 +333,7 @@ export const GeneratorComponent = () => {
       return;
     }
     modal.openModal({
-      title: t('generate_posts', 'Generate Posts'),
+      title: t('generate_posts'),
       withCloseButton: false,
       classNames: {
         modal: 'bg-transparent text-textColor',

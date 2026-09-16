@@ -142,8 +142,7 @@ const EmptyState: FC<{ onRefresh: () => void }> = ({ onRefresh }) => {
       </div>
       <p className="text-[15px] text-newTableText text-center mb-[12px]">
         {t(
-          'this_channel_needs_to_be_refreshed_to_display_analytics',
-          'This channel needs to be refreshed to display analytics'
+          'this_channel_needs_to_be_refreshed_to_display_analytics'
         )}
       </p>
       <button
@@ -161,7 +160,7 @@ const EmptyState: FC<{ onRefresh: () => void }> = ({ onRefresh }) => {
           <path d="M23 4v6h-6M1 20v-6h6" />
           <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
         </svg>
-        {t('refresh_channel', 'Refresh Channel')}
+        {t('refresh_channel')}
       </button>
     </div>
   );

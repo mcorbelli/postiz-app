@@ -322,12 +322,11 @@ const McpSection = ({
       <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder flex items-start justify-between gap-[12px]">
         <div>
           <div className="text-[15px] font-[600]">
-            {t('mcp_client_configuration', 'MCP Client Configuration')}
+            {t('mcp_client_configuration')}
           </div>
           <div className="text-[13px] text-customColor18 mt-[2px]">
             {t(
-              'connect_your_mcp_client_to_postiz_to_schedule_your_posts_faster',
-              'Connect Postiz MCP server to your client (Http streaming) to schedule your posts faster.'
+              'connect_your_mcp_client_to_postiz_to_schedule_your_posts_faster'
             )}
           </div>
         </div>
@@ -339,7 +338,7 @@ const McpSection = ({
               target="_blank"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              {t('add_to_claude', 'Add to Claude')}
+              {t('add_to_claude')}
             </a>
           )}
           <a
@@ -348,7 +347,7 @@ const McpSection = ({
             target="_blank"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-            {t('read_the_docs', 'Docs')}
+            {t('read_the_docs')}
           </a>
         </div>
       </div>
@@ -356,7 +355,7 @@ const McpSection = ({
         {!chatOnly && (
           <div className="flex flex-col gap-[6px]">
             <div className="text-[13px] font-[600] text-customColor18">
-              {t('auth_method', 'Authentication')}
+              {t('auth_method')}
             </div>
             <div className="flex gap-[6px]">
               {(['oauth', 'apikey'] as const).map((m) => (
@@ -372,8 +371,8 @@ const McpSection = ({
                   onClick={() => setAuth(m)}
                 >
                   {m === 'oauth'
-                    ? t('sign_in_no_api_key', 'Sign in with Postiz (no API key)')
-                    : t('api_key', 'API Key')}
+                    ? t('sign_in_no_api_key')
+                    : t('api_key')}
                 </button>
               ))}
             </div>
@@ -381,7 +380,7 @@ const McpSection = ({
         )}
         <div className="flex flex-col gap-[6px]">
           <div className="text-[13px] font-[600] text-customColor18">
-            {t('mcp_client', 'Client')}
+            {t('mcp_client')}
           </div>
           <div className="flex flex-wrap gap-[6px]">
             {[
@@ -414,8 +413,7 @@ const McpSection = ({
             {auth === 'oauth' &&
               !chatOnly &&
               ` ${t(
-                'oauth_sign_in_hint',
-                'Your agent will open a browser window to sign in to Postiz.'
+                'oauth_sign_in_hint'
               )}`}
           </div>
           <pre className="bg-newBgColorInner border border-newBorder rounded-[8px] p-[16px] text-[13px] whitespace-pre-wrap break-all overflow-x-auto leading-[1.6]">
@@ -451,12 +449,12 @@ const McpSection = ({
                     </>
                   )}
                 </svg>
-                {revealed ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+                {revealed ? t('hide') : t('reveal')}
               </button>
             )}
-            <CopyButton text={config} label={t('copy', 'Copy')} />
+            <CopyButton text={config} label={t('copy')} />
             {!isRemoteMcpClient(activeClient) && !chatOnly && (
-              <CopyButton text={baseUrl} label={t('copy_url', 'Copy URL')} />
+              <CopyButton text={baseUrl} label={t('copy_url')} />
             )}
             {activeClient === 'Claude' && billingEnabled && (
               <a
@@ -465,7 +463,7 @@ const McpSection = ({
                 target="_blank"
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                {t('add_to_claude', 'Add to Claude')}
+                {t('add_to_claude')}
               </a>
             )}
           </div>
@@ -534,12 +532,11 @@ const CliSection = ({ apiKey }: { apiKey: string }) => {
       <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder flex items-start justify-between gap-[12px]">
         <div>
           <div className="text-[15px] font-[600]">
-            {t('cli_and_skills', 'CLI & AI Skills')}
+            {t('cli_and_skills')}
           </div>
           <div className="text-[13px] text-customColor18 mt-[2px]">
             {t(
-              'cli_description',
-              'Use the Postiz CLI to automate posting from your terminal, or install the skill to let your AI agent schedule posts for you.'
+              'cli_description'
             )}
           </div>
         </div>
@@ -550,7 +547,7 @@ const CliSection = ({ apiKey }: { apiKey: string }) => {
             target="_blank"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-            {t('read_the_docs', 'Docs')}
+            {t('read_the_docs')}
           </a>
         </div>
       </div>
@@ -569,8 +566,8 @@ const CliSection = ({ apiKey }: { apiKey: string }) => {
               onClick={() => setMode(m)}
             >
               {m === 'local'
-                ? t('locally', 'Locally')
-                : t('ci_remote_servers', 'CI / Remote servers')}
+                ? t('locally')
+                : t('ci_remote_servers')}
             </button>
           ))}
         </div>
@@ -614,12 +611,12 @@ const CliSection = ({ apiKey }: { apiKey: string }) => {
                   </>
                 )}
               </svg>
-              {revealed ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+              {revealed ? t('hide') : t('reveal')}
             </button>
           )}
           <CopyButton
             text={steps.map((s) => s.code).join(' && ')}
-            label={t('copy_all', 'Copy All')}
+            label={t('copy_all')}
           />
         </div>
       </div>
@@ -639,20 +636,19 @@ const PublicApiContent = () => {
 
   const rotateKey = useCallback(async () => {
     const approved = await decision.open({
-      title: t('rotate_api_key', 'Rotate API Key?'),
+      title: t('rotate_api_key'),
       description: t(
-        'rotate_api_key_description',
-        'This will generate a new API key and invalidate the current one. Any integrations using the old key will stop working.'
+        'rotate_api_key_description'
       ),
-      approveLabel: t('rotate', 'Rotate'),
-      cancelLabel: t('cancel', 'Cancel'),
+      approveLabel: t('rotate'),
+      cancelLabel: t('cancel'),
     });
     if (!approved) return;
     await fetch('/user/api-key/rotate', { method: 'POST' });
     await mutate('/user/self');
     setReveal(false);
     toaster.show(
-      t('api_key_rotated', 'API Key rotated successfully'),
+      t('api_key_rotated'),
       'success'
     );
   }, [decision, fetch, mutate, toaster]);
@@ -667,35 +663,30 @@ const PublicApiContent = () => {
     <div className="flex flex-col gap-[40px]">
       <div className="text-[14px] text-textColor leading-[1.7]">
         {t(
-          'api_auth_note_line1',
-          'Use your API Key to automate your own account.'
+          'api_auth_note_line1'
         )}
         <br />
         {t(
-          'api_auth_note_line2',
-          'If you are building a product that schedules posts on behalf of other Postiz users,'
+          'api_auth_note_line2'
         )}
         <br />
         {t(
-          'api_auth_note_line3',
-          'create an OAuth App under the "Apps" tab. Your users will authorize your app via OAuth2,'
+          'api_auth_note_line3'
         )}
         <br />
         {t(
-          'api_auth_note_line4',
-          'and you will receive a pos_ prefixed token that works with the API, MCP, and CLI — just like an API Key.'
+          'api_auth_note_line4'
         )}
       </div>
       <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder overflow-hidden">
         <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder flex items-start justify-between gap-[12px]">
           <div>
             <div className="text-[15px] font-[600]">
-              {t('api_key', 'API Key')}
+              {t('api_key')}
             </div>
             <div className="text-[13px] text-customColor18 mt-[2px]">
               {t(
-                'use_postiz_api_to_integrate_with_your_tools',
-                'Use Postiz API to integrate with your tools.'
+                'use_postiz_api_to_integrate_with_your_tools'
               )}
             </div>
           </div>
@@ -706,7 +697,7 @@ const PublicApiContent = () => {
               target="_blank"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-            {t('read_the_docs', 'Docs')}
+            {t('read_the_docs')}
             </a>
             <a
               className="cursor-pointer px-[16px] h-[36px] bg-[#612BD3] hover:bg-[#5520CB] text-white transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
@@ -714,7 +705,7 @@ const PublicApiContent = () => {
               target="_blank"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              {t('n8n_node', 'N8N Node')}
+              {t('n8n_node')}
             </a>
           </div>
         </div>
@@ -762,9 +753,9 @@ const PublicApiContent = () => {
                   </>
                 )}
               </svg>
-              {reveal ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+              {reveal ? t('hide') : t('reveal')}
             </button>
-            <CopyButton text={user.publicApi} label={t('copy', 'Copy')} />
+            <CopyButton text={user.publicApi} label={t('copy')} />
             <button
               type="button"
               onClick={rotateKey}
@@ -783,14 +774,13 @@ const PublicApiContent = () => {
                 <path d="M21.5 2v6h-6" />
                 <path d="M21.34 15.57a10 10 0 11-.57-8.38L21.5 8" />
               </svg>
-              {t('rotate_key', 'Rotate Key')}
+              {t('rotate_key')}
             </button>
             <button
               type="button"
               data-tooltip-id="tooltip"
               data-tooltip-content={t(
-                'payload_wizard_description',
-                'Building a POST request to /posts can be complex. Use the wizard to schedule a post with the UI, then copy the generated payload.'
+                'payload_wizard_description'
               )}
               onClick={() =>
                 window.open(`${frontEndUrl}/modal/dark/all`, '_blank')
@@ -811,7 +801,7 @@ const PublicApiContent = () => {
                 <polyline points="15 3 21 3 21 9" />
                 <line x1="10" y1="14" x2="21" y2="3" />
               </svg>
-              {t('open_wizard', 'Open Wizard')}
+              {t('open_wizard')}
             </button>
           </div>
         </div>
@@ -846,7 +836,7 @@ export const PublicComponent = () => {
   return (
     <div className="flex flex-col gap-[20px]">
       <h3 className="text-[20px]">
-        {t('developers', 'Developers')}
+        {t('developers')}
         {currentOrg?.name ? ` - ${currentOrg.name}` : ''}
       </h3>
       <div className="flex gap-[6px]">
@@ -863,8 +853,8 @@ export const PublicComponent = () => {
             onClick={() => setSubTab(tab)}
           >
             {tab === 'api'
-              ? t('access', 'Access')
-              : t('apps', 'Apps')}
+              ? t('access')
+              : t('apps')}
           </button>
         ))}
       </div>

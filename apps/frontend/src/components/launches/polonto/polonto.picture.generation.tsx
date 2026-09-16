@@ -41,7 +41,7 @@ const GenerateTab = observer(({ store }: any) => {
       return;
     }
     if (!inputRef.current.value) {
-      toast.show(t('please_type_your_prompt', 'Please type your prompt'), 'warning');
+      toast.show(t('please_type_your_prompt'), 'warning');
       return;
     }
     setLoading(true);
@@ -54,7 +54,7 @@ const GenerateTab = observer(({ store }: any) => {
     });
     setLoading(false);
     if (!req.ok) {
-      alert(t('error_occurred', 'An error occurred. Please try again.'));
+      alert(t('error_occurred'));
       return;
     }
     mutate();
@@ -69,17 +69,16 @@ const GenerateTab = observer(({ store }: any) => {
           paddingTop: '5px',
         }}
       >
-        {t('generate_image_with_ai', 'Generate image with AI')}
+        {t('generate_image_with_ai')}
         {data?.credits
-          ? t('n_credits_left_paren', `(${data?.credits} left)`, {
+          ? t('n_credits_left_paren', {
               count: data?.credits,
             })
           : ``}
       </div>
       <InputGroup
         placeholder={t(
-          'type_your_image_generation_prompt_here',
-          'Type your image generation prompt here...'
+          'type_your_image_generation_prompt_here'
         )}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -100,8 +99,8 @@ const GenerateTab = observer(({ store }: any) => {
         }}
       >
         {data?.credits <= 0
-          ? t('click_to_purchase_more_credits', 'Click to purchase more credits')
-          : t('generate', 'Generate')}
+          ? t('click_to_purchase_more_credits')
+          : t('generate')}
       </Button>
       {image && (
         <ImagesGrid

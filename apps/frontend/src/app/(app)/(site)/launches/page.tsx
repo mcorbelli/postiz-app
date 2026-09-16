@@ -7,10 +7,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   const general = isGeneralServerSide();
   return {
-    title: `${general ? 'Postiz' : 'Gitroom'} ${general ? t('calendar', 'Calendar') : t('launches', 'Launches')}`,
+    title: `${general ? 'Postiz' : 'Gitroom'} ${general ? t('calendar') : t('launches')}`,
     description: general
-      ? t('calendar_description', 'Schedule and manage your social media posts')
-      : t('launches_description', 'Schedule and manage your social media posts'),
+      ? t('calendar_description')
+      : t('launches_description'),
   };
 }
 export default async function Index() {

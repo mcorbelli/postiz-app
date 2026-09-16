@@ -189,7 +189,7 @@ export const ThirdPartyMedia: FC<{
           )}
           onClick={() => {
             modals.openModal({
-              title: t('integrations', 'Integrations'),
+              title: t('integrations'),
               size: '80%',
               children: (close) => (
                 <ThirdPartyPopup
@@ -218,7 +218,7 @@ export const ThirdPartyMedia: FC<{
               </svg>
             </div>
             <div className="text-[10px] font-[600] iconBreak:hidden block">
-              {t('integrations', 'Integrations')}
+              {t('integrations')}
             </div>
           </div>
         </div>

@@ -34,10 +34,10 @@ export const LifetimeDeal = () => {
     ).json();
     if (success) {
       mutate('/user/self');
-      toast.show(t('successfully_claimed_the_code', 'Successfully claimed the code'));
+      toast.show(t('successfully_claimed_the_code'));
       fireEvents('lifetime_claimed');
     } else {
-      toast.show(t('code_already_claimed_or_invalid', 'Code already claimed or invalid code'), 'warning');
+      toast.show(t('code_already_claimed_or_invalid'), 'warning');
     }
     setCode('');
   }, [code]);
@@ -108,7 +108,7 @@ export const LifetimeDeal = () => {
     <div className="flex gap-[30px]">
       <div className="border border-customColor6 bg-sixth p-[24px] flex flex-col gap-[20px] flex-1 rounded-[4px]">
         <div className="text-[30px]">
-          {t('current_package', 'Current Package:')}
+          {t('current_package')}
           {user?.totalChannels > 8 ? 'EXTRA' : user?.tier?.current}
         </div>
 
@@ -137,7 +137,7 @@ export const LifetimeDeal = () => {
 
       <div className="border border-customColor6 bg-sixth p-[24px] flex flex-col gap-[20px] flex-1 rounded-[4px]">
         <div className="text-[30px]">
-          {t('next_package', 'Next Package:')}
+          {t('next_package')}
           {user?.tier?.current === 'PRO'
             ? 'EXTRA'
             : !user?.tier?.current
@@ -176,7 +176,7 @@ export const LifetimeDeal = () => {
               <Input
                 label="Code"
                 translationKey="label_code"
-                placeholder={t('enter_your_code', 'Enter your code')}
+                placeholder={t('enter_your_code')}
                 disableForm={true}
                 name="code"
                 value={code}
@@ -185,7 +185,7 @@ export const LifetimeDeal = () => {
             </div>
             <div>
               <Button disabled={code.length < 4} onClick={claim}>
-                {t('claim', 'Claim')}
+                {t('claim')}
               </Button>
             </div>
           </div>

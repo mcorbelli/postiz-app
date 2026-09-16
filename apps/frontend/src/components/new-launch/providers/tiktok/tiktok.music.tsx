@@ -214,7 +214,7 @@ export const TikTokMusicSelector: FC<{
             <div className="flex gap-[18px]">
               <div className="flex-1 flex flex-col gap-[6px]">
                 <div className="text-[12px]">
-                  {t('tiktok_music_volume', 'Music volume')} (
+                  {t('tiktok_music_volume')} (
                   {value.audio_volume ?? 50})
                 </div>
                 <input
@@ -229,7 +229,7 @@ export const TikTokMusicSelector: FC<{
               </div>
               <div className="flex-1 flex flex-col gap-[6px]">
                 <div className="text-[12px]">
-                  {t('tiktok_video_volume', 'Original video volume')} (
+                  {t('tiktok_video_volume')} (
                   {value.video_volume ?? 50})
                 </div>
                 <input
@@ -251,7 +251,7 @@ export const TikTokMusicSelector: FC<{
             className="h-[42px] px-[16px] inline-flex items-center cursor-pointer bg-newBgColorInner border-newTableBorder border rounded-[8px] text-[14px]"
             onClick={() => setOpen(true)}
           >
-            {t('tiktok_add_music', 'Add music')}
+            {t('tiktok_add_music')}
           </div>
         </div>
       ) : (
@@ -261,8 +261,7 @@ export const TikTokMusicSelector: FC<{
               <input
                 className="h-full w-full bg-transparent outline-none px-[16px] text-[14px] text-textColor placeholder-textColor"
                 placeholder={t(
-                  'tiktok_search_music',
-                  'Filter trending tracks by name or artist'
+                  'tiktok_search_music'
                 )}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -275,17 +274,17 @@ export const TikTokMusicSelector: FC<{
                 setOpen(false);
               }}
             >
-              {t('cancel', 'Cancel')}
+              {t('cancel')}
             </div>
           </div>
           <div className="max-h-[250px] overflow-y-auto flex flex-col bg-newBgColorInner border-newTableBorder border rounded-[8px]">
             {loading ? (
               <div className="p-[12px] text-[14px] opacity-70">
-                {t('loading', 'Loading')}
+                {t('loading')}
               </div>
             ) : !filteredResults.length ? (
               <div className="p-[12px] text-[14px] opacity-70">
-                {t('tiktok_no_music_found', 'No music found')}
+                {t('tiktok_no_music_found')}
               </div>
             ) : (
               filteredResults.map((track) => (
@@ -321,8 +320,8 @@ export const TikTokMusicSelector: FC<{
                       }}
                     >
                       {playingId === track.id
-                        ? t('stop', 'Stop')
-                        : t('play', 'Play')}
+                        ? t('stop')
+                        : t('play')}
                     </div>
                   )}
                 </div>

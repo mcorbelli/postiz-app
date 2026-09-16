@@ -41,7 +41,7 @@ export const MissingReleaseModal: FC<{
       onSuccess();
       modal.closeAll();
       modal.openModal({
-        title: t('statistics', 'Statistics'),
+        title: t('statistics'),
         closeOnClickOutside: true,
         closeOnEscape: true,
         withCloseButton: true,
@@ -53,7 +53,7 @@ export const MissingReleaseModal: FC<{
       });
     } catch {
       toaster.show(
-        t('release_id_update_failed', 'Failed to connect post'),
+        t('release_id_update_failed'),
         'warning'
       );
     } finally {
@@ -73,8 +73,7 @@ export const MissingReleaseModal: FC<{
     return (
       <div className="text-center text-textColor py-[20px]">
         {t(
-          'no_missing_content',
-          'No content found from this provider. The provider may not support this feature.'
+          'no_missing_content'
         )}
       </div>
     );
@@ -84,8 +83,7 @@ export const MissingReleaseModal: FC<{
     <div className="flex flex-col gap-[16px]">
       <div className="text-[14px] text-textColor/70">
         {t(
-          'select_matching_content',
-          'Select the content that matches this post:'
+          'select_matching_content'
         )}
       </div>
       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-[10px] max-h-[400px] overflow-y-auto scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor p-[4px]">
@@ -113,7 +111,7 @@ export const MissingReleaseModal: FC<{
           onClick={() => modal.closeAll()}
           className="bg-transparent border border-tableBorder text-textColor"
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
         <Button
           type="button"
@@ -121,7 +119,7 @@ export const MissingReleaseModal: FC<{
           disabled={!selected || saving}
           loading={saving}
         >
-          {t('connect_post', 'Connect Post')}
+          {t('connect_post')}
         </Button>
       </div>
     </div>

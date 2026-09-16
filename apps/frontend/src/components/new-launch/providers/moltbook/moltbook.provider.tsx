@@ -17,7 +17,7 @@ const MoltbookSettings: FC = () => {
   return (
     <div>
       <Input
-        label={t('submolt', 'Submolt')}
+        label={t('submolt')}
         placeholder="general"
         {...form.register('submolt')}
       />

@@ -18,8 +18,8 @@ dayjs.extend(utc);
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
-    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} ${t('preview', 'Preview')}`,
-    description: t('preview_description', 'Preview your scheduled post'),
+    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} ${t('preview')}`,
+    description: t('preview_description'),
   };
 }
 export default async function Auth(
@@ -44,7 +44,7 @@ export default async function Auth(
   if (!post.length) {
     return (
       <div className="text-white fixed start-0 top-0 w-full h-full flex justify-center items-center text-[20px]">
-        {t('post_not_found', 'Post not found')}
+        {t('post_not_found')}
       </div>
     );
   }
@@ -104,7 +104,7 @@ export default async function Auth(
               </div>
             )}
             <div className="flex-1">
-              {t('publication_date', 'Publication Date:')}{' '}
+              {t('publication_date')}{' '}
               <RenderPreviewDateClient date={post[0].publishDate} />
             </div>
           </div>

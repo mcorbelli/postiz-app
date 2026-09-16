@@ -115,7 +115,7 @@ export const Subreddit: FC<{
       ) : (
         <div className="relative">
           <Input
-            placeholder={t('channel', 'Channel')}
+            placeholder={t('channel')}
             name="search"
             label="Search Channel"
             readOnly={loading}

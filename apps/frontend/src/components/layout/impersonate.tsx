@@ -85,12 +85,11 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
     if (
       !(await deleteDialog(
         t(
-          'cancel_coupon_confirm',
-          'Are you sure you want to cancel this coupon? The user will pay the full price from the next billing cycle.'
+          'cancel_coupon_confirm'
         ),
-        t('yes_cancel_coupon', 'Yes, cancel coupon'),
-        t('cancel_coupon_title', 'Cancel Coupon?'),
-        t('no_go_back', 'No, go back')
+        t('yes_cancel_coupon'),
+        t('cancel_coupon_title'),
+        t('no_go_back')
       ))
     ) {
       return;
@@ -104,12 +103,12 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
       if (!response.ok || !json.cancelled) {
         toast.show(
           json.reason ||
-            t('cancel_coupon_failed', 'Could not cancel the coupon'),
+            t('cancel_coupon_failed'),
           'warning'
         );
         return;
       }
-      toast.show(t('cancel_coupon_success', 'Coupon cancelled'));
+      toast.show(t('cancel_coupon_success'));
       await mutate();
     } finally {
       setCancelling(false);
@@ -128,8 +127,7 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
     ) {
       setError(
         t(
-          'apply_coupon_invalid_percentage',
-          'Invalid percentage: enter a value between 1 and 100'
+          'apply_coupon_invalid_percentage'
         )
       );
       return;
@@ -140,8 +138,7 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
     ) {
       setError(
         `${t(
-          'apply_coupon_invalid_amount',
-          "Invalid amount: enter a value between 1 and the plan's monthly payment:"
+          'apply_coupon_invalid_amount'
         )} ${info.monthlyPrice}`
       );
       return;
@@ -154,8 +151,7 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
     ) {
       setError(
         t(
-          'apply_coupon_invalid_months',
-          'Invalid months: enter a whole number between 1 and 12'
+          'apply_coupon_invalid_months'
         )
       );
       return;
@@ -175,12 +171,12 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
       if (!response.ok || !json.applied) {
         toast.show(
           json.reason ||
-            t('apply_coupon_failed', 'Could not apply the coupon'),
+            t('apply_coupon_failed'),
           'warning'
         );
         return;
       }
-      toast.show(t('apply_coupon_success', 'Coupon applied'));
+      toast.show(t('apply_coupon_success'));
       setValue('');
       setMonths('1');
       await mutate();
@@ -193,36 +189,35 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
     <div className="flex flex-col gap-[16px]">
       <div className="text-newTextColor/60 text-[13px]">
         {t(
-          'apply_coupon_subtitle',
-          "The coupon applied here is simply a deduction from the user's next billing cycle(s) — one or more, depending on how many months you choose to apply it for. It is NOT a refund; we use Stripe's built-in coupon mechanism and that's how it works."
+          'apply_coupon_subtitle'
         )}
       </div>
       {!info ? (
         <div className="text-center py-[20px] text-newTextColor/60">
-          {t('loading', 'Loading...')}
+          {t('loading')}
         </div>
       ) : (
         <>
           <div className="flex flex-col gap-[4px] text-[14px]">
             <div>
-              {t('apply_coupon_plan', 'Plan:')} {info.tier || 'FREE'}
+              {t('apply_coupon_plan')} {info.tier || 'FREE'}
               {!!info.tier && ` - $${info.planPrice}`}
             </div>
             <div>
-              {t('apply_coupon_period', 'Period:')}{' '}
+              {t('apply_coupon_period')}{' '}
               {info.period === 'MONTHLY'
-                ? t('monthly', 'Monthly')
+                ? t('monthly')
                 : info.period === 'YEARLY'
-                ? t('annual', 'Annual')
+                ? t('annual')
                 : '-'}
             </div>
             <div>
-              {t('apply_coupon_lifetime', 'Lifetime deal:')}{' '}
-              {info.isLifetime ? t('yes', 'Yes') : t('no', 'No')}
+              {t('apply_coupon_lifetime')}{' '}
+              {info.isLifetime ? t('yes') : t('no')}
             </div>
             <div>
-              {t('apply_coupon_applied', 'Applied coupons:')}{' '}
-              {!info.coupons.length && t('none', 'None')}
+              {t('apply_coupon_applied')}{' '}
+              {!info.coupons.length && t('none')}
             </div>
             {info.coupons.map((coupon, index) => (
               <div key={index} className="ps-[10px] flex items-center gap-[10px]">
@@ -231,37 +226,35 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
                   {coupon.type === 'percentage'
                     ? `${coupon.value}%`
                     : `$${coupon.value}`}{' '}
-                  {t('apply_coupon_off', 'off,')}{' '}
+                  {t('apply_coupon_off')}{' '}
                   {coupon.duration === 'repeating'
                     ? `${coupon.durationInMonths} ${t(
-                        'apply_coupon_months_total',
-                        'month(s) total,'
+                        'apply_coupon_months_total'
                       )} ${coupon.remainingMonths} ${t(
-                        'apply_coupon_months_left',
-                        'month(s) left'
+                        'apply_coupon_months_left'
                       )}`
                     : coupon.duration === 'forever'
-                    ? t('apply_coupon_forever', 'forever')
-                    : t('apply_coupon_once', 'next billing cycle only')}
+                    ? t('apply_coupon_forever')
+                    : t('apply_coupon_once')}
                 </div>
                 <Button
                   onClick={handleCancelCoupon}
                   loading={cancelling}
                   className="!bg-red-700 rounded-[4px] !h-[24px] !px-[10px] text-[12px]"
                 >
-                  {t('cancel', 'Cancel')}
+                  {t('cancel')}
                 </Button>
               </div>
             ))}
             <div>
-              {t('apply_coupon_next_payment', 'Next Payment:')}{' '}
+              {t('apply_coupon_next_payment')}{' '}
               {info.nextPayment !== null ? `$${info.nextPayment}` : '-'}
             </div>
           </div>
           {info.supported ? (
             <div className="grid grid-cols-3 gap-[12px]">
               <Select
-                label={t('apply_coupon_type', 'Coupon type')}
+                label={t('apply_coupon_type')}
                 name="couponType"
                 disableForm={true}
                 hideErrors={true}
@@ -269,14 +262,14 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
                 onChange={(e) => setType(e.target.value)}
               >
                 <option value="percentage">
-                  {t('apply_coupon_percentage', 'Percentage')}
+                  {t('apply_coupon_percentage')}
                 </option>
                 <option value="amount">
-                  {t('apply_coupon_fixed_amount', 'Fixed dollar amount')}
+                  {t('apply_coupon_fixed_amount')}
                 </option>
               </Select>
               <Input
-                label={t('apply_coupon_value', 'Value')}
+                label={t('apply_coupon_value')}
                 name="couponValue"
                 type="number"
                 disableForm={true}
@@ -285,7 +278,7 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
                 onChange={(e) => setValue(e.target.value)}
               />
               <Input
-                label={t('apply_coupon_months', 'Months')}
+                label={t('apply_coupon_months')}
                 name="couponMonths"
                 type="number"
                 disableForm={true}
@@ -297,15 +290,14 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
           ) : (
             <div className="text-newTextColor/60 text-[13px]">
               {t(
-                'apply_coupon_not_supported',
-                "We currently don't support applying a coupon for users either under an annual plan, with a lifetime deal or with another active coupon."
+                'apply_coupon_not_supported'
               )}
             </div>
           )}
           {!!error && <div className="text-red-400 text-[12px]">{error}</div>}
           <div className="flex gap-[12px] justify-end">
             <Button onClick={close} className="rounded-[4px]">
-              {t('close', 'Close')}
+              {t('close')}
             </Button>
             {info.supported && (
               <Button
@@ -313,7 +305,7 @@ const ApplyCouponModal: FC<{ close: () => void }> = ({ close }) => {
                 loading={applying}
                 className="!bg-blue-700 rounded-[4px]"
               >
-                {t('apply', 'Apply')}
+                {t('apply')}
               </Button>
             )}
           </div>
@@ -347,7 +339,7 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
   const handleApplyCoupon = useCallback(() => {
     close();
     openModal({
-      title: t('apply_coupon', 'Apply Coupon'),
+      title: t('apply_coupon'),
       maxSize: 600,
       children: (closeCoupon) => <ApplyCouponModal close={closeCoupon} />,
     });
@@ -357,13 +349,10 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
     if (!selected.size) return;
     if (
       !(await deleteDialog(
-        t(
-          'refund_selected_confirm',
-          `Are you sure you want to refund ${selected.size} charge(s)? This cannot be undone.`
-        ),
-        t('yes_refund', 'Yes, refund'),
-        t('confirm_refund', 'Confirm Refund'),
-        t('no_cancel', 'No, cancel')
+        t('refund_selected_confirm', { count: selected.size }),
+        t('yes_refund'),
+        t('confirm_refund'),
+        t('no_cancel')
       ))
     ) {
       return;
@@ -385,12 +374,11 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
     if (
       !(await deleteDialog(
         t(
-          'cancel_subscription_confirm',
-          'This will immediately cancel the subscription. The user will be downgraded to the FREE plan. This cannot be undone.'
+          'cancel_subscription_confirm'
         ),
-        t('yes_cancel_subscription', 'Yes, cancel subscription'),
-        t('cancel_subscription_title', 'Cancel Subscription?'),
-        t('no_go_back', 'No, go back')
+        t('yes_cancel_subscription'),
+        t('cancel_subscription_title'),
+        t('no_go_back')
       ))
     ) {
       return;
@@ -412,16 +400,16 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
       <div className="max-h-[400px] overflow-y-auto">
         {!charges?.length ? (
           <div className="text-center py-[20px] text-newTextColor/60">
-            {t('no_charges', 'No charges found')}
+            {t('no_charges')}
           </div>
         ) : (
           <table className="w-full">
             <thead>
               <tr className="text-left border-b border-newTableBorder">
                 <th className="p-[8px] w-[40px]" />
-                <th className="p-[8px]">{t('date', 'Date')}</th>
-                <th className="p-[8px]">{t('amount', 'Amount')}</th>
-                <th className="p-[8px]">{t('status', 'Status')}</th>
+                <th className="p-[8px]">{t('date')}</th>
+                <th className="p-[8px]">{t('amount')}</th>
+                <th className="p-[8px]">{t('status')}</th>
                 <th className="p-[8px] w-[50px]" />
               </tr>
             </thead>
@@ -469,11 +457,11 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
                   <td className="p-[8px]">
                     {charge.refunded ? (
                       <span className="text-red-400">
-                        {t('refunded', 'Refunded')}
+                        {t('refunded')}
                       </span>
                     ) : (
                       <span className="text-green-400">
-                        {t('paid', 'Paid')}
+                        {t('paid')}
                       </span>
                     )}
                   </td>
@@ -485,7 +473,7 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center justify-center w-[28px] h-[28px] rounded-[4px] hover:bg-tableBorder transition-colors"
-                        title={charge.invoice_pdf ? t('download_invoice', 'Download Invoice') : t('view_receipt', 'View Receipt')}
+                        title={charge.invoice_pdf ? t('download_invoice') : t('view_receipt')}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -516,7 +504,7 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
           onClick={handleApplyCoupon}
           className="!bg-blue-700 rounded-[4px]"
         >
-          {t('apply_coupon', 'Apply Coupon')}
+          {t('apply_coupon')}
         </Button>
         <Button
           onClick={handleRefund}
@@ -524,7 +512,7 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
           disabled={!selected.size}
           className="rounded-[4px]"
         >
-          {t('refund_selected', 'Refund Selected')}
+          {t('refund_selected')}
           {selected.size > 0 && ` (${selected.size})`}
         </Button>
         <Button
@@ -532,7 +520,7 @@ const ChargesModal: FC<{ close: () => void }> = ({ close }) => {
           loading={cancelling}
           className="!bg-red-700 rounded-[4px]"
         >
-          {t('cancel_subscription', 'Cancel Subscription')}
+          {t('cancel_subscription')}
         </Button>
       </div>
     </div>
@@ -545,7 +533,7 @@ const ManageBilling = () => {
 
   const handleClick = useCallback(() => {
     openModal({
-      title: t('manage_billing', 'Manage Billing'),
+      title: t('manage_billing'),
       children: (close) => <ChargesModal close={close} />,
     });
   }, []);
@@ -555,7 +543,7 @@ const ManageBilling = () => {
       className="px-[10px] rounded-[4px] bg-red-700 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('manage_billing', 'Manage Billing')}
+      {t('manage_billing')}
     </div>
   );
 };
@@ -594,7 +582,7 @@ export const Subscription = () => {
       value=""
     >
       <option>
-        {t('add_free_subscription', '-- ADD FREE SUBSCRIPTION --')}
+        {t('add_free_subscription')}
       </option>
       {Object.keys(pricing)
         .filter((f) => !f.includes('FREE'))
@@ -639,30 +627,29 @@ const AddAnnouncementModal: FC<{ close: () => void }> = ({ close }) => {
   return (
     <div className="flex flex-col gap-[16px] min-w-[500px]">
       <Input
-        label={t('announcement_title', 'Title')}
+        label={t('announcement_title')}
         name="title"
         disableForm={true}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder={t('announcement_title_placeholder', 'Announcement title')}
+        placeholder={t('announcement_title_placeholder')}
       />
       <div className="flex flex-col gap-[6px]">
         <label className="text-[14px]">
-          {t('announcement_description', 'Description')}
+          {t('announcement_description')}
         </label>
         <textarea
           className="bg-input border border-tableBorder rounded-[8px] p-[10px] text-newTextColor min-h-[120px] outline-none resize-y"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder={t(
-            'announcement_description_placeholder',
-            'Announcement description'
+            'announcement_description_placeholder'
           )}
         />
       </div>
       <div className="flex flex-col gap-[6px]">
         <label className="text-[14px]">
-          {t('announcement_color', 'Color')}
+          {t('announcement_color')}
         </label>
         <div className="flex gap-[8px]">
           {colorOptions.map((opt) => (
@@ -685,7 +672,7 @@ const AddAnnouncementModal: FC<{ close: () => void }> = ({ close }) => {
           disabled={!title.trim() || !description.trim()}
           className="rounded-[4px]"
         >
-          {t('create_announcement', 'Create Announcement')}
+          {t('create_announcement')}
         </Button>
       </div>
     </div>
@@ -698,7 +685,7 @@ const AddAnnouncement = () => {
 
   const handleClick = useCallback(() => {
     openModal({
-      title: t('add_announcement', 'Add Announcement'),
+      title: t('add_announcement'),
       children: (close) => <AddAnnouncementModal close={close} />,
     });
   }, []);
@@ -708,7 +695,7 @@ const AddAnnouncement = () => {
       className="px-[10px] rounded-[4px] bg-green-700 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('add_announcement', 'Add Announcement')}
+      {t('add_announcement')}
     </div>
   );
 };
@@ -741,12 +728,12 @@ const AddTeamMemberModal: FC<{ close: () => void }> = ({ close }) => {
         if (!response.ok) {
           toast.show(
             (await response.json()).message ||
-              t('could_not_add_member', 'Could not add the member'),
+              t('could_not_add_member'),
             'warning'
           );
           return;
         }
-        toast.show(t('member_added', 'Member added'));
+        toast.show(t('member_added'));
         close();
       } finally {
         setSaving(false);
@@ -761,16 +748,16 @@ const AddTeamMemberModal: FC<{ close: () => void }> = ({ close }) => {
         <div className="flex flex-col gap-[10px] min-w-[400px]">
           <Input
             label="Email"
-            placeholder={t('enter_email', 'Enter email')}
+            placeholder={t('enter_email')}
             name="email"
           />
           <Select label="Role" name="role">
-            <option value="">{t('select_role', 'Select Role')}</option>
-            <option value="USER">{t('user', 'User')}</option>
-            <option value="ADMIN">{t('admin', 'Admin')}</option>
+            <option value="">{t('select_role')}</option>
+            <option value="USER">{t('user')}</option>
+            <option value="ADMIN">{t('admin')}</option>
           </Select>
           <Button type="submit" loading={saving} className="rounded-[4px]">
-            {t('add_team_member', 'Add Team Member')}
+            {t('add_team_member')}
           </Button>
         </div>
       </form>
@@ -784,7 +771,7 @@ const AddTeamMember = () => {
 
   const handleClick = useCallback(() => {
     openModal({
-      title: t('add_team_member', 'Add Team Member'),
+      title: t('add_team_member'),
       children: (close) => <AddTeamMemberModal close={close} />,
     });
   }, []);
@@ -794,7 +781,7 @@ const AddTeamMember = () => {
       className="px-[10px] rounded-[4px] bg-teal-700 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('add_team_member', 'Add Team Member')}
+      {t('add_team_member')}
     </div>
   );
 };
@@ -809,7 +796,7 @@ const ViewErrors = () => {
       className="px-[10px] rounded-[4px] bg-blue-700 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('view_errors', 'View Errors')}
+      {t('view_errors')}
     </div>
   );
 };
@@ -824,7 +811,7 @@ const ViewStats = () => {
       className="px-[10px] rounded-[4px] bg-purple-700 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('view_stats', 'View Stats')}
+      {t('view_stats')}
     </div>
   );
 };
@@ -835,7 +822,7 @@ const ImportDebugPost = () => {
 
   const handleClick = useCallback(() => {
     openModal({
-      title: t('import_debug_post', 'Import Debug Post'),
+      title: t('import_debug_post'),
       maxSize: 800,
       children: (close) => <ImportDebugPostModal close={close} />,
     });
@@ -846,7 +833,7 @@ const ImportDebugPost = () => {
       className="px-[10px] rounded-[4px] bg-yellow-600 text-white cursor-pointer whitespace-nowrap"
       onClick={handleClick}
     >
-      {t('import_debug_post', 'Import Debug Post')}
+      {t('import_debug_post')}
     </div>
   );
 };
@@ -923,13 +910,10 @@ const SwitchUser = () => {
     }
     if (
       !(await deleteDialog(
-        t(
-          'switch_user_confirm',
-          `This will replace the current account's login with ${selected.email}. All data and the subscription stay with the account — only the login changes, and the new login gains its full access. Switch back to revert.`
-        ),
-        t('yes_switch', 'Yes, switch'),
-        t('switch_user_title', 'Switch User?'),
-        t('no_cancel', 'No, cancel')
+        t('switch_user_confirm', { email: selected.email }),
+        t('yes_switch'),
+        t('switch_user_title'),
+        t('no_cancel')
       ))
     ) {
       return;
@@ -948,7 +932,7 @@ const SwitchUser = () => {
     } catch {
       setSwitching(false);
       toaster.show(
-        t('switch_user_failed', 'The user switch failed and nothing was changed'),
+        t('switch_user_failed'),
         'warning'
       );
     }
@@ -959,7 +943,7 @@ const SwitchUser = () => {
       <div className="flex-1 min-w-[220px]">
         <Input
           autoComplete="off"
-          placeholder={t('select_user_to_switch_to', 'Select user to switch to')}
+          placeholder={t('select_user_to_switch_to')}
           name="switchUser"
           disableForm={true}
           label=""
@@ -981,7 +965,7 @@ const SwitchUser = () => {
         disabled={!selected}
         className="rounded-[4px] whitespace-nowrap"
       >
-        {t('switch_user', 'Switch User')}
+        {t('switch_user')}
       </Button>
       {!!mapData?.length && !selected && (
         <>
@@ -996,7 +980,7 @@ const SwitchUser = () => {
                 key={item?.id}
                 className="p-[10px] border-b border-customColor6 hover:bg-tableBorder cursor-pointer whitespace-nowrap truncate"
               >
-                {t('user_1', 'user:')}
+                {t('user_1')}
                 {item?.id?.split('-')?.at(-1)} -{' '}
                 {item?.name ? `${item?.name} - ` : ''}
                 {item?.email}
@@ -1083,7 +1067,7 @@ export const Impersonate = () => {
             {user?.impersonate ? (
               <div className="text-center flex justify-center items-center gap-[10px]">
                 <div className="whitespace-nowrap">
-                  {t('currently_impersonating', 'Currently Impersonating')}
+                  {t('currently_impersonating')}
                 </div>
                 <div>
                   <div
@@ -1132,7 +1116,7 @@ export const Impersonate = () => {
                     key={user?.id}
                     className="p-[10px] border-b border-customColor6 hover:bg-tableBorder cursor-pointer whitespace-nowrap truncate"
                   >
-                    {t('user_1', 'user:')}
+                    {t('user_1')}
                     {user?.id?.split('-')?.at(-1)} - {user?.name} - {user?.email}{' '}
                     - {user?.orgName} ({user?.role} / {user?.tier})
                   </div>

@@ -30,15 +30,14 @@ export default async function AuthLayout({
         </div>
         <div className="text-[36px] flex-1 pt-[88px] hidden lg:flex flex-col items-center">
           <div className="text-center">
-            {t('over', 'Over')}{' '}
+            {t('over')}{' '}
             <span className="text-[42px] text-[#FC69FF]">
-              {t('billing_entrepreneurs_count_short', '20,000+')}
+              {t('billing_entrepreneurs_count_short')}
             </span>{' '}
-            {t('entrepreneurs_use', 'Entrepreneurs use')}
+            {t('entrepreneurs_use')}
             <br />
             {t(
               'app_name_to_grow_their_social_presence',
-              `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} To Grow Their Social Presence`,
               { app: isGeneralServerSide() ? 'Postiz' : 'Gitroom' }
             )}
           </div>

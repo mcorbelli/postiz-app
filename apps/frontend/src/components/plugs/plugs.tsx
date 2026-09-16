@@ -100,19 +100,16 @@ export const Plugs = () => {
         </div>
         <div className="text-[48px]">
           {t(
-            'there_are_not_plugs_matching_your_channels',
-            'There are not plugs matching your channels'
+            'there_are_not_plugs_matching_your_channels'
           )}
           <br />
           {t(
-            'you_have_to_add_x_linkedin_page_threads_or_bluesky',
-            'You have to add: X, LinkedIn Page, Threads or Bluesky'
+            'you_have_to_add_x_linkedin_page_threads_or_bluesky'
           )}
         </div>
         <Button onClick={() => router.push('/launches')}>
           {t(
-            'go_to_the_calendar_to_add_channels',
-            'Go to the calendar to add channels'
+            'go_to_the_calendar_to_add_channels'
           )}
         </Button>
       </div>

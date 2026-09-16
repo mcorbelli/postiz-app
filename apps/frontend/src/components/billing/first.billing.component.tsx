@@ -1,6 +1,7 @@
 'use client';
 
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import type { TranslationKey } from '@gitroom/react/translation/i18next.types';
 import useSWR from 'swr';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import { useVariables } from '@gitroom/react/helpers/variable.context';
@@ -83,14 +84,13 @@ export const FirstBillingComponent = () => {
     modals.openModal({
       title: t(
         'grow_fast_with_app_play_the_video',
-        `Grow Fast With ${isGeneral ? 'Postiz' : 'Gitroom'} (Play the video)`,
         { app: isGeneral ? 'Postiz' : 'Gitroom' }
       ),
       children: (
         <iframe
           className="h-full aspect-video min-w-[800px]"
           src="https://www.youtube.com/embed/BdsCVvEYgHU?si=vvhaZJ8I5oXXvVJS?autoplay=1"
-          title={`${isGeneral ? 'Postiz' : 'Gitroom'} ${t('tutorial', 'Tutorial')}`}
+          title={`${isGeneral ? 'Postiz' : 'Gitroom'} ${t('tutorial')}`}
           allow="autoplay"
           allowFullScreen
         />
@@ -119,14 +119,13 @@ export const FirstBillingComponent = () => {
     return (
       <>
         <div className="text-[46px] font-[600] leading-[110%] tablet:text-[36px] mobile:!text-[30px] whitespace-pre-line text-balance">
-          {t('billing_join_over', 'Join Over')}{' '}
+          {t('billing_join_over')}{' '}
           <span className="text-[#FC69FF]">
-            {t('billing_entrepreneurs_count', '20,000+ Entrepreneurs')}
+            {t('billing_entrepreneurs_count')}
           </span>{' '}
-          {t('billing_who_use', 'who use')}{' '}
+          {t('billing_who_use')}{' '}
           {t(
-            'billing_postiz_grow_social',
-            'Postiz To Grow Their Social Presence'
+            'billing_postiz_grow_social'
           )}
         </div>
 
@@ -144,7 +143,6 @@ export const FirstBillingComponent = () => {
             <div>
               {t(
                 'see_the_power_of_app_click_here',
-                `See the power of ${isGeneral ? 'Postiz' : 'Gitroom'} (click here)`,
                 { app: isGeneral ? 'Postiz' : 'Gitroom' }
               )}
             </div>
@@ -157,7 +155,7 @@ export const FirstBillingComponent = () => {
               <div>
                 <CheckIconComponent />
               </div>
-              <div>{t('billing_no_risk_trial', '100% No-Risk Free Trial')}</div>
+              <div>{t('billing_no_risk_trial')}</div>
             </div>
             <div className="flex-1 flex gap-[8px] justify-center mobile:justify-start">
               <div>
@@ -165,8 +163,7 @@ export const FirstBillingComponent = () => {
               </div>
               <div>
                 {t(
-                  'billing_pay_nothing_7_days',
-                  'Pay NOTHING for the first 7-days'
+                  'billing_pay_nothing_7_days'
                 )}
               </div>
             </div>
@@ -175,7 +172,7 @@ export const FirstBillingComponent = () => {
                 <CheckIconComponent />
               </div>
               <div>
-                {t('billing_cancel_anytime', 'Cancel anytime, from settings')}
+                {t('billing_cancel_anytime')}
               </div>
             </div>
           </div>
@@ -218,8 +215,7 @@ export const FirstBillingComponent = () => {
           {data?.blocked ? (
             <div className="mt-[24px] p-[24px] rounded-[20px] border-[1.5px] border-newColColor text-[16px] font-[500]">
               {t(
-                'billing_other_account_subscribed',
-                'Another account with this email already has an active subscription. Please log off and sign in to that account to manage your subscription.'
+                'billing_other_account_subscribed'
               )}
             </div>
           ) : !isLoading && data && stripe ? (
@@ -240,7 +236,7 @@ export const FirstBillingComponent = () => {
             </div>
             <div className="flex mb-[24px] mobile:flex-col">
               <div className="flex-1 text-[24px] font-[700]">
-                {t('billing_choose_plan', 'Choose a Plan')}
+                {t('billing_choose_plan')}
               </div>
               <div className="h-[44px] px-[6px] mobile:px-0 flex items-center justify-center mobile:justify-start gap-[12px] border border-newColColor rounded-[12px] select-none">
                 <div
@@ -252,7 +248,7 @@ export const FirstBillingComponent = () => {
                   )}
                   onClick={() => setPeriod('MONTHLY')}
                 >
-                  {t('billing_monthly', 'Monthly')}
+                  {t('billing_monthly')}
                 </div>
                 <div
                   className={clsx(
@@ -263,9 +259,9 @@ export const FirstBillingComponent = () => {
                   )}
                   onClick={() => setPeriod('YEARLY')}
                 >
-                  <div>{t('billing_yearly', 'Yearly')}</div>
+                  <div>{t('billing_yearly')}</div>
                   <div className="bg-[#AA0FA4] text-[white] px-[8px] rounded-[4px] mobile:hidden">
-                    {t('billing_20_percent_off', '20% Off')}
+                    {t('billing_20_percent_off')}
                   </div>
                 </div>
               </div>
@@ -296,8 +292,8 @@ export const FirstBillingComponent = () => {
                         }
                       </span>{' '}
                       {period === 'MONTHLY'
-                        ? t('billing_per_month', '/ month')
-                        : t('billing_per_year', '/ year')}
+                        ? t('billing_per_month')
+                        : t('billing_per_year')}
                     </div>
                   </div>
                 ),
@@ -306,7 +302,7 @@ export const FirstBillingComponent = () => {
             </div>
             <div className="flex flex-col mt-[54px] gap-[24px] tablet:mt-[40px]">
               <div className="text-[24px] font-[700]">
-                {t('billing_features', 'Features')}
+                {t('billing_features')}
               </div>
               <BillingFeatures tier={tier} />
             </div>
@@ -388,9 +384,15 @@ export const BillingFeatures: FC<{ tier: string }> = ({ tier }) => {
   }, [tier]);
 
   const renderFeature = (feature: FeatureItem) => {
-    const translatedText = t(feature.key, feature.defaultValue);
+    // feature.key comes from a plain data array of literal keys built above,
+    // not a single literal at this call site - can't be checked against
+    // the real key union at compile time.
+    const translatedText = t(
+      feature.key as TranslationKey,
+      feature.defaultValue
+    );
     if (feature.prefix === 'unlimited') {
-      return `${t('billing_unlimited', 'Unlimited')} ${translatedText}`;
+      return `${t('billing_unlimited')} ${translatedText}`;
     }
     if (feature.prefix !== undefined) {
       return `${feature.prefix} ${translatedText}`;

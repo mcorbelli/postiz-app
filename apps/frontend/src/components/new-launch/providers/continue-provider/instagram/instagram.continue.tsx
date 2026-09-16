@@ -51,7 +51,7 @@ export const InstagramContinue = withContinueProvider<
         <img
           className="w-full max-w-[156px]"
           src={item.picture.data.url}
-          alt={t('profile_picture_alt', 'profile')}
+          alt={t('profile_picture_alt')}
         />
       </div>
       <div>{item.name}</div>

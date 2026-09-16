@@ -13,15 +13,15 @@ export const DummyCodeComponent: FC<{ code: any }> = ({ code }) => {
 
   return (
     <div className="rounded-[4px] border border-customColor6 bg-sixth px-[16px] pb-[16px] relative w-full">
-      <TopTitle title={t('output', 'Output')}>
+      <TopTitle title={t('output')}>
         <Button
           className="mr-[50px]"
           onClick={() => {
             copy(JSON.stringify(code, null, 2));
-            toaster.show(t('code_copied_to_clipboard', 'Code copied to clipboard'), 'success');
+            toaster.show(t('code_copied_to_clipboard'), 'success');
           }}
         >
-          {t('copy_code', 'Copy Code')}
+          {t('copy_code')}
         </Button>
       </TopTitle>
       <button

@@ -31,8 +31,7 @@ export const ThirdPartyMenuComponent: FC<{
     if (
       !(await deleteDialog(
         t(
-          'are_you_sure_you_want_to_delete_this_integration',
-          'Are you sure you want to delete this integration?'
+          'are_you_sure_you_want_to_delete_this_integration'
         )
       ))
     ) {
@@ -44,7 +43,7 @@ export const ThirdPartyMenuComponent: FC<{
     });
 
     if (res.ok) {
-      toaster.show(t('integration_deleted_successfully', 'Integration deleted successfully'), 'success');
+      toaster.show(t('integration_deleted_successfully'), 'success');
       reload();
     } else {
       const error = await res.json();
@@ -90,7 +89,7 @@ export const ThirdPartyMenuComponent: FC<{
               </svg>
             </div>
             <div className="text-[12px]">
-              {t('delete_integration', 'Delete Integration')}
+              {t('delete_integration')}
             </div>
           </div>
         </div>
@@ -159,7 +158,7 @@ export const ThirdPartyComponent = () => {
                 )}
               >
                 {!isLoading && !data?.length ? (
-                  <div>{t('no_integrations_yet', 'No Integrations Yet')}</div>
+                  <div>{t('no_integrations_yet')}</div>
                 ) : (
                   data?.map((p: any) => (
                     <div

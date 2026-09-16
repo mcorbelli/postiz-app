@@ -41,16 +41,16 @@ const SaveSetModal: FC<{
           value={name}
           disableForm={true}
           onChange={(e) => setName(e.target.value)}
-          placeholder={t('enter_a_name_for_this_set', 'Enter a name for this set')}
+          placeholder={t('enter_a_name_for_this_set')}
           autoFocus
         />
       </div>
       <div className="flex gap-2 justify-end">
         <Button type="button" secondary onClick={onCancel}>
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
         <Button type="submit" disabled={!name.trim()}>
-          {t('save', 'Save')}
+          {t('save')}
         </Button>
       </div>
     </form>
@@ -112,7 +112,7 @@ export const Sets: FC = () => {
             {...(params?.id ? { set: JSON.parse(params.content) } : {})}
             addEditSets={(data) => {
               modal.openModal({
-                title: t('save_as_set', 'Save as Set'),
+                title: t('save_as_set'),
                 children: (
                   <SaveSetModal
                     initialValue={params?.name || ''}
@@ -129,9 +129,9 @@ export const Sets: FC = () => {
                         });
                         modal.closeAll();
                         mutate();
-                        toaster.show(t('set_saved_successfully', 'Set saved successfully'), 'success');
+                        toaster.show(t('set_saved_successfully'), 'success');
                       } catch (error) {
-                        toaster.show(t('failed_to_save_set', 'Failed to save set'), 'warning');
+                        toaster.show(t('failed_to_save_set'), 'warning');
                       }
                     }}
                     onCancel={() => modal.closeAll()}
@@ -155,7 +155,7 @@ export const Sets: FC = () => {
     (data: any) => async () => {
       if (
         await deleteDialog(
-          t('are_you_sure_you_want_to_delete', `Are you sure you want to delete ${data.name}?`, {
+          t('are_you_sure_you_want_to_delete', {
             name: data.name,
           })
         )
@@ -164,7 +164,7 @@ export const Sets: FC = () => {
           method: 'DELETE',
         });
         mutate();
-        toaster.show(t('set_deleted_successfully', 'Set deleted successfully'), 'success');
+        toaster.show(t('set_deleted_successfully'), 'success');
       }
     },
     []
@@ -173,33 +173,32 @@ export const Sets: FC = () => {
   return (
     <div className="flex flex-col">
       <h3 className="text-[20px]">
-        {t('sets_n', `Sets (${data?.length || 0})`, { count: data?.length || 0 })}
+        {t('sets_n', { count: data?.length || 0 })}
       </h3>
       <div className="text-customColor18 mt-[4px]">
         {t(
-          'manage_your_content_sets_for_easy_reuse_across_posts',
-          'Manage your content sets for easy reuse across posts.'
+          'manage_your_content_sets_for_easy_reuse_across_posts'
         )}
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
           {!!data?.length && (
             <div className="grid grid-cols-[2fr,1fr,1fr] w-full gap-y-[10px]">
-              <div>{t('name', 'Name')}</div>
-              <div>{t('edit', 'Edit')}</div>
-              <div>{t('delete', 'Delete')}</div>
+              <div>{t('name')}</div>
+              <div>{t('edit')}</div>
+              <div>{t('delete')}</div>
               {data?.map((p: any) => (
                 <Fragment key={p.id}>
                   <div className="flex flex-col justify-center">{p.name}</div>
                   <div className="flex flex-col justify-center">
                     <div>
-                      <Button onClick={addSet(p)}>{t('edit', 'Edit')}</Button>
+                      <Button onClick={addSet(p)}>{t('edit')}</Button>
                     </div>
                   </div>
                   <div className="flex flex-col justify-center">
                     <div>
                       <Button onClick={deleteSet(p)}>
-                        {t('delete', 'Delete')}
+                        {t('delete')}
                       </Button>
                     </div>
                   </div>
@@ -212,7 +211,7 @@ export const Sets: FC = () => {
               onClick={addSet()}
               className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
             >
-              {t('add_a_set', 'Add a set')}
+              {t('add_a_set')}
             </Button>
           </div>
         </div>

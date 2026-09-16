@@ -100,11 +100,11 @@ const PerSocialTable: FC<{ title: string; block: StatsBlock }> = ({
   <div className="border border-newTableBorder rounded-[8px] overflow-hidden">
     <div className="grid grid-cols-[1fr_120px] gap-[12px] px-[12px] py-[10px] bg-newBgColorInner text-[12px] uppercase opacity-70 border-b border-newTableBorder">
       <div>{title}</div>
-      <div className="text-right">{t('count', 'Count')}</div>
+      <div className="text-right">{t('count')}</div>
     </div>
     {block.perSocial.length === 0 ? (
       <div className="px-[12px] py-[10px] text-[13px] opacity-70">
-        {t('no_data_for_this_timeframe', 'No data for this timeframe.')}
+        {t('no_data_for_this_timeframe')}
       </div>
     ) : (
       block.perSocial.map((row) => (
@@ -126,11 +126,11 @@ export const AdminStatsComponent: FC = () => {
   const user = useUser();
 
   const PRESETS: { label: string; range: () => { from: string; to: string } }[] = [
-    { label: t('today', 'Today'), range: () => ({ from: today(), to: today() }) },
-    { label: t('this_week', 'This week'), range: () => ({ from: startOfWeek(), to: today() }) },
-    { label: t('this_month', 'This month'), range: () => ({ from: startOfMonth(), to: today() }) },
-    { label: t('last_7_days', 'Last 7 days'), range: () => ({ from: isoDaysAgo(7), to: today() }) },
-    { label: t('last_30_days', 'Last 30 days'), range: () => ({ from: isoDaysAgo(30), to: today() }) },
+    { label: t('today'), range: () => ({ from: today(), to: today() }) },
+    { label: t('this_week'), range: () => ({ from: startOfWeek(), to: today() }) },
+    { label: t('this_month'), range: () => ({ from: startOfMonth(), to: today() }) },
+    { label: t('last_7_days'), range: () => ({ from: isoDaysAgo(7), to: today() }) },
+    { label: t('last_30_days'), range: () => ({ from: isoDaysAgo(30), to: today() }) },
   ];
 
   const [fromInput, setFromInput] = useState(today());
@@ -149,7 +149,7 @@ export const AdminStatsComponent: FC = () => {
   if (!user?.isSuperAdmin) {
     return (
       <div className="text-textColor p-[20px]">
-        {t('you_do_not_have_access_to_this_page', 'You do not have access to this page.')}
+        {t('you_do_not_have_access_to_this_page')}
       </div>
     );
   }
@@ -157,7 +157,7 @@ export const AdminStatsComponent: FC = () => {
   return (
     <div className="flex flex-col gap-[16px] text-textColor">
       <div className="flex items-center justify-between">
-        <div className="text-[20px] font-[600]">{t('admin_stats', 'Admin Stats')}</div>
+        <div className="text-[20px] font-[600]">{t('admin_stats')}</div>
         {data && (
           <div className="text-[13px] opacity-70">
             {new Date(data.from).toLocaleDateString()} —{' '}
@@ -189,7 +189,7 @@ export const AdminStatsComponent: FC = () => {
 
       <div className="flex flex-wrap gap-[12px] items-end bg-newBgColorInner border border-newTableBorder rounded-[8px] p-[12px]">
         <div className="flex flex-col gap-[6px]">
-          <div className="text-[12px] opacity-70">{t('label_from_date', 'From')}</div>
+          <div className="text-[12px] opacity-70">{t('label_from_date')}</div>
           <input
             type="date"
             value={fromInput}
@@ -199,7 +199,7 @@ export const AdminStatsComponent: FC = () => {
           />
         </div>
         <div className="flex flex-col gap-[6px]">
-          <div className="text-[12px] opacity-70">{t('label_to_date', 'To')}</div>
+          <div className="text-[12px] opacity-70">{t('label_to_date')}</div>
           <input
             type="date"
             value={toInput}
@@ -213,14 +213,13 @@ export const AdminStatsComponent: FC = () => {
           onClick={() => setRange({ from: fromInput, to: toInput })}
           disabled={!fromInput || !toInput || fromInput > toInput}
         >
-          {t('apply', 'Apply')}
+          {t('apply')}
         </Button>
 
         <label
           className="flex items-center gap-[6px] text-[13px] cursor-pointer h-[38px]"
           title={t(
-            'unknown_errors_only_tooltip',
-            'Only count errors whose message matches "message":"Unknown Error" (affects the error stats only)'
+            'unknown_errors_only_tooltip'
           )}
         >
           <input
@@ -228,26 +227,26 @@ export const AdminStatsComponent: FC = () => {
             checked={unknownOnly}
             onChange={(e) => setUnknownOnly(e.target.checked)}
           />
-          {t('unknown_errors_only', 'Unknown errors only')}
+          {t('unknown_errors_only')}
         </label>
       </div>
 
       {isLoading ? (
         <LoadingComponent />
       ) : error || !data ? (
-        <div className="text-red-400">{t('failed_to_load_stats', 'Failed to load stats.')}</div>
+        <div className="text-red-400">{t('failed_to_load_stats')}</div>
       ) : (
         <div className="overflow-x-auto pb-[8px] scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor flex flex-col gap-[16px]">
           <div className="flex gap-[12px]">
             <div className="flex-1 min-w-[220px] shrink-0">
               <SummaryCard
-                label={t('total_posts_published', 'Total posts published')}
+                label={t('total_posts_published')}
                 value={data.posts.total}
               />
             </div>
             <div className="flex-1 min-w-[220px] shrink-0">
               <SummaryCard
-                label={t('total_connected_accounts', 'Total connected accounts')}
+                label={t('total_connected_accounts')}
                 value={data.connected.total}
               />
             </div>
@@ -255,8 +254,8 @@ export const AdminStatsComponent: FC = () => {
               <SummaryCard
                 label={
                   unknownOnly
-                    ? t('total_unknown_errors', 'Total unknown errors')
-                    : t('total_errors', 'Total errors')
+                    ? t('total_unknown_errors')
+                    : t('total_errors')
                 }
                 value={data.errors.total}
               />
@@ -265,8 +264,7 @@ export const AdminStatsComponent: FC = () => {
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
                   label={t(
-                    'unique_channels_published_all_platforms',
-                    'Unique channels - published (all platforms combined)'
+                    'unique_channels_published_all_platforms'
                   )}
                   value={data.publishingChannels.total}
                 />
@@ -276,8 +274,7 @@ export const AdminStatsComponent: FC = () => {
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
                   label={t(
-                    'unique_channels_scheduled_all_platforms',
-                    'Unique channels - scheduled (all platforms combined)'
+                    'unique_channels_scheduled_all_platforms'
                   )}
                   value={data.scheduledChannels.total}
                 />
@@ -287,8 +284,7 @@ export const AdminStatsComponent: FC = () => {
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
                   label={t(
-                    'unique_users_published_all_platforms',
-                    'Unique users - published (all platforms combined)'
+                    'unique_users_published_all_platforms'
                   )}
                   value={data.publishingAccounts.total}
                 />
@@ -298,8 +294,7 @@ export const AdminStatsComponent: FC = () => {
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
                   label={t(
-                    'unique_users_scheduled_all_platforms',
-                    'Unique users - scheduled (all platforms combined)'
+                    'unique_users_scheduled_all_platforms'
                   )}
                   value={data.scheduledAccounts.total}
                 />
@@ -309,8 +304,7 @@ export const AdminStatsComponent: FC = () => {
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
                   label={t(
-                    'unique_users_active_all_sources_combined',
-                    'Unique users - active (all sources combined)'
+                    'unique_users_active_all_sources_combined'
                   )}
                   value={data.activeOrgsBySource.total}
                 />
@@ -321,13 +315,13 @@ export const AdminStatsComponent: FC = () => {
           <div className="flex gap-[12px] items-start">
             <div className="flex-1 min-w-[220px] shrink-0">
               <PerSocialTable
-                title={t('posts_published_per_social', 'Posts published per social')}
+                title={t('posts_published_per_social')}
                 block={data.posts}
               />
             </div>
             <div className="flex-1 min-w-[220px] shrink-0">
               <PerSocialTable
-                title={t('connected_accounts_per_social', 'Connected accounts per social')}
+                title={t('connected_accounts_per_social')}
                 block={data.connected}
               />
             </div>
@@ -335,8 +329,8 @@ export const AdminStatsComponent: FC = () => {
               <PerSocialTable
                 title={
                   unknownOnly
-                    ? t('unknown_errors_per_social', 'Unknown errors per social')
-                    : t('errors_per_social', 'Errors per social')
+                    ? t('unknown_errors_per_social')
+                    : t('errors_per_social')
                 }
                 block={data.errors}
               />
@@ -344,7 +338,7 @@ export const AdminStatsComponent: FC = () => {
             {data.publishingChannels && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title={t('unique_channels_published', 'Unique channels - published')}
+                  title={t('unique_channels_published')}
                   block={data.publishingChannels}
                 />
               </div>
@@ -352,7 +346,7 @@ export const AdminStatsComponent: FC = () => {
             {data.scheduledChannels && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title={t('unique_channels_scheduled', 'Unique channels - scheduled')}
+                  title={t('unique_channels_scheduled')}
                   block={data.scheduledChannels}
                 />
               </div>
@@ -360,7 +354,7 @@ export const AdminStatsComponent: FC = () => {
             {data.publishingAccounts && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title={t('unique_users_published', 'Unique users - published')}
+                  title={t('unique_users_published')}
                   block={data.publishingAccounts}
                 />
               </div>
@@ -368,7 +362,7 @@ export const AdminStatsComponent: FC = () => {
             {data.scheduledAccounts && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title={t('unique_users_scheduled', 'Unique users - scheduled')}
+                  title={t('unique_users_scheduled')}
                   block={data.scheduledAccounts}
                 />
               </div>
@@ -376,7 +370,7 @@ export const AdminStatsComponent: FC = () => {
             {data.activeOrgsBySource && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title={t('active_users_per_source', 'Active users per source')}
+                  title={t('active_users_per_source')}
                   block={data.activeOrgsBySource}
                 />
               </div>

@@ -20,8 +20,7 @@ const ConnectedComponent: FC<{
     if (
       !(await deleteDialog(
         t(
-          'are_you_sure_you_want_to_disconnect_this_repository',
-          'Are you sure you want to disconnect this repository?'
+          'are_you_sure_you_want_to_disconnect_this_repository'
         )
       ))
     ) {
@@ -40,9 +39,9 @@ const ConnectedComponent: FC<{
           <SafeImage src="/icons/github.svg" alt="GitHub" width={40} height={40} />
         </div>
         <div className="flex-1">
-          <strong>{t('connected', 'Connected:')}</strong> {login}
+          <strong>{t('connected')}</strong> {login}
         </div>
-        <Button onClick={disconnect}>{t('disconnect', 'Disconnect')}</Button>
+        <Button onClick={disconnect}>{t('disconnect')}</Button>
       </div>
     </div>
   );
@@ -81,7 +80,7 @@ const ConnectComponent: FC<{
       }),
     });
     if (response.status === 404) {
-      toast.show(t('repository_not_found', 'Repository not found'), 'warning');
+      toast.show(t('repository_not_found'), 'warning');
       return;
     }
     setConnected(`${select}/${repo}`);
@@ -94,13 +93,13 @@ const ConnectComponent: FC<{
           <SafeImage src="/icons/github.svg" alt="GitHub" width={40} height={40} />
         </div>
         <div className="flex-1">
-          {t('connect_your_repository', 'Connect your repository')}
+          {t('connect_your_repository')}
         </div>
         <Button
           className="bg-transparent border-0 text-gray mt-[7px]"
           onClick={cancelConnection}
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
         <Input
           value={url}
@@ -109,7 +108,7 @@ const ConnectComponent: FC<{
           onChange={(e) => setUrl(e.target.value)}
           name="github"
           label=""
-          placeholder={t('full_github_url', 'Full GitHub URL')}
+          placeholder={t('full_github_url')}
         />
         <Button
           className="h-[44px] mt-[7px]"
@@ -120,7 +119,7 @@ const ConnectComponent: FC<{
           }
           onClick={completeConnection}
         >
-          {t('connect', 'Connect')}
+          {t('connect')}
         </Button>
       </div>
     </div>
@@ -206,9 +205,9 @@ export const GithubComponent: FC<{
               />
             </div>
             <div className="flex-1">
-              {t('connect_your_repository', 'Connect your repository')}
+              {t('connect_your_repository')}
             </div>
-            <Button onClick={connect}>{t('connect', 'Connect')}</Button>
+            <Button onClick={connect}>{t('connect')}</Button>
           </div>
         </div>
       )}

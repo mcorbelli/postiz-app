@@ -55,7 +55,7 @@ export const RenderComponents: FC<{
               required: true,
             })}
             className="flex w-full px-3 py-2 h-[98px] text-sm ring-offset-background placeholder:text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[80px] resize-none text-white bg-third border border-tableBorder placeholder-gray-500 focus:ring-0"
-            placeholder={t('add_a_comment', 'Add a comment...')}
+            placeholder={t('add_a_comment')}
             defaultValue={''}
           />
           <div className="flex justify-end">
@@ -75,14 +75,14 @@ export const RenderComponents: FC<{
                 <path d="m22 2-7 20-4-9-9-4Z" />
                 <path d="M22 2 11 13" />
               </svg>
-              {t('post', 'Post')}
+              {t('post')}
             </Button>
           </div>
         </form>
       </div>
       <div className="space-y-4">
         {!!data.comments.length && (
-          <h3 className="text-lg font-semibold">{t('comments', 'Comments')}</h3>
+          <h3 className="text-lg font-semibold">{t('comments')}</h3>
         )}
         {data.comments.map((comment: any) => (
           <div
@@ -92,7 +92,7 @@ export const RenderComponents: FC<{
             <div className="flex-1 space-y-1">
               <div className="flex items-center space-x-2">
                 <h3 className="text-sm font-semibold">
-                  {t('user', 'User')}
+                  {t('user')}
                   {mapUsers[comment.userId]}
                 </h3>
               </div>
@@ -118,8 +118,7 @@ export const CommentsComponents: FC<{
     return (
       <Button onClick={goToComments}>
         {t(
-          'login_register_to_add_comments',
-          'Login / Register to add comments'
+          'login_register_to_add_comments'
         )}
       </Button>
     );

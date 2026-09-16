@@ -50,8 +50,7 @@ export const AfterActivate = () => {
           <br />
           <Link href="/auth/login" className="underline">
             {t(
-              'click_here_to_go_back_to_login',
-              'Click here to go back to login'
+              'click_here_to_go_back_to_login'
             )}
           </Link>
         </>

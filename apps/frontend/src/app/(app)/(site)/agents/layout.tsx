@@ -5,8 +5,8 @@ import { getT } from '@gitroom/react/translation/get.translation.service.backend
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
-    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} - ${t('agent', 'Agent')}`,
-    description: t('agent_description', 'Chat with your Postiz AI agent'),
+    title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} - ${t('agent')}`,
+    description: t('agent_description'),
   };
 }
 export default async function Layout({

@@ -54,10 +54,9 @@ export const TimeTable: FC<{
     if (
       !(await deleteDialog(
         t(
-          'are_you_sure_you_want_to_close_the_window',
-          'Are you sure you want to close the window?'
+          'are_you_sure_you_want_to_close_the_window'
         ),
-        t('yes_close', 'Yes, close')
+        t('yes_close')
       ))
     ) {
       return;
@@ -72,8 +71,7 @@ export const TimeTable: FC<{
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_you_want_to_delete_this_slot',
-            'Are you sure you want to delete this slot?'
+            'are_you_sure_you_want_to_delete_this_slot'
           )
         ))
       ) {
@@ -133,13 +131,13 @@ export const TimeTable: FC<{
       <div className="bg-newBgColorInner rounded-[12px] p-[20px] border border-newTableBorder">
         <div className="text-[15px] font-semibold mb-[16px] flex items-center gap-[8px]">
           <DelayIcon size={18} className="text-btnPrimary" />
-          {t('add_time_slot', 'Add Time Slot')}
+          {t('add_time_slot')}
         </div>
 
         <div className="flex gap-[12px] items-end">
           <div className="flex-1">
             <Select
-              label={t('hour', 'Hour')}
+              label={t('hour')}
               name="hour"
               disableForm={true}
               hideErrors={true}
@@ -155,7 +153,7 @@ export const TimeTable: FC<{
           </div>
           <div className="flex-1">
             <Select
-              label={t('minutes', 'Minutes')}
+              label={t('minutes')}
               name="minutes"
               disableForm={true}
               hideErrors={true}
@@ -175,7 +173,7 @@ export const TimeTable: FC<{
             className="h-[42px] px-[16px] bg-btnPrimary hover:bg-[#7640e0] transition-colors rounded-[8px] flex items-center gap-[6px] text-white text-[14px] font-medium"
           >
             <PlusIcon size={14} />
-            {t('add', 'Add')}
+            {t('add')}
           </button>
         </div>
       </div>
@@ -183,12 +181,12 @@ export const TimeTable: FC<{
       {/* Time Slots List */}
       <div className="mt-[20px]">
         <div className="text-[14px] text-newTextColor/60 mb-[12px]">
-          {t('scheduled_times', 'Scheduled Times')} ({times.length})
+          {t('scheduled_times')} ({times.length})
         </div>
 
         {times.length === 0 ? (
           <div className="text-center py-[32px] text-newTextColor/40 text-[14px] border border-dashed border-newTableBorder rounded-[12px]">
-            {t('no_time_slots', 'No time slots added yet')}
+            {t('no_time_slots')}
           </div>
         ) : (
           <div className="flex flex-col gap-[8px]">
@@ -224,7 +222,7 @@ export const TimeTable: FC<{
       {/* Save Button */}
       <div className="mt-[24px]">
         <Button type="button" className="w-full rounded-[8px]" onClick={save}>
-          {t('save_changes', 'Save Changes')}
+          {t('save_changes')}
         </Button>
       </div>
     </div>

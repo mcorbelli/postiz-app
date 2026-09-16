@@ -28,8 +28,7 @@ export default function OAuthAuthorizePage() {
     if (!clientId || !responseType) {
       setError(
         t(
-          'oauth_missing_required_parameters',
-          'Missing required parameters (client_id, response_type)'
+          'oauth_missing_required_parameters'
         )
       );
       setLoading(false);
@@ -38,8 +37,7 @@ export default function OAuthAuthorizePage() {
     if (responseType !== 'code') {
       setError(
         t(
-          'oauth_only_response_type_code_supported',
-          'Only response_type=code is supported'
+          'oauth_only_response_type_code_supported'
         )
       );
       setLoading(false);
@@ -63,7 +61,7 @@ export default function OAuthAuthorizePage() {
         if (data.statusCode && data.statusCode >= 400) {
           setError(
             data.message ||
-              t('oauth_invalid_request', 'Invalid OAuth request')
+              t('oauth_invalid_request')
           );
         } else {
           setAppInfo(data);
@@ -72,7 +70,7 @@ export default function OAuthAuthorizePage() {
       })
       .catch(() => {
         setError(
-          t('oauth_failed_to_validate_request', 'Failed to validate OAuth request')
+          t('oauth_failed_to_validate_request')
         );
         setLoading(false);
       });
@@ -103,7 +101,7 @@ export default function OAuthAuthorizePage() {
         }
       } catch {
         setError(
-          t('oauth_failed_to_process_authorization', 'Failed to process authorization')
+          t('oauth_failed_to_process_authorization')
         );
         setSubmitting(false);
       }
@@ -123,7 +121,7 @@ export default function OAuthAuthorizePage() {
             <Logo />
           </div>
           <div className="text-[16px] text-gray-400">
-            {t('please_wait', 'Please wait...')}
+            {t('please_wait')}
           </div>
           <div className="mt-[32px] flex justify-center">
             <div className="w-[48px] h-[48px] border-[3px] border-btnPrimary border-t-transparent rounded-full animate-spin" />
@@ -158,7 +156,7 @@ export default function OAuthAuthorizePage() {
             </svg>
           </div>
           <div className="text-[28px] font-semibold mb-[12px]">
-            {t('authorization_error', 'Authorization Error')}
+            {t('authorization_error')}
           </div>
           <div className="text-[16px] text-gray-400 max-w-[400px]">
             {error}
@@ -211,16 +209,13 @@ export default function OAuthAuthorizePage() {
             <div className="text-[14px] text-gray-400 mb-[12px]">
               {t(
                 'oauth_requesting_access',
-                `This application is requesting access to your ${
-                  isGeneral ? 'Postiz' : 'Gitroom'
-                } account. It will be able to:`,
                 { app: isGeneral ? 'Postiz' : 'Gitroom' }
               )}
             </div>
             <ul className="text-[14px] list-disc list-inside space-y-[4px]">
-              <li>{t('oauth_scope_integrations', 'Access your integrations and channels')}</li>
-              <li>{t('oauth_scope_posts', 'Create and schedule posts on your behalf')}</li>
-              <li>{t('oauth_scope_analytics', 'Read your post analytics')}</li>
+              <li>{t('oauth_scope_integrations')}</li>
+              <li>{t('oauth_scope_posts')}</li>
+              <li>{t('oauth_scope_analytics')}</li>
             </ul>
           </div>
 
@@ -230,14 +225,14 @@ export default function OAuthAuthorizePage() {
               disabled={submitting}
               className="flex-1 bg-btnPrimary hover:bg-[#7B3FF2] disabled:opacity-50 text-white rounded-[8px] py-[10px] px-[16px] text-[14px] font-semibold transition-colors"
             >
-              {t('authorize', 'Authorize')}
+              {t('authorize')}
             </button>
             <button
               onClick={() => handleAction('deny')}
               disabled={submitting}
               className="flex-1 bg-[#2A2929] hover:bg-[#3A3939] disabled:opacity-50 text-white rounded-[8px] py-[10px] px-[16px] text-[14px] font-semibold transition-colors"
             >
-              {t('deny', 'Deny')}
+              {t('deny')}
             </button>
           </div>
         </div>

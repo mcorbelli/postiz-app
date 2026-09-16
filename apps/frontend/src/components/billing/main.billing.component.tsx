@@ -75,7 +75,7 @@ export const Prorate: FC<{
   }
   return (
     <div className="text-[12px] flex pt-[12px]">
-      ({t('pay_today', 'Pay Today')} ${(price < 0 ? 0 : price)?.toFixed(1)})
+      ({t('pay_today')} ${(price < 0 ? 0 : price)?.toFixed(1)})
     </div>
   );
 };
@@ -154,8 +154,7 @@ const Accept: FC<{ resolve: (res: boolean) => void }> = ({ resolve }) => {
     resolve(true);
     toaster.show(
       t(
-        'discount_applied_successfully',
-        '50% discount applied successfully'
+        'discount_applied_successfully'
       )
     );
   }, []);
@@ -164,16 +163,15 @@ const Accept: FC<{ resolve: (res: boolean) => void }> = ({ resolve }) => {
     <div>
       <div className="mb-[20px]">
         {t(
-          'would_you_accept_discount_instead',
-          'Would you accept 50% discount for 3 months instead? 🙏🏻'
+          'would_you_accept_discount_instead'
         )}
       </div>
       <div className="flex gap-[10px]">
         <Button loading={loading} onClick={apply}>
-          {t('apply_discount_for_3_months', 'Apply 50% discount for 3 months')}
+          {t('apply_discount_for_3_months')}
         </Button>
         <Button onClick={() => resolve(false)} className="!bg-red-800">
-          {t('cancel_my_subscription', 'Cancel my subscription')}
+          {t('cancel_my_subscription')}
         </Button>
       </div>
     </div>
@@ -197,8 +195,7 @@ const Info: FC<{
     <div className="relative flex gap-[20px] flex-col flex-1 rounded-[4px]">
       <div>
         {t(
-          'would_you_mind_shortly_tell_us_what_we_could_have_done_better',
-          'Would you mind shortly tell us what we could have done better?'
+          'would_you_mind_shortly_tell_us_what_we_could_have_done_better'
         )}
       </div>
       <div>
@@ -214,8 +211,8 @@ const Info: FC<{
       <div>
         <Button disabled={feedback.length < 20} onClick={cancel}>
           {feedback.length < 20
-            ? t('please_add_at_least', 'Please add at least 20 characters')
-            : t('cancel_subscription', 'Cancel Subscription')}
+            ? t('please_add_at_least')
+            : t('cancel_subscription')}
         </Button>
       </div>
     </div>
@@ -303,7 +300,7 @@ export const MainBillingComponent: FC<{
             cancelAt: cancel_at,
           }));
 
-          toast.show(t('subscription_reactivated_successfully', 'Subscription reactivated successfully'));
+          toast.show(t('subscription_reactivated_successfully'));
           setLoading(false);
           return;
         }
@@ -315,8 +312,7 @@ export const MainBillingComponent: FC<{
         ) {
           messages.push(
             t(
-              'team_members_will_be_removed',
-              'Your team members will be removed from your organization'
+              'team_members_will_be_removed'
             )
           );
         }
@@ -326,11 +322,10 @@ export const MainBillingComponent: FC<{
             (await deleteDialog(
               t(
                 'are_you_sure_you_want_to_cancel_your_subscription',
-                `Are you sure you want to cancel your subscription?\n              ${messages.join(', ')}`,
                 { messages: messages.join(', ') }
               ),
-              t('yes_cancel', 'Yes, cancel'),
-              t('cancel_subscription', 'Cancel Subscription')
+              t('yes_cancel'),
+              t('cancel_subscription')
             ))
           ) {
             const checkDiscount = await (
@@ -339,7 +334,7 @@ export const MainBillingComponent: FC<{
             if (checkDiscount.offerCoupon) {
               const info = await new Promise((res) => {
                 modal.openModal({
-                  title: t('before_you_cancel', 'Before you cancel'),
+                  title: t('before_you_cancel'),
                   withCloseButton: true,
                   classNames: {
                     modal: 'bg-transparent text-textColor',
@@ -358,8 +353,7 @@ export const MainBillingComponent: FC<{
             const info = await new Promise((res) => {
               modal.openModal({
                 title: t(
-                  'we_are_sorry_to_see_you_go',
-                  'We are sorry to see you go :('
+                  'we_are_sorry_to_see_you_go'
                 ),
                 withCloseButton: true,
                 classNames: {
@@ -386,7 +380,7 @@ export const MainBillingComponent: FC<{
               cancelAt: cancel_at,
             }));
             if (cancel_at)
-              toast.show(t('subscription_set_to_canceled_successfully', 'Subscription set to canceled successfully'));
+              toast.show(t('subscription_set_to_canceled_successfully'));
             setLoading(false);
           }
           return;
@@ -413,11 +407,10 @@ export const MainBillingComponent: FC<{
           setLoading(false);
           await deleteDialog(
             t(
-              'billing_other_account_subscribed',
-              'Another account with this email already has an active subscription. Please log off and sign in to that account to manage your subscription.'
+              'billing_other_account_subscribed'
             ),
-            t('ok', 'OK'),
-            t('already_subscribed', 'Already subscribed')
+            t('ok'),
+            t('already_subscribed')
           );
           return;
         }
@@ -435,11 +428,10 @@ export const MainBillingComponent: FC<{
           if (
             await deleteDialog(
               t(
-                'could_not_charge_credit_card_update_payment_method',
-                'We could not charge your credit card, please update your payment method'
+                'could_not_charge_credit_card_update_payment_method'
               ),
-              t('update', 'Update'),
-              t('payment_method_required', 'Payment Method Required')
+              t('update'),
+              t('payment_method_required')
             )
           ) {
             window.open(portal);
@@ -461,7 +453,7 @@ export const MainBillingComponent: FC<{
               revalidate: false,
             }
           );
-          toast.show(t('subscription_updated_successfully', 'Subscription updated successfully'));
+          toast.show(t('subscription_updated_successfully'));
         }
         setLoading(false);
       },
@@ -474,16 +466,15 @@ export const MainBillingComponent: FC<{
   if (subscription?.platform && subscription.platform !== 'web') {
     return (
       <div className="flex flex-col gap-[16px]">
-        <div className="text-[20px]">{t('plans', 'Plans')}</div>
+        <div className="text-[20px]">{t('plans')}</div>
         <div className="flex flex-col items-center gap-[8px] rounded-[8px] bg-newBgColorInner p-[24px] text-center">
           <div className="text-[18px]">
-            {t('subscription_managed_by', 'Your subscription is managed by')}{' '}
+            {t('subscription_managed_by')}{' '}
             <span className="capitalize">{subscription.provider}</span>
           </div>
           <div className="text-[14px] opacity-70">
             {t(
               'subscription_manage_on_platform',
-              'Please go to {{platform}} to manage it',
               { platform: subscription.platform }
             )}
           </div>
@@ -498,13 +489,13 @@ export const MainBillingComponent: FC<{
   return (
     <div className="flex flex-col gap-[16px]">
       <div className="flex flex-row">
-        <div className="flex-1 text-[20px]">{t('plans', 'Plans')}</div>
+        <div className="flex-1 text-[20px]">{t('plans')}</div>
         <div className="flex items-center gap-[16px]">
-          <div>{t('monthly', 'MONTHLY')}</div>
+          <div>{t('monthly')}</div>
           <div>
             <Slider value={monthlyOrYearly} onChange={setMonthlyOrYearly} />
           </div>
-          <div>{t('yearly', 'YEARLY')}</div>
+          <div>{t('yearly')}</div>
         </div>
       </div>
 
@@ -539,8 +530,7 @@ export const MainBillingComponent: FC<{
                         loading={loading}
                       >
                         {t(
-                          'reactivate_subscription',
-                          'Reactivate subscription'
+                          'reactivate_subscription'
                         )}
                       </Button>
                     </div>
@@ -575,7 +565,7 @@ export const MainBillingComponent: FC<{
                       (user?.tier === 'FREE' ||
                           user?.tier?.current === 'FREE') &&
                         user.allowTrial
-                      ? t('start_7_days_free_trial', 'Start 7 days free trial')
+                      ? t('start_7_days_free_trial')
                       : 'Purchase'}
                   </Button>
                 )}
@@ -599,8 +589,7 @@ export const MainBillingComponent: FC<{
         <div className="flex justify-center mt-[20px] gap-[10px]">
           <Button onClick={updatePayment}>
             {t(
-              'update_payment_method_invoices_history',
-              'Update Payment Method / Invoices History'
+              'update_payment_method_invoices_history'
             )}
           </Button>
           {isGeneral && !subscription?.cancelAt && (
@@ -609,7 +598,7 @@ export const MainBillingComponent: FC<{
               loading={loading}
               onClick={moveToCheckout('FREE')}
             >
-              {t('cancel_subscription_1', 'Cancel subscription')}
+              {t('cancel_subscription_1')}
             </Button>
           )}
         </div>
@@ -617,14 +606,12 @@ export const MainBillingComponent: FC<{
       {subscription?.cancelAt && isGeneral && (
         <div className="text-center">
           {t(
-            'your_subscription_will_be_canceled_at',
-            'Your subscription will be canceled at'
+            'your_subscription_will_be_canceled_at'
           )}{' '}
           {newDayjs(subscription.cancelAt).local().format('D MMM, YYYY')}
           <br />
           {t(
-            'you_will_never_be_charged_again',
-            'You will never be charged again'
+            'you_will_never_be_charged_again'
           )}
         </div>
       )}

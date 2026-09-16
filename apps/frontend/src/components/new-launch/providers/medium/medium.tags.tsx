@@ -69,7 +69,7 @@ export const MediumTags: FC<{
     <div className="medium-tags">
       <div className={`text-[14px] mb-[6px]`}>{label}</div>
       <ReactTags
-        placeholderText={t('add_a_tag', 'Add a tag')}
+        placeholderText={t('add_a_tag')}
         suggestions={suggestionsArray}
         selected={tagValue}
         onAdd={onAddition}

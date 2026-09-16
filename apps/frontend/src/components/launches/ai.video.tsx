@@ -46,7 +46,7 @@ export const Modal: FC<{
 
     const customParams = form.getValues();
     if (!(await form.trigger())) {
-      toaster.show(t('please_fill_all_required_fields', 'Please fill all required fields'), 'warning');
+      toaster.show(t('please_fill_all_required_fields'), 'warning');
       return;
     }
     try {
@@ -62,13 +62,12 @@ export const Modal: FC<{
       if (image.status == 200 || image.status == 201) {
         onChange(await image.json());
       } else {
-        toaster.show(t('video_generation_failed', 'Video generation failed'), 'warning');
+        toaster.show(t('video_generation_failed'), 'warning');
       }
     } catch (e) {
       toaster.show(
         t(
-          'video_generation_failed_or_timed_out',
-          'Video generation failed or timed out — if it completes, it will appear in your media library'
+          'video_generation_failed_or_timed_out'
         ),
         'warning'
       );
@@ -87,7 +86,7 @@ export const Modal: FC<{
       >
         {createPortal(
           <>
-            {t('n_credits_left', `${data?.credits || 0} credits left`, {
+            {t('n_credits_left', {
               count: data?.credits || 0,
             })}
           </>,
@@ -105,7 +104,7 @@ export const Modal: FC<{
                       onClick={() => setPosition('vertical')}
                       secondary={position === 'horizontal'}
                     >
-                      {t('vertical_stories_reels', 'Vertical (Stories, Reels)')}
+                      {t('vertical_stories_reels')}
                     </Button>
                   </div>
                   <div className="flex-1 flex mt-[10px]">
@@ -114,7 +113,7 @@ export const Modal: FC<{
                       onClick={() => setPosition('horizontal')}
                       secondary={position === 'vertical'}
                     >
-                      {t('horizontal_normal_post', 'Horizontal (Normal Post)')}
+                      {t('horizontal_normal_post')}
                     </Button>
                   </div>
                 </div>
@@ -123,7 +122,7 @@ export const Modal: FC<{
             </div>
             <div className="flex">
               <Button type="submit" className="flex-1">
-                {t('generate', 'Generate')}
+                {t('generate')}
               </Button>
             </div>
           </div>
@@ -149,7 +148,7 @@ const AiVideoModal: FC<{
     return (
       <div className="flex flex-col gap-[10px]">
         <div className="text-[14px]">
-          {t('choose_a_video_type', 'Choose a video type')}
+          {t('choose_a_video_type')}
         </div>
         {list.map((p) => (
           <Button key={p.identifier} type="button" onClick={() => setType(p)}>
@@ -257,7 +256,7 @@ export const AiVideo: FC<{
             </svg>
           </div>
           <div className="text-[10px] font-[600] iconBreak:hidden block">
-            {t('ai_video', 'AI Video')}
+            {t('ai_video')}
           </div>
         </div>
       </div>

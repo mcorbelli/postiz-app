@@ -25,7 +25,7 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
 
   const register = async () => {
     if (!agentName.trim()) {
-      toaster.show(t('please_enter_an_agent_name', 'Please enter an agent name'), 'warning');
+      toaster.show(t('please_enter_an_agent_name'), 'warning');
       return;
     }
 
@@ -55,7 +55,7 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
 
       pollForClaim(data.apiKey);
     } catch (err) {
-      setError(t('failed_to_register_agent', 'Failed to register agent'));
+      setError(t('failed_to_register_agent'));
       setStep('error');
     }
   };
@@ -82,7 +82,7 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
 
   const copyClaimUrl = useCallback(() => {
     copy(claimUrl);
-    toaster.show(t('claim_url_copied_to_clipboard', 'Claim URL copied to clipboard'), 'success');
+    toaster.show(t('claim_url_copied_to_clipboard'), 'success');
   }, [claimUrl, toaster]);
 
   useEffect(() => {
@@ -96,11 +96,11 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
       {step === 'init' && (
         <>
           <div className="text-center mb-[16px]">
-            {t('moltbook_register_description', 'Register your Moltbook agent to connect:')}
+            {t('moltbook_register_description')}
           </div>
           <div className="w-full space-y-[12px]">
             <Input
-              label={t('agent_name', 'Agent Name')}
+              label={t('agent_name')}
               value={agentName}
               name="agentName"
               disableForm={true}
@@ -108,15 +108,15 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
               placeholder="MyPostizAgent"
             />
             <Input
-              label={t('description_optional', 'Description (optional)')}
+              label={t('description_optional')}
               value={agentDescription}
               name="agentDescription"
               disableForm={true}
               onChange={(e) => setAgentDescription(e.target.value)}
-              placeholder={t('social_media_scheduler', 'Social media scheduler')}
+              placeholder={t('social_media_scheduler')}
             />
             <Button className="w-full" onClick={register}>
-              {t('register_agent', 'Register Agent')}
+              {t('register_agent')}
             </Button>
           </div>
         </>
@@ -124,14 +124,14 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
 
       {step === 'registering' && (
         <div className="text-center">
-          {t('registering_agent', 'Registering agent...')}
+          {t('registering_agent')}
         </div>
       )}
 
       {step === 'waiting' && (
         <div className="w-full text-center">
           <div className="mb-[16px]">
-            {t('moltbook_claim_instructions', 'Please visit the claim URL to verify your agent:')}
+            {t('moltbook_claim_instructions')}
           </div>
           <div className="flex gap-[8px]">
             <div className="flex-1">
@@ -143,10 +143,10 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
                 readOnly
               />
             </div>
-            <Button onClick={copyClaimUrl}>{t('copy', 'Copy')}</Button>
+            <Button onClick={copyClaimUrl}>{t('copy')}</Button>
           </div>
           <div className="mt-[16px] text-sm opacity-70">
-            {t('waiting_for_claim', 'Waiting for you to claim your agent...')}
+            {t('waiting_for_claim')}
           </div>
           <div className="mt-[8px]">
             <a
@@ -155,7 +155,7 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"
             >
-              {t('open_claim_page', 'Open claim page')}
+              {t('open_claim_page')}
             </a>
           </div>
         </div>
@@ -165,7 +165,7 @@ export const MoltbookProvider: FC<Web3ProviderInterface> = (props) => {
         <div className="w-full text-center">
           <div className="text-red-500 mb-[16px]">{error}</div>
           <Button onClick={() => setStep('init')}>
-            {t('try_again', 'Try Again')}
+            {t('try_again')}
           </Button>
         </div>
       )}

@@ -41,7 +41,7 @@ export function Forgot() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div>
             <h1 className="text-3xl font-bold text-start mb-4 cursor-pointer">
-              {t('forgot_password_1', 'Forgot Password')}
+              {t('forgot_password_1')}
             </h1>
           </div>
           {!state ? (
@@ -52,21 +52,20 @@ export function Forgot() {
                   translationKey="label_email"
                   {...form.register('email')}
                   type="email"
-                  placeholder={t('email_address', 'Email Address')}
+                  placeholder={t('email_address')}
                 />
               </div>
               <div className="text-center mt-6">
                 <div className="w-full flex">
                   <Button type="submit" className="flex-1 !h-[52px] !rounded-[10px]" loading={loading}>
                     {t(
-                      'send_password_reset_email',
-                      'Send Password Reset Email'
+                      'send_password_reset_email'
                     )}
                   </Button>
                 </div>
                 <p className="mt-4 text-sm">
                   <Link href="/auth/login" className="underline cursor-pointer">
-                    {t('go_back_to_login', 'Go back to login')}
+                    {t('go_back_to_login')}
                   </Link>
                 </p>
               </div>
@@ -75,13 +74,12 @@ export function Forgot() {
             <>
               <div className="text-start mt-6">
                 {t(
-                  'we_have_send_you_an_email_with_a_link_to_reset_your_password',
-                  'We have send you an email with a link to reset your password.'
+                  'we_have_send_you_an_email_with_a_link_to_reset_your_password'
                 )}
               </div>
               <p className="mt-4 text-sm">
                 <Link href="/auth/login" className="underline cursor-pointer">
-                  {t('go_back_to_login', 'Go back to login')}
+                  {t('go_back_to_login')}
                 </Link>
               </p>
             </>

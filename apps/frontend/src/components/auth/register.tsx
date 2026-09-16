@@ -159,11 +159,11 @@ export function RegisterAfter({
         <div className="flex flex-col flex-1">
           <div>
             <h1 className="text-[40px] font-[500] -tracking-[0.8px] text-start cursor-pointer">
-              {t('sign_up', 'Sign Up')}
+              {t('sign_up')}
             </h1>
           </div>
           <div className="text-[14px] mt-[32px] mb-[12px]">
-            {t('continue_with', 'Continue With')}
+            {t('continue_with')}
           </div>
           <div className="flex flex-col text-[14px]">
             {!isAfterProvider &&
@@ -187,7 +187,7 @@ export function RegisterAfter({
                 <div
                   className={`absolute z-[1] justify-center items-center w-full start-0 -top-[4px] flex`}
                 >
-                  <div className="px-[16px]">{t('or', 'or')}</div>
+                  <div className="px-[16px]">{t('or')}</div>
                 </div>
               </div>
             )}
@@ -200,7 +200,7 @@ export function RegisterAfter({
                       translationKey="label_email"
                       {...form.register('email')}
                       type="email"
-                      placeholder={t('email_address', 'Email Address')}
+                      placeholder={t('email_address')}
                     />
                     <Input
                       label="Password"
@@ -208,7 +208,7 @@ export function RegisterAfter({
                       {...form.register('password')}
                       autoComplete="off"
                       type="password"
-                      placeholder={t('label_password', 'Password')}
+                      placeholder={t('label_password')}
                     />
                   </>
                 )}
@@ -218,13 +218,12 @@ export function RegisterAfter({
                   {...form.register('company')}
                   autoComplete="off"
                   type="text"
-                  placeholder={t('label_company', 'Company')}
+                  placeholder={t('label_company')}
                 />
               </div>
               <div className={clsx('text-[12px]')}>
                 {t(
-                  'by_registering_you_agree_to_our',
-                  'By registering you agree to our'
+                  'by_registering_you_agree_to_our'
                 )}
                 &nbsp;
                 <a
@@ -232,16 +231,16 @@ export function RegisterAfter({
                   className="underline hover:font-bold"
                   rel="nofollow"
                 >
-                  {t('terms_of_service', 'Terms of Service')}
+                  {t('terms_of_service')}
                 </a>
                 &nbsp;
-                {t('and', 'and')}&nbsp;
+                {t('and')}&nbsp;
                 <a
                   href={`https://postiz.com/privacy`}
                   rel="nofollow"
                   className="underline hover:font-bold"
                 >
-                  {t('privacy_policy', 'Privacy Policy')}
+                  {t('privacy_policy')}
                 </a>
                 &nbsp;
               </div>
@@ -252,17 +251,17 @@ export function RegisterAfter({
                     className="flex-1 rounded-[10px] !h-[52px]"
                     loading={loading}
                   >
-                    {t('create_account', 'Create Account')}
+                    {t('create_account')}
                   </Button>
                 </div>
                 <p className="mt-4 text-sm">
-                  {t('already_have_an_account', 'Already Have An Account?')}
+                  {t('already_have_an_account')}
                   &nbsp;
                   <Link
                     href="/auth/login"
                     className="underline  cursor-pointer"
                   >
-                    {t('sign_in', 'Sign In')}
+                    {t('sign_in')}
                   </Link>
                 </p>
               </div>

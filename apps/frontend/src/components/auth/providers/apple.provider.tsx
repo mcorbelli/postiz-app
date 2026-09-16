@@ -28,7 +28,7 @@ export const AppleProvider = () => {
           />
         </svg>
       </div>
-      <div className="block xs:hidden">{t('apple', 'Apple')}</div>
+      <div className="block xs:hidden">{t('apple')}</div>
     </div>
   );
 };

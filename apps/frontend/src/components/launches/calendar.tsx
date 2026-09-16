@@ -176,7 +176,7 @@ const usePostActions = (onMutate?: () => void) => {
   const copyDebugJson = useCallback(
     (post: any) => () => {
       modal.openModal({
-        title: t('copy_debug_json', 'Copy Debug JSON'),
+        title: t('copy_debug_json'),
         closeOnClickOutside: true,
         closeOnEscape: true,
         withCloseButton: true,
@@ -194,8 +194,7 @@ const usePostActions = (onMutate?: () => void) => {
       if (
         !(await deleteDialog(
           t(
-            'are_you_sure_you_want_to_delete_post',
-            'Are you sure you want to delete this post?'
+            'are_you_sure_you_want_to_delete_post'
           )
         ))
       ) {
@@ -207,7 +206,7 @@ const usePostActions = (onMutate?: () => void) => {
       });
 
       toaster.show(
-        t('post_deleted_successfully', 'Post deleted successfully'),
+        t('post_deleted_successfully'),
         'success'
       );
 
@@ -219,7 +218,7 @@ const usePostActions = (onMutate?: () => void) => {
   const openStatistics = useCallback(
     (id: string) => () => {
       modal.openModal({
-        title: t('statistics', 'Statistics'),
+        title: t('statistics'),
         closeOnClickOutside: true,
         closeOnEscape: true,
         withCloseButton: true,
@@ -236,7 +235,7 @@ const usePostActions = (onMutate?: () => void) => {
   const openMissingRelease = useCallback(
     (id: string) => () => {
       modal.openModal({
-        title: t('connect_post', 'Connect Post'),
+        title: t('connect_post'),
         closeOnClickOutside: true,
         closeOnEscape: true,
         withCloseButton: true,
@@ -491,12 +490,12 @@ export const ListView = () => {
   const { integrations, loading, listPosts, listState } = useCalendar();
   const emptyMessage =
     listState === 'scheduled'
-      ? t('no_upcoming_posts', 'No upcoming posts scheduled')
+      ? t('no_upcoming_posts')
       : listState === 'draft'
-      ? t('no_draft_posts', 'No draft posts')
+      ? t('no_draft_posts')
       : listState === 'published'
-      ? t('no_published_posts', 'No published posts')
-      : t('no_posts', 'No posts');
+      ? t('no_published_posts')
+      : t('no_posts');
 
   // Use shared post actions hook
   const { editPost, deletePost, copyDebugJson, openStatistics, openMissingRelease } = usePostActions();
@@ -517,7 +516,7 @@ export const ListView = () => {
   if (loading) {
     return (
       <div className="flex flex-col flex-1 items-center justify-center">
-        <div className="text-textColor">{t('loading', 'Loading')}</div>
+        <div className="text-textColor">{t('loading')}</div>
       </div>
     );
   }
@@ -674,21 +673,19 @@ export const CalendarColumn: FC<{
         const whatToDo = await new Promise<'schedule' | 'update' | 'cancel'>(
           (resolve) => {
             modal.openModal({
-              title: t('what_do_you_want_to_do', 'What do you want to do?'),
+              title: t('what_do_you_want_to_do'),
               children: (
                 <div className="flex flex-col">
                   <div className="text-[20px] mb-[20px]">
                     {t(
-                      'post_already_published_republish_warning',
-                      'This post was already published. Republishing will publish it again to'
+                      'post_already_published_republish_warning'
                     )}{' '}
                     {post.integration?.name}{' '}
-                    {t('republish_at', 'at')} {getDate.format('DD/MM/YYYY HH:mm')}.
+                    {t('republish_at')} {getDate.format('DD/MM/YYYY HH:mm')}.
                     {(!!item.interval || !!post.intervalInDays) && (
                       <div className="mt-[10px]">
                         {t(
-                          'republish_recurring_note',
-                          'This is a recurring post: your changes apply to all future recurrences starting now.'
+                          'republish_recurring_note'
                         )}
                       </div>
                     )}
@@ -703,7 +700,7 @@ export const CalendarColumn: FC<{
                           resolve('update');
                         }}
                       >
-                        {t('just_update_post_details', 'Just update the post details')}
+                        {t('just_update_post_details')}
                       </Button>
                     </div>
                     <div className="flex-1 flex">
@@ -715,7 +712,7 @@ export const CalendarColumn: FC<{
                           resolve('schedule');
                         }}
                       >
-                        {t('reschedule_post', 'Reschedule the post')}
+                        {t('reschedule_post')}
                       </Button>
                     </div>
                   </div>
@@ -763,7 +760,7 @@ export const CalendarColumn: FC<{
       ? undefined
       : await new Promise((resolve) => {
           modal.openModal({
-            title: t('select_set', 'Select a Set'),
+            title: t('select_set'),
             closeOnClickOutside: true,
             askClose: false,
             closeOnEscape: true,
@@ -896,7 +893,7 @@ export const CalendarColumn: FC<{
               className="text-center hover:underline py-[5px] text-textColor"
               onClick={showAllFunc}
             >
-              {t('show_more', '+ Show more')} ({postList.length - 3})
+              {t('show_more')} ({postList.length - 3})
             </div>
           )}
           {showAll && postList.length > 3 && (
@@ -904,7 +901,7 @@ export const CalendarColumn: FC<{
               className="text-center hover:underline py-[5px]"
               onClick={showLessFunc}
             >
-              {t('show_less', '- Show less')}
+              {t('show_less')}
             </div>
           )}
         </div>
@@ -960,7 +957,7 @@ export const CalendarColumn: FC<{
                         {selectedIntegrations.identifier === 'youtube' ? (
                           <img
                             src="/icons/platforms/youtube.svg"
-                            alt={t('youtube', 'YouTube')}
+                            alt={t('youtube')}
                             className="absolute z-10 -bottom-[5px] -end-[5px]"
                             width={20}
                           />
@@ -1175,12 +1172,12 @@ const CalendarItem: FC<{
         </div>
         <div className="w-full flex-1 flex flex-col min-h-[40px]">
           <div className="text-start">
-            {state === 'DRAFT' ? t('draft', 'Draft') + ': ' : ''}
+            {state === 'DRAFT' ? t('draft') + ': ' : ''}
           </div>
             <div className="w-full relative">
               <div className="absolute top-0 start-0 w-full text-ellipsis break-words line-clamp-1 text-start">
                 {stripHtmlValidation('none', post.content, false, true, false) ||
-                  t('no_content', 'no content')}
+                  t('no_content')}
               </div>
             </div>
         </div>
@@ -1202,7 +1199,7 @@ const DebugJsonModal: FC<{ post: any }> = ({ post }) => {
   const copyPostId = useCallback(() => {
     copy(post.id);
     toaster.show(
-      t('post_id_copied', 'Post ID copied to clipboard'),
+      t('post_id_copied'),
       'success'
     );
     closeCurrent();
@@ -1215,13 +1212,13 @@ const DebugJsonModal: FC<{ post: any }> = ({ post }) => {
       ).json();
       copy(JSON.stringify(data, null, 2));
       toaster.show(
-        t('debug_json_copied', 'Debug JSON copied to clipboard'),
+        t('debug_json_copied'),
         'success'
       );
       closeCurrent();
     } catch {
       toaster.show(
-        t('debug_json_copy_failed', 'Failed to copy debug data'),
+        t('debug_json_copy_failed'),
         'warning'
       );
     }
@@ -1230,14 +1227,14 @@ const DebugJsonModal: FC<{ post: any }> = ({ post }) => {
   return (
     <div className="flex flex-col gap-[16px] p-[16px]">
       <div className="text-textColor text-[14px]">
-        {t('debug_choose_copy', 'Choose what you want to copy')}
+        {t('debug_choose_copy')}
       </div>
       <div className="flex gap-[10px]">
         <Button onClick={copyPostId}>
-          {t('copy_post_id', 'Copy post id')}
+          {t('copy_post_id')}
         </Button>
         <Button secondary onClick={copyJson}>
-          {t('copy_debug_json', 'Copy Debug JSON')}
+          {t('copy_debug_json')}
         </Button>
       </div>
     </div>
@@ -1257,7 +1254,7 @@ const CopyDebug = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('copy_debug_json', 'Copy Debug JSON')}
+      data-tooltip-content={t('copy_debug_json')}
     >
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -1274,7 +1271,7 @@ const Duplicate = () => {
       viewBox="0 0 32 32"
       fill="none"
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('duplicate_post', 'Duplicate Post')}
+      data-tooltip-content={t('duplicate_post')}
     >
       <path
         d="M27 5H9C8.46957 5 7.96086 5.21071 7.58579 5.58579C7.21071 5.96086 7 6.46957 7 7V9H5C4.46957 9 3.96086 9.21071 3.58579 9.58579C3.21071 9.96086 3 10.4696 3 11V25C3 25.5304 3.21071 26.0391 3.58579 26.4142C3.96086 26.7893 4.46957 27 5 27H23C23.5304 27 24.0391 26.7893 24.4142 26.4142C24.7893 26.0391 25 25.5304 25 25V23H27C27.5304 23 28.0391 22.7893 28.4142 22.4142C28.7893 22.0391 29 21.5304 29 21V7C29 6.46957 28.7893 5.96086 28.4142 5.58579C28.0391 5.21071 27.5304 5 27 5ZM23 11V13H5V11H23ZM23 25H5V15H23V25ZM27 21H25V11C25 10.4696 24.7893 9.96086 24.4142 9.58579C24.0391 9.21071 23.5304 9 23 9H9V7H27V21Z"
@@ -1293,7 +1290,7 @@ const Preview = () => {
       viewBox="0 0 32 32"
       fill="none"
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('preview_post', 'Preview Post')}
+      data-tooltip-content={t('preview_post')}
     >
       <path
         d="M30.9137 15.595C30.87 15.4963 29.8112 13.1475 27.4575 10.7937C24.3212 7.6575 20.36 6 16 6C11.64 6 7.67874 7.6575 4.54249 10.7937C2.18874 13.1475 1.12499 15.5 1.08624 15.595C1.02938 15.7229 1 15.8613 1 16.0012C1 16.1412 1.02938 16.2796 1.08624 16.4075C1.12999 16.5062 2.18874 18.8538 4.54249 21.2075C7.67874 24.3425 11.64 26 16 26C20.36 26 24.3212 24.3425 27.4575 21.2075C29.8112 18.8538 30.87 16.5062 30.9137 16.4075C30.9706 16.2796 31 16.1412 31 16.0012C31 15.8613 30.9706 15.7229 30.9137 15.595ZM16 24C12.1525 24 8.79124 22.6012 6.00874 19.8438C4.86704 18.7084 3.89572 17.4137 3.12499 16C3.89551 14.5862 4.86686 13.2915 6.00874 12.1562C8.79124 9.39875 12.1525 8 16 8C19.8475 8 23.2087 9.39875 25.9912 12.1562C27.1352 13.2912 28.1086 14.5859 28.8812 16C27.98 17.6825 24.0537 24 16 24ZM16 10C14.8133 10 13.6533 10.3519 12.6666 11.0112C11.6799 11.6705 10.9108 12.6075 10.4567 13.7039C10.0026 14.8003 9.88377 16.0067 10.1153 17.1705C10.3468 18.3344 10.9182 19.4035 11.7573 20.2426C12.5965 21.0818 13.6656 21.6532 14.8294 21.8847C15.9933 22.1162 17.1997 21.9974 18.2961 21.5433C19.3924 21.0892 20.3295 20.3201 20.9888 19.3334C21.6481 18.3467 22 17.1867 22 16C21.9983 14.4092 21.3657 12.884 20.2408 11.7592C19.1159 10.6343 17.5908 10.0017 16 10ZM16 20C15.2089 20 14.4355 19.7654 13.7777 19.3259C13.1199 18.8864 12.6072 18.2616 12.3045 17.5307C12.0017 16.7998 11.9225 15.9956 12.0768 15.2196C12.2312 14.4437 12.6122 13.731 13.1716 13.1716C13.731 12.6122 14.4437 12.2312 15.2196 12.0769C15.9956 11.9225 16.7998 12.0017 17.5307 12.3045C18.2616 12.6072 18.8863 13.1199 19.3259 13.7777C19.7654 14.4355 20 15.2089 20 16C20 17.0609 19.5786 18.0783 18.8284 18.8284C18.0783 19.5786 17.0609 20 16 20Z"
@@ -1312,7 +1309,7 @@ export const Statistics = () => {
       viewBox="0 0 32 32"
       fill="none"
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('post_statistics', 'Post Statistics')}
+      data-tooltip-content={t('post_statistics')}
     >
       <path
         d="M28 25H27V5C27 4.73478 26.8946 4.48043 26.7071 4.29289C26.5196 4.10536 26.2652 4 26 4H19C18.7348 4 18.4804 4.10536 18.2929 4.29289C18.1054 4.48043 18 4.73478 18 5V10H12C11.7348 10 11.4804 10.1054 11.2929 10.2929C11.1054 10.4804 11 10.7348 11 11V16H6C5.73478 16 5.48043 16.1054 5.29289 16.2929C5.10536 16.4804 5 16.7348 5 17V25H4C3.73478 25 3.48043 25.1054 3.29289 25.2929C3.10536 25.4804 3 25.7348 3 26C3 26.2652 3.10536 26.5196 3.29289 26.7071C3.48043 26.8946 3.73478 27 4 27H28C28.2652 27 28.5196 26.8946 28.7071 26.7071C28.8946 26.5196 29 26.2652 29 26C29 25.7348 28.8946 25.4804 28.7071 25.2929C28.5196 25.1054 28.2652 25 28 25ZM20 6H25V25H20V6ZM13 12H18V25H13V12ZM7 18H11V25H7V18Z"
@@ -1332,7 +1329,7 @@ export const DeletePost = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('delete_post', 'Delete Post')}
+      data-tooltip-content={t('delete_post')}
     >
       <path
         d="M15 10V18H9V10H15ZM14 4H9.9L8.9 5H6V7H18V5H15L14 4ZM17 8H7V18C7 19.1 7.9 20 9 20H15C16.1 20 17 19.1 17 18V8Z"
@@ -1352,7 +1349,7 @@ export const SetSelectionModal: FC<{
   return (
     <div className="flex flex-col gap-4">
       <div className="text-lg font-medium">
-        {t('choose_set_or_continue', 'Choose a set or continue without one')}
+        {t('choose_set_or_continue')}
       </div>
 
       <div className="flex flex-col gap-2 max-h-60 overflow-y-auto">
@@ -1377,7 +1374,7 @@ export const SetSelectionModal: FC<{
           onClick={onContinueWithoutSet}
           className="flex-1 px-4 py-2 text-textColor rounded-lg hover:transition-colors"
         >
-          {t('continue_without_set', 'Continue without set')}
+          {t('continue_without_set')}
         </button>
       </div>
     </div>

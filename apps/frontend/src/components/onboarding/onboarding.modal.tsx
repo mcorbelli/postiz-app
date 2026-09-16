@@ -35,9 +35,9 @@ export const OnboardingModal: FC<OnboardingModalProps> = ({ onClose }) => {
 
   const steps = useMemo(
     () => [
-      t('connect_channels', 'Connect Channels'),
-      t('connect_agents', 'Connect Agents'),
-      t('watch_tutorial', 'Watch Tutorial'),
+      t('connect_channels'),
+      t('connect_agents'),
+      t('watch_tutorial'),
     ],
     [t]
   );
@@ -162,12 +162,11 @@ const OnboardingStep1: FC<{ onNext: () => void; onSkip: () => void }> = ({
     <div className="flex flex-col gap-[24px]">
       <div className="flex gap-[4px] flex-col text-center">
         <div className="text-[24px] font-semibold">
-          {t('connect_your_channels', 'Connect Your Channels')}
+          {t('connect_your_channels')}
         </div>
         <div className="text-[14px] text-customColor18">
           {t(
-            'connect_social_media_to_start',
-            'Connect your social media accounts to start scheduling posts'
+            'connect_social_media_to_start'
           )}
         </div>
       </div>
@@ -176,7 +175,7 @@ const OnboardingStep1: FC<{ onNext: () => void; onSkip: () => void }> = ({
       {sortedIntegrations.length > 0 && (
         <div className="bg-newTableHeader rounded-[8px] p-[16px]">
           <div className="text-[14px] font-medium mb-[12px]">
-            {t('connected_channels', 'Connected Channels')} (
+            {t('connected_channels')} (
             {sortedIntegrations.length})
           </div>
           <div className="flex flex-wrap gap-[12px]">
@@ -211,7 +210,7 @@ const OnboardingStep1: FC<{ onNext: () => void; onSkip: () => void }> = ({
       {/* Available platforms - using AddProviderComponent */}
       <div className="flex flex-col gap-[12px]">
         <div className="text-[14px] font-medium">
-          {t('click_channel_to_add', 'Click a channel to add it')}
+          {t('click_channel_to_add')}
         </div>
         {data && (
           <AddProviderComponent
@@ -230,8 +229,8 @@ const OnboardingStep1: FC<{ onNext: () => void; onSkip: () => void }> = ({
           className="group flex items-center gap-[12px] bg-gradient-to-r from-[#622aff] to-[#8b5cf6] hover:from-[#7c3aff] hover:to-[#9d6eff] text-white font-semibold px-[32px] py-[14px] rounded-[12px] text-[16px] transition-all shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
         >
           {sortedIntegrations.length > 0
-            ? t('continue', 'Continue')
-            : t('continue_without_channels', 'Continue without channels')}
+            ? t('continue')
+            : t('continue_without_channels')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -329,12 +328,12 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
     agent === 'Claude' && billingEnabled
       ? {
           href: 'https://claude.ai/directory/postiz',
-          label: t('add_to_claude', 'Add to Claude'),
+          label: t('add_to_claude'),
         }
       : agent === 'Cursor'
       ? {
           href: getCursorInstallUrl(auth, mcpBase, apiKey),
-          label: t('add_to_cursor', 'Add to Cursor'),
+          label: t('add_to_cursor'),
         }
       : null;
 
@@ -343,11 +342,10 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
   const chatSection = (
     <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder overflow-hidden">
       <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
-        <div className="text-[15px] font-[600]">{t('chat', 'Chat')}</div>
+        <div className="text-[15px] font-[600]">{t('chat')}</div>
         <div className="text-[13px] text-customColor18 mt-[2px]">
           {t(
-            'chat_onboarding_description',
-            'No MCP or CLI settings needed. Paste this into the chat, the agent installs the Postiz CLI and asks you for your API key.'
+            'chat_onboarding_description'
           )}
         </div>
       </div>
@@ -357,12 +355,12 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
             {config}
           </pre>
           <div className="flex gap-[8px]">
-            <CopyButton text={config} label={t('copy', 'Copy')} />
+            <CopyButton text={config} label={t('copy')} />
           </div>
         </div>
         <div className="flex flex-col gap-[8px]">
           <div className="text-[13px] font-[600] text-customColor18">
-            {t('api_key', 'API Key')}
+            {t('api_key')}
           </div>
           <pre className="bg-newBgColorInner border border-newBorder rounded-[8px] p-[12px] text-[12px] whitespace-pre-wrap break-all overflow-x-auto leading-[1.5]">
             {maskedApiKey}
@@ -373,9 +371,9 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
               onClick={() => setRevealed(!revealed)}
               className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
             >
-              {revealed ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+              {revealed ? t('hide') : t('reveal')}
             </button>
-            <CopyButton text={apiKey} label={t('copy', 'Copy')} />
+            <CopyButton text={apiKey} label={t('copy')} />
           </div>
         </div>
       </div>
@@ -387,12 +385,11 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
       <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder px-[20px] py-[14px] flex items-center justify-between gap-[12px]">
         <div>
           <div className="text-[15px] font-[600]">
-            {t('documentation', 'Documentation')}
+            {t('documentation')}
           </div>
           <div className="text-[13px] text-customColor18 mt-[2px]">
             {t(
-              'api_onboarding_description',
-              'Use the Postiz API from your own code, n8n or any other automation'
+              'api_onboarding_description'
             )}
           </div>
         </div>
@@ -402,18 +399,17 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
           target="_blank"
         >
           <McpClientIcon client={apiTab} size={18} />
-          {t('read_the_api_docs', 'Read the API docs')}
+          {t('read_the_api_docs')}
         </a>
       </div>
       <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder overflow-hidden">
         <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
           <div className="text-[15px] font-[600]">
-            {t('api_key', 'API Key')}
+            {t('api_key')}
           </div>
           <div className="text-[13px] text-customColor18 mt-[2px]">
             {t(
-              'api_key_onboarding_description',
-              'Send it as the Authorization header on every request'
+              'api_key_onboarding_description'
             )}
           </div>
         </div>
@@ -427,9 +423,9 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
               onClick={() => setRevealed(!revealed)}
               className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
             >
-              {revealed ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+              {revealed ? t('hide') : t('reveal')}
             </button>
-            <CopyButton text={apiKey} label={t('copy', 'Copy')} />
+            <CopyButton text={apiKey} label={t('copy')} />
           </div>
         </div>
       </div>
@@ -440,12 +436,11 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
     <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder px-[20px] py-[14px] flex items-center justify-between gap-[12px]">
       <div>
         <div className="text-[15px] font-[600]">
-          {t('connector', 'Connector')}
+          {t('connector')}
         </div>
         <div className="text-[13px] text-customColor18 mt-[2px]">
           {t(
-            'connector_onboarding_description',
-            'The fastest way: add Postiz with one click, you will be asked to sign in'
+            'connector_onboarding_description'
           )}
         </div>
       </div>
@@ -463,18 +458,17 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
   const mcpSection = (
     <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder overflow-hidden flex flex-col">
       <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
-        <div className="text-[15px] font-[600]">{t('mcp', 'MCP')}</div>
+        <div className="text-[15px] font-[600]">{t('mcp')}</div>
         <div className="text-[13px] text-customColor18 mt-[2px]">
           {t(
-            'mcp_onboarding_description',
-            'Give your agent Postiz tools to create, schedule and manage posts'
+            'mcp_onboarding_description'
           )}
         </div>
       </div>
       <div className="p-[20px] flex flex-col gap-[16px] flex-1">
         <div className="flex flex-col gap-[6px]">
           <div className="text-[13px] font-[600] text-customColor18">
-            {t('auth_method', 'Authentication')}
+            {t('auth_method')}
           </div>
           <div className="flex gap-[6px]">
             {(['oauth', 'apikey'] as const).map((m) => (
@@ -490,8 +484,8 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
                 onClick={() => setAuth(m)}
               >
                 {m === 'oauth'
-                  ? t('sign_in_no_api_key', 'Sign in with Postiz (no API key)')
-                  : t('api_key', 'API Key')}
+                  ? t('sign_in_no_api_key')
+                  : t('api_key')}
               </button>
             ))}
           </div>
@@ -501,8 +495,7 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
             {hint}
             {auth === 'oauth' &&
               ` ${t(
-                'oauth_sign_in_hint',
-                'Your agent will open a browser window to sign in to Postiz.'
+                'oauth_sign_in_hint'
               )}`}
           </div>
           <pre className="bg-newBgColorInner border border-newBorder rounded-[8px] p-[12px] text-[12px] whitespace-pre-wrap break-all overflow-x-auto leading-[1.5]">
@@ -515,10 +508,10 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
                 onClick={() => setRevealed(!revealed)}
                 className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
               >
-                {revealed ? t('hide', 'Hide') : t('reveal', 'Reveal')}
+                {revealed ? t('hide') : t('reveal')}
               </button>
             )}
-            <CopyButton text={config} label={t('copy', 'Copy')} />
+            <CopyButton text={config} label={t('copy')} />
           </div>
         </div>
       </div>
@@ -528,11 +521,10 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
   const cliSection = (
     <div className="bg-newBgColorInnerInner rounded-[12px] border border-newBorder overflow-hidden flex flex-col">
       <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
-        <div className="text-[15px] font-[600]">{t('cli', 'CLI')}</div>
+        <div className="text-[15px] font-[600]">{t('cli')}</div>
         <div className="text-[13px] text-customColor18 mt-[2px]">
           {t(
-            'cli_onboarding_description',
-            'Install the Postiz CLI and the skill that teaches your agent how to use it'
+            'cli_onboarding_description'
           )}
         </div>
       </div>
@@ -543,7 +535,7 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
         <div className="flex gap-[8px]">
           <CopyButton
             text={cliCommands.join(' && ')}
-            label={t('copy', 'Copy')}
+            label={t('copy')}
           />
         </div>
       </div>
@@ -554,12 +546,11 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
     <div className="flex flex-col gap-[24px] flex-1">
       <div className="flex gap-[4px] flex-col text-center">
         <div className="text-[24px] font-semibold">
-          {t('connect_your_ai_agent', 'Connect Your AI Agent')}
+          {t('connect_your_ai_agent')}
         </div>
         <div className="text-[14px] text-customColor18">
           {t(
-            'connect_agent_description',
-            'Pick the agent you use and let it create and schedule posts for you'
+            'connect_agent_description'
           )}
         </div>
       </div>
@@ -624,8 +615,7 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
       ) : (
         <div className="bg-newTableHeader rounded-[8px] p-[16px] text-[14px] text-customColor18 text-center w-full max-w-[860px] mx-auto">
           {t(
-            'agent_access_unavailable',
-            'Agent access is not available for your current plan or role. You can set it up later under Settings > Developers.'
+            'agent_access_unavailable'
           )}
         </div>
       )}
@@ -651,19 +641,18 @@ const OnboardingStep2: FC<{ onBack: () => void; onNext: () => void }> = ({
             <path d="m12 19-7-7 7-7" />
             <path d="M19 12H5" />
           </svg>
-          {t('back', 'Back')}
+          {t('back')}
         </button>
         <div className="text-[13px] text-customColor18 text-center">
           {t(
-            'agent_settings_later',
-            'More agents and full instructions are available under Settings > Developers'
+            'agent_settings_later'
           )}
         </div>
         <button
           onClick={onNext}
           className="group flex items-center gap-[12px] bg-gradient-to-r from-[#622aff] to-[#8b5cf6] hover:from-[#7c3aff] hover:to-[#9d6eff] text-white font-semibold px-[32px] py-[14px] rounded-[12px] text-[16px] transition-all shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
         >
-          {t('continue_skip', 'Continue / Skip')}
+          {t('continue_skip')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -695,12 +684,11 @@ const OnboardingStep3: FC<{ onBack: () => void; onFinish: () => void }> = ({
     <div className="flex flex-col gap-[24px] flex-1">
       <div className="flex gap-[4px] flex-col text-center">
         <div className="text-[24px] font-semibold">
-          {t('watch_tutorial_title', 'Learn How to Use Postiz')}
+          {t('watch_tutorial_title')}
         </div>
         <div className="text-[14px] text-customColor18">
           {t(
-            'watch_tutorial_description',
-            'Watch this short video to learn how to get the most out of Postiz'
+            'watch_tutorial_description'
           )}
         </div>
       </div>
@@ -739,13 +727,13 @@ const OnboardingStep3: FC<{ onBack: () => void; onFinish: () => void }> = ({
             <path d="m12 19-7-7 7-7" />
             <path d="M19 12H5" />
           </svg>
-          {t('back', 'Back')}
+          {t('back')}
         </button>
         <button
           onClick={onFinish}
           className="group flex items-center gap-[12px] bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#34d399] hover:to-[#10b981] text-white font-semibold px-[32px] py-[14px] rounded-[12px] text-[16px] transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40"
         >
-          {t('get_started', 'Get Started')}
+          {t('get_started')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

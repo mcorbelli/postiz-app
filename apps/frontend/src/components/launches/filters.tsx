@@ -268,10 +268,10 @@ export const Filters = () => {
   );
 
   const listStateOptions: { value: ListStateFilter; label: string }[] = [
-    { value: 'all', label: t('all', 'All') },
-    { value: 'scheduled', label: t('scheduled', 'Scheduled') },
-    { value: 'draft', label: t('draft', 'Draft') },
-    { value: 'published', label: t('published', 'Published') },
+    { value: 'all', label: t('all') },
+    { value: 'scheduled', label: t('scheduled') },
+    { value: 'draft', label: t('draft') },
+    { value: 'published', label: t('published') },
   ];
 
   const previousPage = useCallback(() => {
@@ -343,7 +343,7 @@ export const Filters = () => {
                 onClick={setToday}
                 className="hover:text-textItemFocused hover:bg-boxFocused py-[3px] px-[9px] flex justify-center items-center rounded-[8px] transition-all cursor-pointer text-[14px] bg-newBgColorInner border border-newTableBorder"
               >
-                {t('today', 'Today')}
+                {t('today')}
               </div>
             </div>
           </div>
@@ -379,7 +379,7 @@ export const Filters = () => {
             </div>
             <div className="min-w-[200px] text-center bg-newBgColorInner h-full flex items-center justify-center">
               <div className="py-[3px] px-[9px] rounded-[5px] transition-all text-[14px]">
-                {t('page_x_of_y', 'Page {{page}} of {{totalPages}}', {
+                {t('page_x_of_y', {
                   page: calendar.listPage + 1,
                   totalPages: Math.max(1, calendar.listTotalPages),
                 })}
@@ -443,7 +443,7 @@ export const Filters = () => {
             )}
             onClick={setDay}
           >
-            {t('day', 'Day')}
+            {t('day')}
           </div>
           <div
             className={clsx(
@@ -452,7 +452,7 @@ export const Filters = () => {
             )}
             onClick={setWeek}
           >
-            {t('week', 'Week')}
+            {t('week')}
           </div>
           <div
             className={clsx(
@@ -461,7 +461,7 @@ export const Filters = () => {
             )}
             onClick={setMonth}
           >
-            {t('month', 'Month')}
+            {t('month')}
           </div>
         </div>
       )}

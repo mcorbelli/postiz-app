@@ -148,7 +148,7 @@ const StripeInputs: FC<{
       {/*</div>*/}
       <div>
         <h4 className="mb-[32px] text-[24px] font-[700]">
-          {checkout.type === 'loading' ? '' : t('billing_payment', 'Payment')}
+          {checkout.type === 'loading' ? '' : t('billing_payment')}
         </h4>
         <PaymentElement
           id="payment-element"
@@ -166,7 +166,7 @@ const StripeInputs: FC<{
         {checkout.type === 'loading' ? null : (
           <div className="mt-[24px] text-[16px] font-[600] flex gap-[4px] items-center">
             <div>
-              {t('billing_powered_by_stripe', 'Secure payments processed by')}
+              {t('billing_powered_by_stripe')}
             </div>
             <svg
               className="mt-[4px]"
@@ -205,7 +205,7 @@ const PriceBreakdown: FC = () => {
   const hasDiscount = discountAmounts && discountAmounts.length > 0;
 
   // Get values
-  const planName = lineItem?.name || t('billing_subscription', 'Subscription');
+  const planName = lineItem?.name || t('billing_subscription');
   const unitAmount = lineItem?.unitAmount?.amount || '$0.00';
   const discountDisplay = hasDiscount ? discountAmounts[0] : null;
   const dueToday = checkout?.total?.total?.amount || '$0.00';
@@ -215,13 +215,13 @@ const PriceBreakdown: FC = () => {
     : null;
   const billingInterval =
     recurring?.interval === 'month'
-      ? t('billing_monthly', 'Monthly')
-      : t('billing_yearly', 'Yearly');
+      ? t('billing_monthly')
+      : t('billing_yearly');
 
   return (
     <div className="mt-[40px]">
       <h4 className="mb-[16px] text-[24px] font-[700]">
-        {t('billing_order_summary', 'Order Summary')}
+        {t('billing_order_summary')}
       </h4>
       <div className="rounded-[12px] border border-newColColor p-[20px] flex flex-col gap-[12px]">
         {/* Plan */}
@@ -262,7 +262,7 @@ const PriceBreakdown: FC = () => {
             <span className="font-[500]">
               {discountDisplay.amount !== '$0.00'
                 ? `-${discountDisplay.amount}`
-                : t('billing_applied', 'Applied')}
+                : t('billing_applied')}
             </span>
           </div>
         )}
@@ -273,7 +273,7 @@ const PriceBreakdown: FC = () => {
         {/* Due today */}
         <div className="flex justify-between items-center">
           <span className="font-[600] text-textColor">
-            {t('billing_due_today', 'Due today')}
+            {t('billing_due_today')}
           </span>
           <span className="font-[700] text-[18px] text-textColor">
             {dueToday}
@@ -284,8 +284,8 @@ const PriceBreakdown: FC = () => {
         {nextBillingTotal && nextBillingDate && (
           <div className="flex justify-between items-center text-[13px] text-textColor/60">
             <span>
-              {t('billing_then', 'Then')} {nextBillingTotal}{' '}
-              {t('billing_on', 'on')} {nextBillingDate}
+              {t('billing_then')} {nextBillingTotal}{' '}
+              {t('billing_on')} {nextBillingDate}
             </span>
           </div>
         )}
@@ -293,8 +293,7 @@ const PriceBreakdown: FC = () => {
         <div className="text-[12px]">
           <strong>
             {t(
-              'billing_cancel_notice',
-              'Cancel anytime from settings without talking to a person and never be charged.'
+              'billing_cancel_notice'
             )}
           </strong>
         </div>
@@ -394,7 +393,7 @@ const AppliedCouponDisplay: FC<{
             </svg>
             <span className="font-[600] text-[#FC69FF]">{appliedCode}</span>
             <span className="text-[14px] text-textColor/70">
-              {t('billing_discount_applied', 'applied')}
+              {t('billing_discount_applied')}
               {discountDisplay && ` (${discountDisplay})`}
             </span>
           </div>
@@ -405,7 +404,7 @@ const AppliedCouponDisplay: FC<{
           disabled={isApplying}
           className="text-[14px] text-textColor/50 hover:text-textColor font-[500] disabled:opacity-50"
         >
-          {t('billing_remove', 'Remove')}
+          {t('billing_remove')}
         </button>
       </div>
       {expirationDate && (
@@ -424,7 +423,7 @@ const AppliedCouponDisplay: FC<{
             <circle cx="12" cy="12" r="10" />
             <polyline points="12 6 12 12 16 14" />
           </svg>
-          {t('billing_coupon_expires', 'Coupon expires on')} {expirationDate}
+          {t('billing_coupon_expires')} {expirationDate}
         </p>
       )}
     </div>
@@ -467,7 +466,7 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
       if (result.type === 'error') {
         toaster.show(
           result.error.message ||
-            t('billing_invalid_coupon', 'Invalid coupon code'),
+            t('billing_invalid_coupon'),
           'warning'
         );
       } else {
@@ -475,13 +474,13 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
         setCouponCode('');
         setShowInput(false);
         toaster.show(
-          t('billing_coupon_applied', 'Coupon applied successfully!'),
+          t('billing_coupon_applied'),
           'success'
         );
       }
     } catch (err: any) {
       toaster.show(
-        err.message || t('billing_invalid_coupon', 'Invalid coupon code'),
+        err.message || t('billing_invalid_coupon'),
         'warning'
       );
     }
@@ -493,11 +492,11 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
     try {
       await checkout.removePromotionCode();
       setAppliedCode(null);
-      toaster.show(t('billing_coupon_removed', 'Coupon removed'), 'success');
+      toaster.show(t('billing_coupon_removed'), 'success');
     } catch (err: any) {
       toaster.show(
         err.message ||
-          t('billing_error_removing_coupon', 'Error removing coupon'),
+          t('billing_error_removing_coupon'),
         'warning'
       );
     }
@@ -540,7 +539,7 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
           >
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
           </svg>
-          {t('billing_have_discount_coupon', 'Have a discount coupon?')}
+          {t('billing_have_discount_coupon')}
         </button>
       </div>
     );
@@ -551,7 +550,7 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
     <div className="mt-[40px]">
       <div className="flex items-center gap-[12px] mb-[12px]">
         <h4 className="text-[18px] font-[600] text-textColor">
-          {t('billing_discount_coupon', 'Discount Coupon')}
+          {t('billing_discount_coupon')}
         </h4>
         <button
           type="button"
@@ -561,7 +560,7 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
           }}
           className="text-[14px] text-textColor/50 hover:text-textColor transition-colors"
         >
-          {t('billing_cancel', 'Cancel')}
+          {t('billing_cancel')}
         </button>
       </div>
       <div className="flex gap-[12px]">
@@ -569,7 +568,7 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
           type="text"
           value={couponCode}
           onChange={(e) => setCouponCode(e.target.value)}
-          placeholder={t('billing_enter_coupon_code', 'Enter coupon code')}
+          placeholder={t('billing_enter_coupon_code')}
           disabled={isApplying}
           autoFocus
           className="flex-1 h-[44px] px-[16px] rounded-[8px] border border-newColColor bg-newBgColor text-textColor placeholder:text-textColor/50 focus:outline-none focus:border-boxFocused disabled:opacity-50"
@@ -591,8 +590,8 @@ export const CouponInput: FC<{ autoApplyCoupon?: string }> = ({
           className="h-[44px] px-[24px] rounded-[8px] bg-boxFocused text-textItemFocused font-[600] hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {isApplying
-            ? t('billing_applying', 'Applying...')
-            : t('billing_apply', 'Apply')}
+            ? t('billing_applying')
+            : t('billing_apply')}
         </button>
       </div>
     </div>
@@ -611,11 +610,11 @@ const SubmitBar: FC<{ loading: boolean }> = ({ loading }) => {
       <div className="w-full h-full border-t border-newColColor bg-newBgColorInner px-[80px] tablet:px-[33px] mobile:!px-[16px] flex mobile:flex-col gap-[32px] mobile:gap-[16px] justify-end items-center font-[400] text-[14px] text-[#A3A3A3] mobile:py-[16px]">
         {checkout.checkout.recurring?.trial?.trialEnd ? (
           <div>
-            {t('billing_your_7_day_trial_is', 'Your 7-day trial is')}{' '}
+            {t('billing_your_7_day_trial_is')}{' '}
             <span className="text-textColor font-[600]">
-              {t('billing_100_percent_free', '100% free')}
+              {t('billing_100_percent_free')}
             </span>{' '}
-            {t('billing_ending', 'ending')}{' '}
+            {t('billing_ending')}{' '}
             <br className="hidden mobile:block" />
             <span className="text-textColor font-[600]">
               {dayjs(
@@ -625,8 +624,7 @@ const SubmitBar: FC<{ loading: boolean }> = ({ loading }) => {
             </span>
             <span className="text-textColor font-[600]">
               {t(
-                'billing_cancel_anytime_short',
-                'Cancel anytime from settings'
+                'billing_cancel_anytime_short'
               )}
             </span>
           </div>
@@ -639,10 +637,9 @@ const SubmitBar: FC<{ loading: boolean }> = ({ loading }) => {
           >
             {checkout.checkout.recurring?.trial?.trialEnd
               ? t(
-                  'billing_pay_0_start_trial',
-                  'Pay $0 Today - Start your free trial!'
+                  'billing_pay_0_start_trial'
                 )
-              : t('billing_pay_now', 'Pay Now')}
+              : t('billing_pay_now')}
           </Button>
         </div>
       </div>

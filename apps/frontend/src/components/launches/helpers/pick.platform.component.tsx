@@ -96,8 +96,7 @@ export const PickPlatforms: FC<{
           !props.singleSelect &&
           !(await deleteDialog(
             t(
-              'are_you_sure_you_want_to_remove_this_platform',
-              'Are you sure you want to remove this platform?'
+              'are_you_sure_you_want_to_remove_this_platform'
             )
           ))
         ) {
@@ -259,7 +258,7 @@ export const PickPlatforms: FC<{
                         {integration.identifier === 'youtube' ? (
                           <img
                             src="/icons/platforms/youtube.svg"
-                            alt={t('youtube', 'YouTube')}
+                            alt={t('youtube')}
                             className="absolute z-10 bottom-0 -end-[5px]"
                             width={20}
                           />

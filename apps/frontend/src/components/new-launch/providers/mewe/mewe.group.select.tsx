@@ -51,7 +51,7 @@ export const MeweGroupSelect: FC<{
       onChange={onChangeInner}
       value={currentGroup}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {groups.map((group: any) => (
         <option key={group.id} value={group.id}>
           {group.name}

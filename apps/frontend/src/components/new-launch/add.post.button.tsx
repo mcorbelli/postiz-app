@@ -36,13 +36,11 @@ export const AddPostButton: FC<{
           </svg>
         </div>
         <div className="!text-white">
-          {t(
-            ...(props.postComment === PostComment.ALL
-              ? ['add_comment_or_post', 'Add comment or post']
-              : props.postComment === PostComment.POST
-              ? ['add_post', 'Add post']
-              : ['add_comment', 'Add comment'])
-          )}
+          {props.postComment === PostComment.ALL
+            ? t('add_comment_or_post')
+            : props.postComment === PostComment.POST
+            ? t('add_post')
+            : t('add_comment')}
         </div>
       </div>
     </div>

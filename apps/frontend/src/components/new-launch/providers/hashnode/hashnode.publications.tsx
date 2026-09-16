@@ -46,7 +46,7 @@ export const HashnodePublications: FC<{
       onChange={onChangeInner}
       value={currentMedia}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {(publications || []).map((publication: any) => (
         <option key={publication.id} value={publication.id}>
           {publication.name}

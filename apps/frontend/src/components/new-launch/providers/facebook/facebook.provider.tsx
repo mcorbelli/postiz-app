@@ -58,7 +58,7 @@ export const FacebookSettings = () => {
           })}
         >
           <option value="">
-            {t('select_post_type', 'Select Post Type...')}
+            {t('select_post_type')}
           </option>
           {postType.map((item) => (
             <option key={item.value} value={item.value}>
@@ -88,7 +88,7 @@ export const FacebookSettings = () => {
             }
           >
             <option value="" style={{ background: '#ffffff', color: '#1c1e21' }}>
-              {t('facebook_background_none', 'None (plain text)')}
+              {t('facebook_background_none')}
             </option>
             {FACEBOOK_PRESETS.map((item) => {
               const bg = getPresetBackground(item.id);
@@ -107,8 +107,7 @@ export const FacebookSettings = () => {
           </Select>
           <div className="text-[12px] opacity-70 mt-[8px]">
             {t(
-              'facebook_background_note',
-              'Unofficial list: the colors shown are approximate, an unsupported background is dropped (published as plain text)'
+              'facebook_background_note'
             )}
           </div>
         </>

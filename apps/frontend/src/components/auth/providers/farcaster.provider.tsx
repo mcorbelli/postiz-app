@@ -19,7 +19,7 @@ export const FarcasterProvider = () => {
   }, []);
   const open = useCallback(() => {
     modal.openModal({
-      title: t('farcaster', 'Farcaster'),
+      title: t('farcaster'),
       withCloseButton: true,
       classNames: {
         modal: 'bg-transparent text-textColor',
@@ -57,7 +57,7 @@ export const FarcasterProvider = () => {
         </clipPath>
       </defs>
     </svg>
-      <div className="block xs:hidden">{t('farcaster', 'Farcaster')}</div>
+      <div className="block xs:hidden">{t('farcaster')}</div>
     </div>
   );
 };
@@ -105,8 +105,7 @@ export const FarcasterApproval: FC<{
       if (data.status === 'revoked') {
         toaster.show(
           t(
-            'farcaster_signer_revoked',
-            'The Farcaster approval was revoked, please try again'
+            'farcaster_signer_revoked'
           ),
           'warning'
         );
@@ -116,8 +115,7 @@ export const FarcasterApproval: FC<{
       if (Date.now() - startedAt > 10 * 60 * 1000) {
         toaster.show(
           t(
-            'farcaster_approval_timeout',
-            'Farcaster approval timed out, please try again'
+            'farcaster_approval_timeout'
           ),
           'warning'
         );
@@ -137,8 +135,7 @@ export const FarcasterApproval: FC<{
         toaster.show(
           data.error ||
             t(
-              'farcaster_signer_failed',
-              'Failed to start the Farcaster connection'
+              'farcaster_signer_failed'
             ),
           'warning'
         );
@@ -150,7 +147,7 @@ export const FarcasterApproval: FC<{
       poll(data.signerUuid);
     } catch (err) {
       toaster.show(
-        t('farcaster_signer_failed', 'Failed to start the Farcaster connection'),
+        t('farcaster_signer_failed'),
         'warning'
       );
       onFail();
@@ -160,7 +157,7 @@ export const FarcasterApproval: FC<{
   const copyLink = useCallback(() => {
     copy(approvalUrl);
     toaster.show(
-      t('link_copied_to_clipboard', 'Link copied to clipboard'),
+      t('link_copied_to_clipboard'),
       'success'
     );
   }, [approvalUrl]);
@@ -189,16 +186,15 @@ export const FarcasterApproval: FC<{
       />
       <div className="max-w-[400px]">
         {t(
-          'farcaster_scan_instructions',
-          'Scan the QR code with your phone, or copy the link and open it on your phone, then approve Postiz in the Farcaster app.'
+          'farcaster_scan_instructions'
         )}
       </div>
       <Button onClick={copyLink}>
-        {t('farcaster_copy_link', 'Copy Farcaster link')}
+        {t('farcaster_copy_link')}
       </Button>
       <div className="flex items-center gap-[8px] text-sm opacity-70">
         <Loading width={20} height={20} />
-        {t('farcaster_waiting_for_approval', 'Waiting for your approval...')}
+        {t('farcaster_waiting_for_approval')}
       </div>
     </div>
   );

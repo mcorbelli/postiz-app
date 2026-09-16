@@ -20,11 +20,11 @@ const MeweComponent: FC = () => {
   return (
     <div>
       <Select
-        label={t('post_to', 'Post To')}
+        label={t('post_to')}
         {...form.register('postType')}
       >
-        <option value="timeline">{t('my_timeline', 'My Timeline')}</option>
-        <option value="group">{t('group', 'Group')}</option>
+        <option value="timeline">{t('my_timeline')}</option>
+        <option value="group">{t('group')}</option>
       </Select>
       {postType === 'group' && (
         <MeweGroupSelect {...form.register('group')} />

@@ -49,7 +49,7 @@ export const ApiModal: FC<{
       });
 
       if (add.ok) {
-        toaster.show(t('integration_added_successfully', 'Integration added successfully'), 'success');
+        toaster.show(t('integration_added_successfully'), 'success');
         if (closePopup) {
           closePopup();
         } else {
@@ -81,11 +81,11 @@ export const ApiModal: FC<{
           onSubmit={methods.handleSubmit(submit)}
         >
           <div className="pt-[10px]">
-            <Input label={t('api_key', 'API Key')} name="api" />
+            <Input label={t('api_key')} name="api" />
           </div>
           <div>
             <Button loading={loading} type="submit">
-              {t('add_integration', 'Add Integration')}
+              {t('add_integration')}
             </Button>
           </div>
         </form>
@@ -116,7 +116,7 @@ export const ThirdPartyListComponent: FC<{ reload: () => void }> = (props) => {
   const addApiKey = useCallback(
     (title: string, identifier: string) => () => {
       modals.openModal({
-        title: t('top_title_add_api_key_for', `Add API key for ${title}`, {
+        title: t('top_title_add_api_key_for', {
           name: title,
         }),
         withCloseButton: false,
@@ -146,7 +146,7 @@ export const ThirdPartyListComponent: FC<{ reload: () => void }> = (props) => {
           <div className="whitespace-pre-wrap text-left text-lg">{p.title}</div>
           <div className="whitespace-pre-wrap text-left">{p.description}</div>
           <div className="w-full flex">
-            <Button className="w-full">{t('add', 'Add')}</Button>
+            <Button className="w-full">{t('add')}</Button>
           </div>
         </div>
       ))}

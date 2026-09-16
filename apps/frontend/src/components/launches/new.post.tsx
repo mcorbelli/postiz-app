@@ -21,7 +21,7 @@ export const NewPost = () => {
       ? undefined
       : await new Promise((resolve) => {
           modal.openModal({
-            title: t('select_set', 'Select a Set'),
+            title: t('select_set'),
             closeOnClickOutside: true,
             closeOnEscape: true,
             withCloseButton: false,
@@ -96,7 +96,7 @@ export const NewPost = () => {
         />
       </svg>
       <div className="flex-1 text-start text-[14px] group-[.sidebar]:hidden">
-        {t('create_new_post', 'Create Post')}
+        {t('create_new_post')}
       </div>
     </button>
   );

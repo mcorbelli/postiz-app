@@ -49,12 +49,11 @@ const AnnouncementDetailModal: FC<{
     if (
       !(await deleteDialog(
         t(
-          'delete_announcement_confirm',
-          'Are you sure you want to delete this announcement?'
+          'delete_announcement_confirm'
         ),
-        t('yes_delete', 'Yes, delete'),
-        t('confirm_delete', 'Confirm Delete'),
-        t('no_cancel', 'No, cancel')
+        t('yes_delete'),
+        t('confirm_delete'),
+        t('no_cancel')
       ))
     ) {
       return;
@@ -83,7 +82,7 @@ const AnnouncementDetailModal: FC<{
             loading={deleting}
             className="!bg-red-700 rounded-[4px]"
           >
-            {t('delete_announcement', 'Delete Announcement')}
+            {t('delete_announcement')}
           </Button>
         </div>
       )}
@@ -138,7 +137,7 @@ export const AnnouncementBanner: FC = () => {
       {latest.title}
       {announcements.length > 1 && (
         <span className="ml-[8px] opacity-70">
-          (+{announcements.length - 1} {t('more', 'more')})
+          (+{announcements.length - 1} {t('more')})
         </span>
       )}
       <style>{`#left-menu {padding-top: ${user?.isSuperAdmin ? '100px !important;' : '60px !important;'}`}</style>

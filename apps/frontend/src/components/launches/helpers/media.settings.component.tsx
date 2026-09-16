@@ -375,8 +375,7 @@ export const MediaComponentInner: FC<{
           value={altText}
           onChange={(e) => setAltText(e.target.value)}
           placeholder={t(
-            'describe_the_image_video_content',
-            'Describe the image/video content...'
+            'describe_the_image_video_content'
           )}
           className="w-full px-3 py-2 bg-fifth border border-tableBorder rounded-lg text-textColor placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-forth focus:border-transparent"
         />
@@ -391,11 +390,11 @@ export const MediaComponentInner: FC<{
                 {(newThumbnail || thumbnail) && (
                   <div className="flex flex-col space-y-2">
                     <span className="text-sm text-textColor">
-                      {t('current_thumbnail', 'Current Thumbnail:')}
+                      {t('current_thumbnail')}
                     </span>
                     <img
                       src={newThumbnail || thumbnail}
-                      alt={t('current_thumbnail_alt', 'Current thumbnail')}
+                      alt={t('current_thumbnail_alt')}
                       className="max-w-full max-h-[500px] object-contain rounded-lg border border-tableBorder"
                     />
                   </div>
@@ -421,7 +420,7 @@ export const MediaComponentInner: FC<{
                       }}
                       className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-opacity-80 transition-all flex-1 border border-red-700"
                     >
-                      {t('clear_thumbnail', 'Clear Thumbnail')}
+                      {t('clear_thumbnail')}
                     </button>
                   )}
                 </div>
@@ -449,7 +448,7 @@ export const MediaComponentInner: FC<{
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span>{t('back', 'Back')}</span>
+                    <span>{t('back')}</span>
                   </button>
                 </div>
 
@@ -484,13 +483,13 @@ export const MediaComponentInner: FC<{
             onClick={onClose}
             className="flex-1 bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-opacity-80 transition-all"
           >
-            {t('cancel', 'Cancel')}
+            {t('cancel')}
           </button>
           <button
             onClick={save}
             className="flex-1 bg-forth text-white px-6 py-2 rounded-lg hover:bg-opacity-80 transition-all"
           >
-            {t('save_changes', 'Save Changes')}
+            {t('save_changes')}
           </button>
         </div>
       )}

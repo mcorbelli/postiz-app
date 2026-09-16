@@ -55,7 +55,7 @@ export const InstagramPreview: FC<{
         <div className="w-[36px] h-[36px]">
           <img
             src={integration?.picture || '/no-picture.jpg'}
-            alt={t('social_icon_alt', 'social')}
+            alt={t('social_icon_alt')}
             className="rounded-full relative z-[2] w-[36px] h-[36px]"
           />
         </div>
@@ -176,7 +176,7 @@ export const InstagramPreview: FC<{
                 <div className="h-[34px]">
                   <img
                     src={integration?.picture || '/no-picture.jpg'}
-                    alt={t('social_icon_alt', 'social')}
+                    alt={t('social_icon_alt')}
                     className="rounded-full relative z-[2] h-[34px] w-[34px]"
                   />
                 </div>
@@ -210,7 +210,7 @@ export const InstagramPreview: FC<{
                     <div className="flex gap-[16px] flex-1">
                       <div className="font-[700]">30m</div>
                       <div className="font-[700]">8 Likes</div>
-                      <div className="font-[700]">{t('reply', 'Reply')}</div>
+                      <div className="font-[700]">{t('reply')}</div>
                     </div>
                   </div>
                 </div>

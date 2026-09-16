@@ -38,7 +38,7 @@ export const FinishTrial: FC<{ close: () => void }> = (props) => {
         <div className="flex gap-[10px] flex-col w-[500px] h-auto bg-sixth border-tableBorder border-2 rounded-xl pb-[20px] px-[20px] relative">
           <div className="flex">
             <div className="flex-1">
-              <TopTitle title={t('finishing_trial', 'Finishing Trial')} />
+              <TopTitle title={t('finishing_trial')} />
             </div>
             <button
               onClick={props.close}
@@ -69,16 +69,15 @@ export const FinishTrial: FC<{ close: () => void }> = (props) => {
                   <div className="flex flex-col">
                     <div>
                       {t(
-                        'trial_finished_and_charged',
-                        'You trial has been successfully finished and you have been charged.'
+                        'trial_finished_and_charged'
                       )}
                     </div>
                     <div className="flex gap-[10px] mt-[20px]">
                       <Button className="flex-1" onClick={() => window.close()}>
-                        {t('close_window', 'Close window')}
+                        {t('close_window')}
                       </Button>
                       <Button className="flex-1" onClick={() => props.close()}>
-                        {t('close_dialog', 'Close dialog')}
+                        {t('close_dialog')}
                       </Button>
                     </div>
                   </div>

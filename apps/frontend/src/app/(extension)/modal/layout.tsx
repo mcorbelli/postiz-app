@@ -9,8 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: isGeneralServerSide() ? 'Postiz' : 'Gitroom',
     description: t(
-      'extension_modal_description',
-      'Compose and schedule posts from the Postiz browser extension'
+      'extension_modal_description'
     ),
   };
 }

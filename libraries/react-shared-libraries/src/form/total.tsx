@@ -28,7 +28,7 @@ export const Total: FC<{
 
   return (
     <div className="flex flex-col gap-[6px] relative w-[158px]">
-      <div className={`text-[14px]`}>{t('total', 'Total')}</div>
+      <div className={`text-[14px]`}>{t('total')}</div>
       <div
         className={clsx(
           'bg-input h-[44px] border-fifth border rounded-[4px] text-inputText placeholder-inputText items-center justify-center flex'

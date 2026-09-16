@@ -111,13 +111,13 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
       );
 
       toaster.show(
-        t('debug_post_imported', 'Post imported as draft successfully'),
+        t('debug_post_imported'),
         'success'
       );
       close();
     } catch {
       toaster.show(
-        t('debug_post_import_failed', 'Failed to import post'),
+        t('debug_post_import_failed'),
         'warning'
       );
     } finally {
@@ -130,8 +130,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
       <textarea
         className="w-full h-[200px] p-[12px] rounded-[8px] bg-input border border-tableBorder text-textColor font-mono text-[13px] resize-y"
         placeholder={t(
-          'paste_debug_json',
-          'Paste the debug JSON copied from a failed post...'
+          'paste_debug_json'
         )}
         value={jsonInput}
         onChange={(e) => handleJsonChange(e.target.value)}
@@ -145,18 +144,18 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
         <div className="flex flex-col gap-[12px]">
           <div className="flex flex-col gap-[8px] p-[12px] rounded-[8px] bg-input border border-tableBorder">
             <div className="text-[13px] font-[600] text-textColor">
-              {t('debug_info', 'Debug Info')}
+              {t('debug_info')}
             </div>
             <div className="text-[12px] text-textColor/70 flex flex-col gap-[4px] min-w-0 break-all">
               <div>
                 <span className="font-[500]">
-                  {t('provider', 'Provider')}:
+                  {t('provider')}:
                 </span>{' '}
                 {parsed._debug.providerIdentifier} ({parsed._debug.providerName})
               </div>
               <div>
                 <span className="font-[500]">
-                  {t('state', 'State')}:
+                  {t('state')}:
                 </span>{' '}
                 <span className={parsed._debug.state === 'ERROR' ? 'text-red-500' : ''}>
                   {parsed._debug.state}
@@ -165,7 +164,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
               {parsed._debug.error && (
                 <div>
                   <span className="font-[500]">
-                    {t('error', 'Error')}:
+                    {t('error')}:
                   </span>{' '}
                   <span className="text-red-400">{parsed._debug.error}</span>
                 </div>
@@ -173,7 +172,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
               {parsed._debug.errors?.length > 0 && (
                 <div className="mt-[4px]">
                   <span className="font-[500]">
-                    {t('error_details', 'Error Details')}:
+                    {t('error_details')}:
                   </span>
                   <div className="mt-[4px] max-h-[100px] overflow-y-auto bg-newBgColor p-[8px] rounded-[4px] text-[11px] font-mono break-all whitespace-pre-wrap">
                     {parsed._debug.errors.map((err, i) => (
@@ -186,7 +185,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
               )}
               <div>
                 <span className="font-[500]">
-                  {t('original_date', 'Original Date')}:
+                  {t('original_date')}:
                 </span>{' '}
                 {new Date(parsed._debug.originalPublishDate).toLocaleString()}
               </div>
@@ -195,7 +194,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
 
           <div className="flex flex-col gap-[8px]">
             <div className="text-[13px] font-[600] text-textColor">
-              {t('select_local_integration', 'Select Local Integration')}
+              {t('select_local_integration')}
               <span className="text-[12px] font-[400] text-textColor/60 ml-[8px]">
                 ({parsed._debug.providerIdentifier})
               </span>
@@ -205,7 +204,6 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
               <div className="text-[13px] text-red-400">
                 {t(
                   'no_matching_integrations',
-                  `No ${parsed._debug.providerIdentifier} integrations found. Add one first.`,
                   { provider: parsed._debug.providerIdentifier }
                 )}
               </div>
@@ -247,7 +245,7 @@ export const ImportDebugPostModal: FC<{ close: () => void }> = ({ close }) => {
             disabled={!selectedIntegrationId}
             className="rounded-[4px]"
           >
-            {t('import_as_draft', 'Import as Draft')}
+            {t('import_as_draft')}
           </Button>
         </div>
       )}

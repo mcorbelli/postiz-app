@@ -17,20 +17,20 @@ const GmbSettings: FC = () => {
   const { register, control } = useSettings();
 
   const topicTypes = [
-    { label: t('standard_update', 'Standard Update'), value: 'STANDARD' },
-    { label: t('event', 'Event'), value: 'EVENT' },
-    { label: t('offer', 'Offer'), value: 'OFFER' },
+    { label: t('standard_update'), value: 'STANDARD' },
+    { label: t('event'), value: 'EVENT' },
+    { label: t('offer'), value: 'OFFER' },
   ];
 
   const callToActionTypes = [
-    { label: t('none', 'None'), value: 'NONE' },
-    { label: t('book', 'Book'), value: 'BOOK' },
-    { label: t('order_online', 'Order Online'), value: 'ORDER' },
-    { label: t('shop', 'Shop'), value: 'SHOP' },
-    { label: t('learn_more', 'Learn More'), value: 'LEARN_MORE' },
-    { label: t('sign_up', 'Sign Up'), value: 'SIGN_UP' },
-    { label: t('get_offer', 'Get Offer'), value: 'GET_OFFER' },
-    { label: t('call', 'Call'), value: 'CALL' },
+    { label: t('none'), value: 'NONE' },
+    { label: t('book'), value: 'BOOK' },
+    { label: t('order_online'), value: 'ORDER' },
+    { label: t('shop'), value: 'SHOP' },
+    { label: t('learn_more'), value: 'LEARN_MORE' },
+    { label: t('sign_up'), value: 'SIGN_UP' },
+    { label: t('get_offer'), value: 'GET_OFFER' },
+    { label: t('call'), value: 'CALL' },
   ];
   const topicType = useWatch({ control, name: 'topicType' });
   const callToActionType = useWatch({ control, name: 'callToActionType' });
@@ -75,10 +75,10 @@ const GmbSettings: FC = () => {
 
       {topicType === 'EVENT' && (
         <div className="flex flex-col gap-[10px] mt-[10px] p-[15px] border border-input rounded-[8px]">
-          <div className="text-[14px] font-medium mb-[5px]">{t('event_details', 'Event Details')}</div>
+          <div className="text-[14px] font-medium mb-[5px]">{t('event_details')}</div>
           <Input
             label="Event Title"
-            placeholder={t('event_name', 'Event name')}
+            placeholder={t('event_name')}
             {...register('eventTitle')}
           />
           <div className="grid grid-cols-2 gap-[10px]">
@@ -106,7 +106,7 @@ const GmbSettings: FC = () => {
 
       {topicType === 'OFFER' && (
         <div className="flex flex-col gap-[10px] mt-[10px] p-[15px] border border-input rounded-[8px]">
-          <div className="text-[14px] font-medium mb-[5px]">{t('offer_details', 'Offer Details')}</div>
+          <div className="text-[14px] font-medium mb-[5px]">{t('offer_details')}</div>
           <Input
             label="Coupon Code (optional)"
             placeholder="SAVE20"
@@ -119,7 +119,7 @@ const GmbSettings: FC = () => {
           />
           <Input
             label="Terms & Conditions (optional)"
-            placeholder={t('valid_until', 'Valid until...')}
+            placeholder={t('valid_until')}
             {...register('offerTerms')}
           />
         </div>

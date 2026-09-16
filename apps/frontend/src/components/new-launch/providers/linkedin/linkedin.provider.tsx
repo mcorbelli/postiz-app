@@ -20,7 +20,7 @@ const LinkedInSettings = () => {
     <div className="mb-[20px]">
       <Checkbox
         variant="hollow"
-        label={t('post_as_images_carousel', 'Post as images carousel')}
+        label={t('post_as_images_carousel')}
         {...register('post_as_images_carousel', {
           value: false,
         })}
@@ -28,8 +28,8 @@ const LinkedInSettings = () => {
       {isCarousel && (
         <div className="mt-[10px]">
           <Input
-            label={t('carousel_name', 'Carousel slide name')}
-            placeholder={t('slides', 'slides')}
+            label={t('carousel_name')}
+            placeholder={t('slides')}
             {...register('carousel_name')}
           />
         </div>

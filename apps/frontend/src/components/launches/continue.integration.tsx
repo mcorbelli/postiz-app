@@ -299,13 +299,12 @@ export const ContinueIntegration: FC<{
             </svg>
           </div>
           <div className="text-[28px] font-semibold mb-[12px]">
-            {t('channel_connected', 'Channel Connected!')}
+            {t('channel_connected')}
           </div>
           <div className="text-[16px] text-gray-400 max-w-[400px]">
             {successState.message ||
               t(
                 'channel_connected_description',
-                `Your ${providerDisplayName} channel has been successfully connected. You can close this window now.`,
                 { provider: providerDisplayName }
               )}
           </div>
@@ -329,12 +328,11 @@ export const ContinueIntegration: FC<{
           <div className="bg-[#1A1919] rounded-[16px] p-[32px] flex flex-col gap-[24px]">
             <div className="flex flex-col gap-[8px] text-center">
               <h1 className="text-[24px] font-semibold">
-                {t('configure_your_channel', 'Configure Your Channel')}
+                {t('configure_your_channel')}
               </h1>
               <p className="text-[14px] text-gray-400">
                 {t(
                   'select_the_page_or_account',
-                  `Select the ${providerDisplayName} page or account you want to connect.`,
                   { provider: providerDisplayName }
                 )}
               </p>
@@ -398,11 +396,11 @@ export const ContinueIntegration: FC<{
             </svg>
           </div>
           <div className="text-[28px] font-semibold mb-[12px]">
-            {t('could_not_add_provider', 'Could not add provider.')}
+            {t('could_not_add_provider')}
           </div>
           <div className="text-[16px] text-gray-400 max-w-[400px]">
             {errorMessage ||
-              t('error_occurred', 'An error occurred. Please try again.')}
+              t('error_occurred')}
           </div>
           {logged && <Redirect url="/launches" delay={3000} />}
         </div>
@@ -421,10 +419,10 @@ export const ContinueIntegration: FC<{
 
       <div className="relative z-10 text-center">
         <div className="text-[28px] font-semibold mb-[12px]">
-          {t('adding_channel', 'Adding Channel')}
+          {t('adding_channel')}
         </div>
         <div className="text-[16px] text-gray-400">
-          {t('please_wait_connecting_account', 'Please wait while we connect your account...')}
+          {t('please_wait_connecting_account')}
         </div>
         {/* Loading spinner */}
         <div className="mt-[32px] flex justify-center">

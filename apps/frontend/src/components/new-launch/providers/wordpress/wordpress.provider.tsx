@@ -19,30 +19,30 @@ const WordpressSettings: FC = () => {
   const form = useSettings();
   return (
     <>
-      <Input label={t('title', 'Title')} {...form.register('title')} />
+      <Input label={t('title')} {...form.register('title')} />
       <WordpressPostType {...form.register('type')} />
       <Select
-        label={t('wordpress_post_status', 'Status')}
+        label={t('wordpress_post_status')}
         {...form.register('status', { value: 'publish' })}
       >
-        <option value="publish">{t('publish', 'Publish')}</option>
-        <option value="draft">{t('draft', 'Draft')}</option>
-        <option value="pending">{t('pending', 'Pending')}</option>
-        <option value="private">{t('private', 'Private')}</option>
+        <option value="publish">{t('publish')}</option>
+        <option value="draft">{t('draft')}</option>
+        <option value="pending">{t('pending')}</option>
+        <option value="private">{t('private')}</option>
       </Select>
       <WordpressTerms
-        label={t('categories', 'Categories')}
+        label={t('categories')}
         func="categoriesList"
         {...form.register('categories')}
       />
       <WordpressTerms
-        label={t('wordpress_tags', 'WordPress Tags')}
+        label={t('wordpress_tags')}
         func="tagsList"
         {...form.register('tags')}
       />
       <MediaComponent
-        label={t('cover_picture', 'Cover picture')}
-        description={t('add_a_cover_picture', 'Add a cover picture')}
+        label={t('cover_picture')}
+        description={t('add_a_cover_picture')}
         {...form.register('main_image')}
       />
     </>

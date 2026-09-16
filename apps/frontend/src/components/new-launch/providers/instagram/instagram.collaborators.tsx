@@ -53,7 +53,7 @@ const InstagramCollaborators: FC<{
           value: 'post',
         })}
       >
-        <option value="">{t('select_post_type', 'Select Post Type...')}</option>
+        <option value="">{t('select_post_type')}</option>
         {postType.map((item) => (
           <option key={item.value} value={item.value}>
             {item.label}
@@ -74,8 +74,7 @@ const InstagramCollaborators: FC<{
         <div className="mt-[18px]">
           <InstagramAudioSelector
             label={t(
-              'instagram_audio_label',
-              'Audio (Reels only - single video)'
+              'instagram_audio_label'
             )}
             disabled={!supportsAudio}
             {...register('audio')}
@@ -89,7 +88,7 @@ const InstagramCollaborators: FC<{
             {...register('is_trial_reel', {
               value: false,
             })}
-            label={t('trial_reel', 'Trial Reel (share only to non-followers first)')}
+            label={t('trial_reel')}
           />
 
           {isTrialReel && (

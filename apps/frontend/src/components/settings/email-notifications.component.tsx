@@ -70,7 +70,7 @@ const EmailNotificationsComponent = () => {
         body: JSON.stringify(newData),
       });
 
-      toaster.show(t('settings_updated', 'Settings updated'), 'success');
+      toaster.show(t('settings_updated'), 'success');
     },
     []
   );
@@ -100,7 +100,7 @@ const EmailNotificationsComponent = () => {
     return (
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px]">
         <div className="animate-pulse">
-          {t('loading', 'Loading...')}
+          {t('loading')}
         </div>
       </div>
     );
@@ -109,17 +109,16 @@ const EmailNotificationsComponent = () => {
   return (
     <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px] flex flex-col gap-[24px]">
       <div className="mt-[4px]">
-        {t('email_notifications', 'Email Notifications')}
+        {t('email_notifications')}
       </div>
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <div className="text-[14px]">
-            {t('success_emails', 'Success Emails')}
+            {t('success_emails')}
           </div>
           <div className="text-[12px] text-customColor18">
             {t(
-              'success_emails_description',
-              'Receive email notifications when posts are published successfully'
+              'success_emails_description'
             )}
           </div>
         </div>
@@ -132,12 +131,11 @@ const EmailNotificationsComponent = () => {
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <div className="text-[14px]">
-            {t('failure_emails', 'Failure Emails')}
+            {t('failure_emails')}
           </div>
           <div className="text-[12px] text-customColor18">
             {t(
-              'failure_emails_description',
-              'Receive email notifications when posts fail to publish'
+              'failure_emails_description'
             )}
           </div>
         </div>
@@ -150,12 +148,11 @@ const EmailNotificationsComponent = () => {
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <div className="text-[14px]">
-            {t('streak_emails', 'Streak Reminder Emails')}
+            {t('streak_emails')}
           </div>
           <div className="text-[12px] text-customColor18">
             {t(
-              'streak_emails_description',
-              'Receive email reminders when your posting streak is about to end'
+              'streak_emails_description'
             )}
           </div>
         </div>

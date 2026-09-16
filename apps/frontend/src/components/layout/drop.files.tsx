@@ -17,8 +17,7 @@ export const DropFiles: FC<{
       if (props.disabled) {
         toaster.show(
           t(
-            'upload_current_in_progress',
-            'Upload current in progress, please wait and then try again.'
+            'upload_current_in_progress'
           ),
           'warning'
         );
@@ -31,7 +30,7 @@ export const DropFiles: FC<{
     <div {...getRootProps()} className={clsx("relative", props.className)}>
       {isDragActive && (
         <div className="absolute start-0 top-0 w-full h-full bg-black/90 flex items-center justify-center z-[200] animate-normalFadeIn">
-          {t('drag_n_drop_some_files_here', 'Drag n drop some files here')}
+          {t('drag_n_drop_some_files_here')}
         </div>
       )}
       {props.children}

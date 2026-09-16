@@ -46,7 +46,7 @@ export const SelectList: FC<{
       onChange={onChangeInner}
       value={currentMedia}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {orgs.map((org: any) => (
         <option key={org.id} value={org.id}>
           {org.name}

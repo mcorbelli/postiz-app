@@ -229,7 +229,7 @@ export const InformationComponent: FC<{
                 isGlobal && selectedIntegrations.length && 'mb-[12px]'
               )}
             >
-              {t('your_post_should_have_at_least_one_character_or_one_image', 'Your post should have at least one character or one image.')}
+              {t('your_post_should_have_at_least_one_character_or_one_image')}
             </div>
           )}
           {isGlobal && (
@@ -271,7 +271,7 @@ export const InformationComponent: FC<{
                     )}
                   >
                     {isInternal?.[index]
-                      ? t('internal_edit', 'Internal Edit')
+                      ? t('internal_edit')
                       : `${countFor(p.integration.identifier)}/${
                           chars?.[p.integration.id] || 0
                         }`}
@@ -289,7 +289,7 @@ export const InformationComponent: FC<{
                   'mt-[12px]'
               )}
             >
-              {t('links_will_be_removed_from', 'Links will be removed from')}:{' '}
+              {t('links_will_be_removed_from')}:{' '}
               {stripLinkNames.join(', ')}
             </div>
           )}

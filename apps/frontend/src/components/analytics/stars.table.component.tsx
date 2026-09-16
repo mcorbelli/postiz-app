@@ -173,7 +173,7 @@ export const StarsTableComponent = () => {
             />
           </svg>
         </div>
-        <h2 className="text-[24px]">{t('stars_per_day', 'Stars per day')}</h2>
+        <h2 className="text-[24px]">{t('stars_per_day')}</h2>
         <div
           onClick={changePage('increase')}
           className={clsx(
@@ -207,24 +207,24 @@ export const StarsTableComponent = () => {
             <thead>
               <tr>
                 <th>
-                  <UpDown name={t('repository', 'Repository')} param="login" />
+                  <UpDown name={t('repository')} param="login" />
                 </th>
                 <th>
-                  <UpDown name={t('date', 'Date')} param="date" />
+                  <UpDown name={t('date')} param="date" />
                 </th>
                 <th>
-                  <UpDown name={t('total_stars', 'Total Stars')} param="totalStars" />
+                  <UpDown name={t('total_stars')} param="totalStars" />
                 </th>
                 <th>
-                  <UpDown name={t('total_forks', 'Total Forks')} param="totalForks" />
+                  <UpDown name={t('total_forks')} param="totalForks" />
                 </th>
                 <th>
-                  <UpDown name={t('stars', 'Stars')} param="stars" />
+                  <UpDown name={t('stars')} param="stars" />
                 </th>
                 <th>
-                  <UpDown name={t('forks', 'Forks')} param="forks" />
+                  <UpDown name={t('forks')} param="forks" />
                 </th>
-                <th>{t('media', 'Media')}</th>
+                <th>{t('media')}</th>
               </tr>
             </thead>
             <tbody>
@@ -241,7 +241,7 @@ export const StarsTableComponent = () => {
                   <td>{p.forks}</td>
                   <td>
                     <Link href={renderMediaLink(p.date)}>
-                      <Button>{t('check_launch', 'Check Launch')}</Button>
+                      <Button>{t('check_launch')}</Button>
                     </Link>
                   </td>
                 </tr>
@@ -251,8 +251,7 @@ export const StarsTableComponent = () => {
         ) : (
           <div className="py-[24px] px-[16px]">
             {t(
-              'load_your_github_repository_from_settings_to_see_analytics',
-              'Load your GitHub repository from settings to see analytics'
+              'load_your_github_repository_from_settings_to_see_analytics'
             )}
           </div>
         )}

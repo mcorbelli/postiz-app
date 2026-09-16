@@ -28,7 +28,7 @@ export const useAddProvider = (update?: () => void, invite?: boolean) => {
   return useCallback(async () => {
     const data = await (await fetch('/integrations')).json();
     modal.openModal({
-      title: t('add_channel', 'Add Channel'),
+      title: t('add_channel'),
       withCloseButton: true,
       children: (
         <AddProviderComponent invite={!!invite} update={update} {...data} />
@@ -68,15 +68,14 @@ export const AddProviderButton: FC<{
           </svg>
         </div>
         <div className="text-start text-[14px] group-[.sidebar]:hidden">
-          {t('add_channel', 'Add Channel')}
+          {t('add_channel')}
         </div>
       </button>
       <button
         onClick={invite}
         data-tooltip-id="tooltip"
         data-tooltip-content={t(
-          'invite_link',
-          'Send Invite Link to a customer to add channel'
+          'invite_link'
         )}
         className="group-[.sidebar]:hidden min-h-[44px] min-w-[44px] bg-btnSimple justify-center items-center flex rounded-[8px] cursor-pointer"
       >
@@ -121,7 +120,7 @@ export const UrlModal: FC<{
   }, []);
   return (
     <div className="rounded-[4px] border border-customColor6 bg-sixth px-[16px] pb-[16px] relative">
-      <TopTitle title={t('instance_url', 'Instance URL')} />
+      <TopTitle title={t('instance_url')} />
       <button
         onClick={close}
         className="outline-none absolute end-[20px] top-[20px] mantine-UnstyledButton-root mantine-ActionIcon-root hover:bg-tableBorder cursor-pointer mantine-Modal-close mantine-1dcetaa"
@@ -151,7 +150,7 @@ export const UrlModal: FC<{
             <Input label="URL" name="url" />
           </div>
           <div>
-            <Button type="submit">{t('connect', 'Connect')}</Button>
+            <Button type="submit">{t('connect')}</Button>
           </div>
         </form>
       </FormProvider>
@@ -265,7 +264,7 @@ export const CustomVariables: FC<{
             </div>
           ))}
           <div>
-            <Button type="submit">{t('connect', 'Connect')}</Button>
+            <Button type="submit">{t('connect')}</Button>
           </div>
         </form>
       </FormProvider>
@@ -279,8 +278,7 @@ const ExtensionNotFound: FC = () => {
     <div className="flex flex-col gap-[16px] pt-[8px]">
       <p className="text-[14px] text-textColor/80">
         {t(
-          'extension_not_available',
-          'The Postiz browser extension is not installed. You need to install it before connecting this channel.'
+          'extension_not_available'
         )}
       </p>
       <div className="flex gap-[10px]">
@@ -295,14 +293,14 @@ const ExtensionNotFound: FC = () => {
             modals.closeCurrent();
           }}
         >
-          {t('install_extension', 'Install Extension')}
+          {t('install_extension')}
         </Button>
         <Button
           type="button"
           className="flex-1 !bg-transparent border border-tableBorder text-textColor"
           onClick={() => modals.closeCurrent()}
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
       </div>
     </div>
@@ -319,39 +317,33 @@ const ChromeExtensionWarning: FC<{
     <div className="flex flex-col gap-[16px] pt-[8px]">
       <p className="text-[14px] text-textColor/80">
         {t(
-          'chrome_extension_warning_intro',
-          'This channel connects via the browser extension. Please be aware of the following:'
+          'chrome_extension_warning_intro'
         )}
       </p>
       <ul className="flex flex-col gap-[8px] list-disc ps-[20px] text-[14px] text-textColor/80">
         <li>
           {t(
-            'chrome_extension_warning_tos',
-            'Using a browser extension to interact with a platform may violate its terms of service and could result in your account being suspended or banned.'
+            'chrome_extension_warning_tos'
           )}
         </li>
         <li>
           {t(
-            'chrome_extension_warning_unstable',
-            'This method is not as reliable as native integrations and may experience random disconnections.'
+            'chrome_extension_warning_unstable'
           )}
         </li>
         <li>
           {t(
-            'chrome_extension_warning_reconnect',
-            'You may need to reconnect periodically if the session expires.'
+            'chrome_extension_warning_reconnect'
           )}
         </li>
         <li>
           {t(
-            'chrome_extension_warning_cookies',
-            'We will store your cookies securely to facilitate the connection.'
+            'chrome_extension_warning_cookies'
           )}
         </li>
         <li>
           {t(
-            'chrome_extension_warning_liability',
-            'Postiz does not take responsibility for any issues arising or account termination due to the use of this method.'
+            'chrome_extension_warning_liability'
           )}
         </li>
       </ul>
@@ -364,7 +356,7 @@ const ChromeExtensionWarning: FC<{
             onConfirm();
           }}
         >
-          {t('i_understand_continue', 'I understand, continue')}
+          {t('i_understand_continue')}
         </Button>
         <Button
           type="button"
@@ -374,7 +366,7 @@ const ChromeExtensionWarning: FC<{
             onCancel();
           }}
         >
-          {t('cancel', 'Cancel')}
+          {t('cancel')}
         </Button>
       </div>
     </div>
@@ -446,7 +438,7 @@ export const AddProviderComponent: FC<{
             )
           ).json();
           modal.openModal({
-            title: t('add_provider_name', `Add ${capitalize(identifier)}`, {
+            title: t('add_provider_name', {
               name: capitalize(identifier),
             }),
             withCloseButton: true,
@@ -493,8 +485,7 @@ export const AddProviderComponent: FC<{
           if (err) {
             toaster.show(
               t(
-                'could_not_connect_to_platform',
-                'Could not connect to the platform'
+                'could_not_connect_to_platform'
               ),
               'warning'
             );
@@ -504,8 +495,7 @@ export const AddProviderComponent: FC<{
           if (invite) {
             toaster.show(
               t(
-                'invite_link_copied_to_clipboard',
-                'Invite link copied to clipboard, link will be available for 1 hour'
+                'invite_link_copied_to_clipboard'
               ),
               'success'
             );
@@ -540,7 +530,7 @@ export const AddProviderComponent: FC<{
         if (isChromeExtension) {
           const confirmed = await new Promise<boolean>((resolve) => {
             modal.openModal({
-              title: t('chrome_extension_notice', 'Browser Extension Notice'),
+              title: t('chrome_extension_notice'),
               withCloseButton: true,
               onClose: () => resolve(false),
               children: (
@@ -560,7 +550,7 @@ export const AddProviderComponent: FC<{
           }
           if (!extensionId || !chrome?.runtime?.sendMessage) {
             modal.openModal({
-              title: t('extension_not_available_title', 'Extension Not Found'),
+              title: t('extension_not_available_title'),
               withCloseButton: true,
               children: <ExtensionNotFound />,
             });
@@ -583,8 +573,7 @@ export const AddProviderComponent: FC<{
           } catch {
             toaster.show(
               t(
-                'extension_not_installed',
-                'Postiz browser extension is not installed or not reachable.'
+                'extension_not_installed'
               ),
               'warning'
             );
@@ -608,8 +597,7 @@ export const AddProviderComponent: FC<{
               toaster.show(
                 cookieResponse.error ||
                   t(
-                    'extension_cookies_missing',
-                    'Could not get cookies. Please log in to the platform first.'
+                    'extension_cookies_missing'
                   ),
                 'warning'
               );
@@ -629,8 +617,7 @@ export const AddProviderComponent: FC<{
           } catch {
             toaster.show(
               t(
-                'extension_communication_error',
-                'Failed to communicate with the browser extension.'
+                'extension_communication_error'
               ),
               'warning'
             );
@@ -639,7 +626,7 @@ export const AddProviderComponent: FC<{
         }
         if (isExternal) {
           modal.openModal({
-            title: t('url', 'URL'),
+            title: t('url'),
             withCloseButton: true,
             ...(isMobile ? { removeLayout: true, fullScreen: true } : {}),
             classNames: {
@@ -651,7 +638,7 @@ export const AddProviderComponent: FC<{
         }
         if (customFields) {
           modal.openModal({
-            title: t('add_provider_title', 'Add Provider'),
+            title: t('add_provider_title'),
             withCloseButton: true,
             ...(isMobile ? { removeLayout: true, fullScreen: true } : {}),
             classNames: {
@@ -729,7 +716,7 @@ export const AddProviderComponent: FC<{
               >
                 <div>
                   {item.identifier === 'youtube' ? (
-                    <img src={`/icons/platforms/youtube.svg`} alt={t('youtube', 'YouTube')} />
+                    <img src={`/icons/platforms/youtube.svg`} alt={t('youtube')} />
                   ) : (
                     <img
                       className={clsx(

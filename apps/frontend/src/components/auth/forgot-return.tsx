@@ -42,7 +42,7 @@ export function ForgotReturn({ token }: { token: string }) {
     if (!reset) {
       form.setError('password', {
         type: 'manual',
-        message: t('password_reset_link_expired', 'Your password reset link has expired. Please try again.'),
+        message: t('password_reset_link_expired'),
       });
       return false;
     }
@@ -53,7 +53,7 @@ export function ForgotReturn({ token }: { token: string }) {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div>
           <h1 className="text-3xl font-bold text-start mb-4 cursor-pointer">
-            {t('forgot_password_1', 'Forgot Password')}
+            {t('forgot_password_1')}
           </h1>
         </div>
         {!state ? (
@@ -64,25 +64,25 @@ export function ForgotReturn({ token }: { token: string }) {
                 translationKey="label_new_password"
                 {...form.register('password')}
                 type="password"
-                placeholder={t('label_password', 'Password')}
+                placeholder={t('label_password')}
               />
               <Input
                 label="Repeat Password"
                 translationKey="label_repeat_password"
                 {...form.register('repeatPassword')}
                 type="password"
-                placeholder={t('label_repeat_password', 'Repeat Password')}
+                placeholder={t('label_repeat_password')}
               />
             </div>
             <div className="text-center mt-6">
               <div className="w-full flex">
                 <Button type="submit" className="flex-1" loading={loading}>
-                  {t('change_password', 'Change Password')}
+                  {t('change_password')}
                 </Button>
               </div>
               <p className="mt-4 text-sm">
                 <Link href="/auth/login" className="underline cursor-pointer">
-                  {t('go_back_to_login', 'Go back to login')}
+                  {t('go_back_to_login')}
                 </Link>
               </p>
             </div>
@@ -91,13 +91,12 @@ export function ForgotReturn({ token }: { token: string }) {
           <>
             <div className="text-start mt-6">
               {t(
-                'we_successfully_reset_your_password_you_can_now_login_with_your',
-                'We successfully reset your password. You can now login with your'
+                'we_successfully_reset_your_password_you_can_now_login_with_your'
               )}
             </div>
             <p className="mt-4 text-sm">
               <Link href="/auth/login" className="underline cursor-pointer">
-                {t('go_back_to_login', 'Go back to login')}
+                {t('go_back_to_login')}
               </Link>
             </p>
           </>

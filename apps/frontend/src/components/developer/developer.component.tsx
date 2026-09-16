@@ -41,7 +41,7 @@ const CopyButton = ({
       onClick={() => {
         copy(text);
         toaster.show(
-          t('label_copied_to_clipboard', `${label} copied to clipboard`, {
+          t('label_copied_to_clipboard', {
             label,
           }),
           'success'
@@ -104,7 +104,7 @@ export const DeveloperComponent: FC = () => {
 
   const openMedia = useCallback(() => {
     modals.openModal({
-      title: t('media_library', 'Media Library'),
+      title: t('media_library'),
       askClose: false,
       closeOnEscape: true,
       fullScreen: true,
@@ -121,7 +121,7 @@ export const DeveloperComponent: FC = () => {
 
   const createApp = useCallback(async () => {
     if (!name || !redirectUrl) {
-      toaster.show(t('name_and_redirect_url_are_required', 'Name and Redirect URL are required'), 'warning');
+      toaster.show(t('name_and_redirect_url_are_required'), 'warning');
       return;
     }
     try {
@@ -141,8 +141,7 @@ export const DeveloperComponent: FC = () => {
         setPlaintextSecret(result.clientSecret);
         toaster.show(
           t(
-            'app_created_copy_client_secret',
-            'App created! Copy your client secret now - it will only be shown once.'
+            'app_created_copy_client_secret'
           ),
           'success'
         );
@@ -150,7 +149,7 @@ export const DeveloperComponent: FC = () => {
       setCreating(false);
       mutate();
     } catch {
-      toaster.show(t('failed_to_create_app', 'Failed to create app'), 'warning');
+      toaster.show(t('failed_to_create_app'), 'warning');
     }
   }, [name, description, redirectUrl, pictureId]);
 
@@ -165,23 +164,22 @@ export const DeveloperComponent: FC = () => {
           pictureId,
         }),
       });
-      toaster.show(t('app_updated', 'App updated'), 'success');
+      toaster.show(t('app_updated'), 'success');
       setEditing(false);
       mutate();
     } catch {
-      toaster.show(t('failed_to_update_app', 'Failed to update app'), 'warning');
+      toaster.show(t('failed_to_update_app'), 'warning');
     }
   }, [name, description, redirectUrl, pictureId]);
 
   const rotateSecret = useCallback(async () => {
     const approved = await decision.open({
-      title: t('rotate_client_secret', 'Rotate Client Secret?'),
+      title: t('rotate_client_secret'),
       description: t(
-        'rotate_client_secret_description',
-        'This will generate a new client secret and invalidate the current one. Any integrations using the old secret will stop working.'
+        'rotate_client_secret_description'
       ),
-      approveLabel: t('rotate', 'Rotate'),
-      cancelLabel: t('cancel', 'Cancel'),
+      approveLabel: t('rotate'),
+      cancelLabel: t('cancel'),
     });
     if (!approved) return;
     try {
@@ -192,36 +190,34 @@ export const DeveloperComponent: FC = () => {
         setPlaintextSecret(result.clientSecret);
         toaster.show(
           t(
-            'secret_rotated_copy_new_secret',
-            'Secret rotated! Copy your new client secret now.'
+            'secret_rotated_copy_new_secret'
           ),
           'success'
         );
         mutate();
       }
     } catch {
-      toaster.show(t('failed_to_rotate_secret', 'Failed to rotate secret'), 'warning');
+      toaster.show(t('failed_to_rotate_secret'), 'warning');
     }
   }, [decision]);
 
   const deleteApp = useCallback(async () => {
     const approved = await decision.open({
-      title: t('delete_oauth_app', 'Delete OAuth App?'),
+      title: t('delete_oauth_app'),
       description: t(
-        'delete_oauth_app_description',
-        'This will delete the OAuth application and revoke all user authorizations. This action cannot be undone.'
+        'delete_oauth_app_description'
       ),
-      approveLabel: t('delete', 'Delete'),
-      cancelLabel: t('cancel', 'Cancel'),
+      approveLabel: t('delete'),
+      cancelLabel: t('cancel'),
     });
     if (!approved) return;
     try {
       await fetch('/user/oauth-app', { method: 'DELETE' });
-      toaster.show(t('oauth_app_deleted', 'OAuth app deleted'), 'success');
+      toaster.show(t('oauth_app_deleted'), 'success');
       setPlaintextSecret(null);
       mutate();
     } catch {
-      toaster.show(t('failed_to_delete_app', 'Failed to delete app'), 'warning');
+      toaster.show(t('failed_to_delete_app'), 'warning');
     }
   }, [decision]);
 
@@ -235,25 +231,22 @@ export const DeveloperComponent: FC = () => {
       <div className="flex flex-col gap-[40px]">
         <div className="text-[14px] text-textColor leading-[1.7]">
           {t(
-            'oauth_app_note_line1',
-            'Create an OAuth App to let other Postiz users authorize your product to post on their behalf.'
+            'oauth_app_note_line1'
           )}
           <br />
           {t(
-            'oauth_app_note_line2',
-            'After a user completes the OAuth2 flow, you receive a pos_ prefixed token that works everywhere an API Key does — API, MCP, and CLI.'
+            'oauth_app_note_line2'
           )}
         </div>
         <div className="bg-newBgColorInner rounded-[12px] border border-newBorder overflow-hidden">
           <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder flex items-start justify-between gap-[12px]">
             <div>
               <div className="text-[15px] font-[600]">
-                {t('oauth_application', 'OAuth Application')}
+                {t('oauth_application')}
               </div>
               <div className="text-[13px] text-customColor18 mt-[2px]">
                 {t(
-                  'create_an_oauth_application',
-                  'Create an OAuth application to allow third-party integrations with Postiz on behalf of your users.'
+                  'create_an_oauth_application'
                 )}
               </div>
             </div>
@@ -264,7 +257,7 @@ export const DeveloperComponent: FC = () => {
                 target="_blank"
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                {t('read_the_docs', 'Docs')}
+                {t('read_the_docs')}
               </a>
             </div>
           </div>
@@ -274,7 +267,7 @@ export const DeveloperComponent: FC = () => {
               onClick={() => setCreating(true)}
               className="cursor-pointer px-[20px] h-[44px] bg-btnPrimary hover:bg-[#5520CB] transition-colors text-white rounded-[8px] text-[15px] font-[600]"
             >
-              {t('create_oauth_app', 'Create OAuth App')}
+              {t('create_oauth_app')}
             </button>
           </div>
         </div>
@@ -288,61 +281,58 @@ export const DeveloperComponent: FC = () => {
       <div className="flex flex-col gap-[40px]">
         <div className="text-[14px] text-textColor leading-[1.7]">
           {t(
-            'oauth_app_note_line1',
-            'Create an OAuth App to let other Postiz users authorize your product to post on their behalf.'
+            'oauth_app_note_line1'
           )}
           <br />
           {t(
-            'oauth_app_note_line2',
-            'After a user completes the OAuth2 flow, you receive a pos_ prefixed token that works everywhere an API Key does — API, MCP, and CLI.'
+            'oauth_app_note_line2'
           )}
         </div>
         <div className="bg-newBgColorInner rounded-[12px] border border-newBorder overflow-hidden">
           <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
             <div className="text-[15px] font-[600]">
-              {t('create_oauth_app', 'Create OAuth App')}
+              {t('create_oauth_app')}
             </div>
             <div className="text-[13px] text-customColor18 mt-[2px]">
               {t(
-                'fill_in_the_details_for_your_oauth_application',
-                'Fill in the details for your OAuth application.'
+                'fill_in_the_details_for_your_oauth_application'
               )}
             </div>
           </div>
           <div className="p-[20px] flex flex-col gap-[16px]">
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('app_name', 'App Name')} *
+                {t('app_name')} *
               </label>
               <input
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] text-textColor outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder={t('my_application', 'My Application')}
+                placeholder={t('my_application')}
                 maxLength={100}
               />
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('description', 'Description')}
+                {t('description')}
               </label>
               <textarea
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] p-[16px] text-textColor outline-none min-h-[80px]"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder={t('describe_what_your_app_does', 'Describe what your app does')}
+                placeholder={t('describe_what_your_app_does')}
                 maxLength={500}
               />
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('profile_picture', 'Profile Picture')}
+                {t('profile_picture')}
               </label>
               <div className="flex items-center gap-[12px]">
                 {picturePath ? (
                   <img
                     src={picturePath}
-                    alt={t('app_picture', 'App picture')}
+                    alt={t('app_picture')}
                     className="w-[48px] h-[48px] rounded-full object-cover"
                   />
                 ) : (
@@ -355,13 +345,13 @@ export const DeveloperComponent: FC = () => {
                   onClick={openMedia}
                   className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600]"
                 >
-                  {t('choose_image', 'Choose Image')}
+                  {t('choose_image')}
                 </button>
               </div>
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('redirect_url', 'Redirect URL')} *
+                {t('redirect_url')} *
               </label>
               <input
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] text-textColor outline-none"
@@ -376,14 +366,14 @@ export const DeveloperComponent: FC = () => {
                 onClick={createApp}
                 className="cursor-pointer px-[20px] h-[44px] bg-btnPrimary hover:bg-[#5520CB] transition-colors text-white rounded-[8px] text-[15px] font-[600]"
               >
-                {t('create', 'Create')}
+                {t('create')}
               </button>
               <button
                 type="button"
                 onClick={() => setCreating(false)}
                 className="cursor-pointer px-[20px] h-[44px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[15px] font-[600]"
               >
-                {t('cancel', 'Cancel')}
+                {t('cancel')}
               </button>
             </div>
           </div>
@@ -397,13 +387,11 @@ export const DeveloperComponent: FC = () => {
     <div className="flex flex-col gap-[40px]">
       <div className="text-[14px] text-textColor leading-[1.7]">
         {t(
-          'oauth_app_note_line1',
-          'Create an OAuth App to let other Postiz users authorize your product to post on their behalf.'
+          'oauth_app_note_line1'
         )}
         <br />
         {t(
-          'oauth_app_note_line2',
-          'After a user completes the OAuth2 flow, you receive a pos_ prefixed token that works everywhere an API Key does — API, MCP, and CLI.'
+          'oauth_app_note_line2'
         )}
       </div>
       {/* App details / edit */}
@@ -411,12 +399,11 @@ export const DeveloperComponent: FC = () => {
         <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder flex items-start justify-between gap-[12px]">
           <div>
             <div className="text-[15px] font-[600]">
-              {t('oauth_application', 'OAuth Application')}
+              {t('oauth_application')}
             </div>
             <div className="text-[13px] text-customColor18 mt-[2px]">
               {t(
-                'manage_your_oauth_application',
-                'Manage your OAuth application for third-party integrations.'
+                'manage_your_oauth_application'
               )}
             </div>
           </div>
@@ -427,7 +414,7 @@ export const DeveloperComponent: FC = () => {
               target="_blank"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              {t('read_the_docs', 'Docs')}
+              {t('read_the_docs')}
             </a>
           </div>
         </div>
@@ -436,37 +423,37 @@ export const DeveloperComponent: FC = () => {
           <div className="p-[20px] flex flex-col gap-[16px]">
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('app_name', 'App Name')} *
+                {t('app_name')} *
               </label>
               <input
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] text-textColor outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder={t('my_application', 'My Application')}
+                placeholder={t('my_application')}
                 maxLength={100}
               />
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('description', 'Description')}
+                {t('description')}
               </label>
               <textarea
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] p-[16px] text-textColor outline-none min-h-[80px]"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder={t('describe_what_your_app_does', 'Describe what your app does')}
+                placeholder={t('describe_what_your_app_does')}
                 maxLength={500}
               />
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('profile_picture', 'Profile Picture')}
+                {t('profile_picture')}
               </label>
               <div className="flex items-center gap-[12px]">
                 {picturePath ? (
                   <img
                     src={picturePath}
-                    alt={t('app_picture', 'App picture')}
+                    alt={t('app_picture')}
                     className="w-[48px] h-[48px] rounded-full object-cover"
                   />
                 ) : (
@@ -479,13 +466,13 @@ export const DeveloperComponent: FC = () => {
                   onClick={openMedia}
                   className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600]"
                 >
-                  {t('choose_image', 'Choose Image')}
+                  {t('choose_image')}
                 </button>
               </div>
             </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[13px] font-[600] text-customColor18">
-                {t('redirect_url', 'Redirect URL')} *
+                {t('redirect_url')} *
               </label>
               <input
                 className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] text-textColor outline-none"
@@ -500,14 +487,14 @@ export const DeveloperComponent: FC = () => {
                 onClick={updateApp}
                 className="cursor-pointer px-[20px] h-[44px] bg-btnPrimary hover:bg-[#5520CB] transition-colors text-white rounded-[8px] text-[15px] font-[600]"
               >
-                {t('save', 'Save')}
+                {t('save')}
               </button>
               <button
                 type="button"
                 onClick={() => setEditing(false)}
                 className="cursor-pointer px-[20px] h-[44px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[15px] font-[600]"
               >
-                {t('cancel', 'Cancel')}
+                {t('cancel')}
               </button>
             </div>
           </div>
@@ -536,7 +523,7 @@ export const DeveloperComponent: FC = () => {
             </div>
             <div className="flex flex-col gap-[4px]">
               <div className="text-[13px] font-[600] text-customColor18">
-                {t('redirect_url', 'Redirect URL')}
+                {t('redirect_url')}
               </div>
               <div className="text-[14px]">{app.redirectUrl}</div>
             </div>
@@ -547,7 +534,7 @@ export const DeveloperComponent: FC = () => {
                 className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
-                {t('edit_app', 'Edit App')}
+                {t('edit_app')}
               </button>
             </div>
           </div>
@@ -558,13 +545,13 @@ export const DeveloperComponent: FC = () => {
       <div className="bg-newBgColorInner rounded-[12px] border border-newBorder overflow-hidden">
         <div className="bg-newBgColorInner px-[20px] py-[14px] border-b border-newBorder">
           <div className="text-[15px] font-[600]">
-            {t('credentials', 'Credentials')}
+            {t('credentials')}
           </div>
         </div>
         <div className="p-[20px] flex flex-col gap-[16px]">
           <div className="flex flex-col gap-[6px]">
             <div className="text-[13px] font-[600] text-customColor18">
-              {t('client_id', 'Client ID')}
+              {t('client_id')}
             </div>
             <div className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] flex items-center overflow-hidden">
               <code className="text-[14px] flex-1 truncate">{app.clientId}</code>
@@ -572,7 +559,7 @@ export const DeveloperComponent: FC = () => {
           </div>
           <div className="flex flex-col gap-[6px]">
             <div className="text-[13px] font-[600] text-customColor18">
-              {t('client_secret', 'Client Secret')}
+              {t('client_secret')}
             </div>
             <div className="bg-newBgColorInner border border-newBorder rounded-[8px] px-[16px] h-[44px] flex items-center overflow-hidden">
               {plaintextSecret ? (
@@ -582,19 +569,18 @@ export const DeveloperComponent: FC = () => {
               ) : (
                 <span className="text-customColor18 text-[13px]">
                   {t(
-                    'secret_only_shown_on_creation',
-                    'Secret is only shown on creation or rotation'
+                    'secret_only_shown_on_creation'
                   )}
                 </span>
               )}
             </div>
           </div>
           <div className="flex gap-[8px]">
-            <CopyButton text={app.clientId} label={t('copy_client_id', 'Copy ID')} />
+            <CopyButton text={app.clientId} label={t('copy_client_id')} />
             {plaintextSecret && (
               <CopyButton
                 text={plaintextSecret}
-                label={t('copy_secret', 'Copy Secret')}
+                label={t('copy_secret')}
               />
             )}
             <button
@@ -603,7 +589,7 @@ export const DeveloperComponent: FC = () => {
               className="cursor-pointer px-[16px] h-[36px] bg-btnSimple hover:bg-boxHover transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.5 2v6h-6" /><path d="M21.34 15.57a10 10 0 11-.57-8.38L21.5 8" /></svg>
-              {t('rotate_secret', 'Rotate Secret')}
+              {t('rotate_secret')}
             </button>
             <button
               type="button"
@@ -611,7 +597,7 @@ export const DeveloperComponent: FC = () => {
               className="cursor-pointer px-[16px] h-[36px] bg-red-600 hover:bg-red-700 text-white transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" /></svg>
-              {t('delete_app', 'Delete App')}
+              {t('delete_app')}
             </button>
           </div>
         </div>

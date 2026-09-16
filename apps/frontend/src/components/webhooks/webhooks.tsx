@@ -30,7 +30,7 @@ export const Webhooks: FC = () => {
   const addWebhook = useCallback(
     (data?: any) => () => {
       modal.openModal({
-        title: data ? t('update_webhook', 'Update webhook') : t('add_webhook', 'Add webhook'),
+        title: data ? t('update_webhook') : t('add_webhook'),
         withCloseButton: true,
         children: <AddOrEditWebhook data={data} reload={mutate} />,
       });
@@ -43,7 +43,6 @@ export const Webhooks: FC = () => {
         await deleteDialog(
           t(
             'are_you_sure_you_want_to_delete',
-            `Are you sure you want to delete ${data.name}?`,
             { name: data.name }
           )
         )
@@ -52,7 +51,7 @@ export const Webhooks: FC = () => {
           method: 'DELETE',
         });
         mutate();
-        toaster.show(t('webhook_deleted_successfully', 'Webhook deleted successfully'), 'success');
+        toaster.show(t('webhook_deleted_successfully'), 'success');
       }
     },
     []
@@ -61,22 +60,21 @@ export const Webhooks: FC = () => {
   return (
     <div className="flex flex-col">
       <h3 className="text-[20px]">
-        {t('webhooks', 'Webhooks')} ({data?.length || 0}/{user?.tier?.webhooks})
+        {t('webhooks')} ({data?.length || 0}/{user?.tier?.webhooks})
       </h3>
       <div className="text-customColor18 mt-[4px]">
         {t(
-          'webhooks_are_a_way_to_get_notified_when_something_happens_in_postiz_via_an_http_request',
-          'Webhooks are a way to get notified when something happens in Postiz via\n        an HTTP request.'
+          'webhooks_are_a_way_to_get_notified_when_something_happens_in_postiz_via_an_http_request'
         )}
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
           {!!data?.length && (
             <div className="grid grid-cols-[1fr,1fr,1fr,1fr] w-full gap-y-[10px]">
-              <div>{t('name', 'Name')}</div>
-              <div>{t('url', 'URL')}</div>
-              <div>{t('edit', 'Edit')}</div>
-              <div>{t('delete', 'Delete')}</div>
+              <div>{t('name')}</div>
+              <div>{t('url')}</div>
+              <div>{t('edit')}</div>
+              <div>{t('delete')}</div>
               {data?.map((p: any) => (
                 <Fragment key={p.id}>
                   <div className="flex flex-col justify-center">{p.name}</div>
@@ -84,14 +82,14 @@ export const Webhooks: FC = () => {
                   <div className="flex flex-col justify-center">
                     <div>
                       <Button onClick={addWebhook(p)}>
-                        {t('edit', 'Edit')}
+                        {t('edit')}
                       </Button>
                     </div>
                   </div>
                   <div className="flex flex-col justify-center">
                     <div>
                       <Button onClick={deleteHook(p)}>
-                        {t('delete', 'Delete')}
+                        {t('delete')}
                       </Button>
                     </div>
                   </div>
@@ -104,7 +102,7 @@ export const Webhooks: FC = () => {
               onClick={addWebhook()}
               className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
             >
-              {t('add_a_webhook', 'Add a webhook')}
+              {t('add_a_webhook')}
             </Button>
           </div>
         </div>
@@ -117,13 +115,13 @@ const details = object().shape({
   url: string().url().required(),
   integrations: array(),
 });
-const getWebhookOptions = (t: (key: string, fallback: string) => string) => [
+const getWebhookOptions = (t: (key: string, fallback?: string) => string) => [
   {
-    label: t('all_integrations', 'All integrations'),
+    label: t('all_integrations'),
     value: 'all',
   },
   {
-    label: t('specific_integrations', 'Specific integrations'),
+    label: t('specific_integrations'),
     value: 'specific',
   },
 ];
@@ -187,8 +185,8 @@ export const AddOrEditWebhook: FC<{
       });
       toast.show(
         data?.id
-          ? t('webhook_updated_successfully', 'Webhook updated successfully')
-          : t('webhook_added_successfully', 'Webhook added successfully'),
+          ? t('webhook_updated_successfully')
+          : t('webhook_added_successfully'),
         'success'
       );
       modal.closeAll();
@@ -198,7 +196,7 @@ export const AddOrEditWebhook: FC<{
   );
   const sendTest = useCallback(async () => {
     const url = form.getValues('url');
-    toast.show(t('webhook_sent', 'Webhook send'), 'success');
+    toast.show(t('webhook_sent'), 'success');
     try {
       await fetch(`/webhooks/send?url=${encodeURIComponent(url)}`, {
         method: 'POST',
@@ -290,7 +288,7 @@ export const AddOrEditWebhook: FC<{
                     !integrations?.length)
                 }
               >
-                {t('save', 'Save')}
+                {t('save')}
               </Button>
               <Button
                 type="button"
@@ -303,7 +301,7 @@ export const AddOrEditWebhook: FC<{
                     !integrations?.length)
                 }
               >
-                {t('send_test', 'Send Test')}
+                {t('send_test')}
               </Button>
             </div>
           </div>

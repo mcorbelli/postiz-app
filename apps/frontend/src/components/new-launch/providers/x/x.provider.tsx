@@ -44,27 +44,27 @@ const SettingsComponent = () => {
   return (
     <>
       <Select
-        label={t('label_post_type', 'Post type')}
+        label={t('label_post_type')}
         className="mb-5"
         hideErrors={true}
         {...register('post_type', {
           value: 'post',
         })}
       >
-        <option value="post">{t('label_post_type_post', 'Post')}</option>
+        <option value="post">{t('label_post_type_post')}</option>
         <option value="article">
-          {t('label_post_type_article', 'Article (long-form)')}
+          {t('label_post_type_article')}
         </option>
       </Select>
 
       {postType === 'article' ? (
         <>
           <Input
-            label={t('label_article_title', 'Article title')}
+            label={t('label_article_title')}
             {...register('article_title')}
           />
           <Select
-            label={t('label_article_status', 'Article status')}
+            label={t('label_article_status')}
             className="mb-5"
             hideErrors={true}
             {...register('article_status', {
@@ -72,18 +72,17 @@ const SettingsComponent = () => {
             })}
           >
             <option value="draft">
-              {t('label_article_status_draft', 'Save as draft')}
+              {t('label_article_status_draft')}
             </option>
             <option value="published">
-              {t('label_article_status_published', 'Publish')}
+              {t('label_article_status_published')}
             </option>
           </Select>
           <MediaComponent
             type="image"
-            label={t('label_article_cover', 'Cover image')}
+            label={t('label_article_cover')}
             description={t(
-              'description_article_cover',
-              'Cover picture for the article (optional)'
+              'description_article_cover'
             )}
             {...register('article_cover')}
           />
@@ -92,8 +91,7 @@ const SettingsComponent = () => {
         <>
           <Select
             label={t(
-              'label_who_can_reply_to_this_post',
-              'Who can reply to this post?'
+              'label_who_can_reply_to_this_post'
             )}
             className="mb-5"
             hideErrors={true}
@@ -117,11 +115,11 @@ const SettingsComponent = () => {
 
           <div className="mt-5 flex flex-col gap-[10px]">
             <Checkbox
-              label={t('label_made_with_ai', 'Made with AI')}
+              label={t('label_made_with_ai')}
               {...register('made_with_ai')}
             />
             <Checkbox
-              label={t('label_paid_partnership', 'Paid partnership')}
+              label={t('label_paid_partnership')}
               {...register('paid_partnership')}
             />
           </div>

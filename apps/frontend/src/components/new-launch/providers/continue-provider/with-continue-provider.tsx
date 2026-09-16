@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
+import type { TranslationKey } from '@gitroom/react/translation/i18next.types';
 import useSWR from 'swr';
 import clsx from 'clsx';
 import { Button } from '@gitroom/react/form/button';
@@ -40,7 +41,7 @@ export interface ContinueProviderConfig<TItem, TSelection> {
   renderItem: (
     item: TItem,
     isSelected: boolean,
-    t: (key: string, def: string) => string
+    t: (key: string, def?: string) => string
   ) => ReactNode;
   isSelected: (item: TItem, selection: TSelection | null) => boolean;
   getItemId: (item: TItem) => string;
@@ -114,7 +115,7 @@ export function withContinueProvider<TItem, TSelection>(
         <div className="text-center flex flex-col justify-center items-center text-[18px] leading-[26px] h-[300px]">
           {emptyStateMessages.map((msg, index) => (
             <span key={msg.key}>
-              {t(msg.key, msg.text)}
+              {t(msg.key as TranslationKey, msg.text)}
               {index < emptyStateMessages.length - 1 && (
                 <>
                   <br />
@@ -129,7 +130,7 @@ export function withContinueProvider<TItem, TSelection>(
 
     return (
       <div className="flex flex-col gap-[20px]">
-        <div>{t(titleKey, titleDefault)}</div>
+        <div>{t(titleKey as TranslationKey, titleDefault)}</div>
         <div className="grid grid-cols-3 justify-items-center select-none cursor-pointer gap-[10px]">
           {filteredData.map((item) => (
             <div
@@ -146,7 +147,7 @@ export function withContinueProvider<TItem, TSelection>(
         </div>
         <div>
           <Button disabled={!selection || isSaving} loading={isSaving} onClick={handleSave}>
-            {t('save', 'Save')}
+            {t('save')}
           </Button>
         </div>
       </div>

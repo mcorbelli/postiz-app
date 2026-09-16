@@ -250,8 +250,7 @@ export const withProvider = function <T extends object>(params: {
               !value?.[0]?.content?.length && (
                 <div>
                   {t(
-                    'start_writing_your_post',
-                    'Start writing your post for a preview'
+                    'start_writing_your_post'
                   )}
                 </div>
               )}

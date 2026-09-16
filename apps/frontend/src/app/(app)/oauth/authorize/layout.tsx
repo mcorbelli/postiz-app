@@ -5,10 +5,9 @@ import { getT } from '@gitroom/react/translation/get.translation.service.backend
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
-    title: t('authorize_application', 'Authorize Application'),
+    title: t('authorize_application'),
     description: t(
-      'authorize_application_description',
-      'Authorize this application to access your Postiz account'
+      'authorize_application_description'
     ),
   };
 }

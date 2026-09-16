@@ -104,7 +104,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
           <div className="relative">
             <SettingsIcon size={15} className="text-white" />
           </div>
-          <div>{t('channel_settings', 'Settings')}</div>
+          <div>{t('channel_settings')}</div>
         </div>
       );
     }
@@ -125,7 +125,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
           />
         </div>
         <div>
-          {currentIntegration.name} {t('channel_settings', 'Settings')}
+          {currentIntegration.name} {t('channel_settings')}
         </div>
       </div>
     );
@@ -154,10 +154,9 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     if (
       await deleteDialog(
         t(
-          'are_you_sure_you_want_to_close_this_modal_all_data_will_be_lost',
-          'Are you sure you want to close this modal? (all data will be lost)'
+          'are_you_sure_you_want_to_close_this_modal_all_data_will_be_lost'
         ),
-        t('yes_close_it', 'Yes, close it!')
+        t('yes_close_it')
       )
     ) {
       if (customClose) {
@@ -173,10 +172,9 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     if (
       !(await deleteDialog(
         t(
-          'are_you_sure_you_want_to_delete_post',
-          'Are you sure you want to delete this post?'
+          'are_you_sure_you_want_to_delete_post'
         ),
-        t('yes_delete_it', 'Yes, delete it!')
+        t('yes_delete_it')
       ))
     ) {
       setLoading(false);
@@ -207,21 +205,19 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
 
         const whatToDo = await new Promise((resolve) => {
           modal.openModal({
-            title: t('what_do_you_want_to_do', 'What do you want to do?'),
+            title: t('what_do_you_want_to_do'),
             children: (
               <div className="flex flex-col">
                 <div className="text-[20px] mb-[20px]">
                   {t(
-                    'post_already_published_republish_warning',
-                    'This post was already published. Republishing will publish it again to'
+                    'post_already_published_republish_warning'
                   )}{' '}
-                  {channels} {t('republish_at', 'at')}{' '}
+                  {channels} {t('republish_at')}{' '}
                   {date.format('DD/MM/YYYY HH:mm')}.
                   {isRecurring && (
                     <div className="mt-[10px]">
                       {t(
-                        'republish_recurring_note',
-                        'This is a recurring post: your changes apply to all future recurrences starting now.'
+                        'republish_recurring_note'
                       )}
                     </div>
                   )}
@@ -234,8 +230,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                       onClick={() => resolve('update')}
                     >
                       {t(
-                        'just_update_post_details',
-                        'Just update the post details'
+                        'just_update_post_details'
                       )}
                     </Button>
                   </div>
@@ -245,7 +240,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                       className="flex-1"
                       onClick={() => resolve('republish')}
                     >
-                      {t('republish_the_post', 'Republish the post')}
+                      {t('republish_the_post')}
                     </Button>
                   </div>
                 </div>
@@ -317,8 +312,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
             `${capitalize(item.identifier.split('-')[0])} (${item.name}):` +
               ' ' +
               t(
-                'post_needs_content_or_image',
-                'Your post should have at least one character or one image.'
+                'post_needs_content_or_image'
               ),
             'warning'
           );
@@ -333,7 +327,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
               toaster.show(
                 `${capitalize(item.identifier.split('-')[0])} (${item.name}): ${
                   item.settingsError ||
-                  t('please_fix_your_settings', 'Please fix your settings')
+                  t('please_fix_your_settings')
                 }`,
                 'warning'
               );
@@ -359,8 +353,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
             if (item.tooLong) {
               toaster.show(
                 `${item.name} (${item.identifier}) ${t(
-                  'post_is_too_long',
-                  'post is too long, please fix it'
+                  'post_is_too_long'
                 )}`,
                 'warning'
               );
@@ -399,12 +392,11 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
             // ASK: Show the dialog
             shortLink = await deleteDialog(
               t(
-                'shortlink_urls_question',
-                'Do you want to shortlink the URLs? it will let you get statistics over clicks'
+                'shortlink_urls_question'
               ),
-              t('yes_shortlink_it', 'Yes, shortlink it!'),
+              t('yes_shortlink_it'),
               undefined,
-              t('no_original_urls', 'No, original URLs')
+              t('no_original_urls')
             );
           }
         }
@@ -448,8 +440,8 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
           mutate();
           toaster.show(
             !existingData.integration
-              ? t('added_successfully', 'Added successfully')
-              : t('updated_successfully', 'Updated successfully')
+              ? t('added_successfully')
+              : t('updated_successfully')
           );
         }
         if (customClose) {
@@ -472,7 +464,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
         <div className="flex-1 flex">
           <div className="flex flex-col flex-1 border-e border-newBorder">
             <div className="bg-newBgColor h-[65px] rounded-s-[20px] !rounded-b-[0] flex items-center gap-[12px] px-[20px] text-[20px] font-[600]">
-              {t('create_post_title', 'Create Post')}
+              {t('create_post_title')}
               <CreationMethodBadge
                 creationMethod={existingData?.posts?.[0]?.creationMethod}
                 size="sm"
@@ -562,7 +554,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
           </div>
           <div className="w-[580px] flex flex-col">
             <div className="bg-newBgColor h-[65px] rounded-e-[20px] !rounded-b-[0] flex items-center px-[20px] text-[20px] font-[600]">
-              <div className="flex-1">{t('post_preview', 'Post Preview')}</div>
+              <div className="flex-1">{t('post_preview')}</div>
               <div className="cursor-pointer">
                 <CloseIcon onClick={askClose} className="text-[#A3A3A3]" />
               </div>
@@ -582,7 +574,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
             {!dummy && (
               <TagsComponent
                 name="tags"
-                label={t('tags', 'Tags')}
+                label={t('tags')}
                 initial={tags}
                 onChange={(e) => {
                   setTags(e.target.value);
@@ -603,7 +595,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                 <div>
                   <TrashIcon />
                 </div>
-                <div>{t('delete_post', 'Delete Post')}</div>
+                <div>{t('delete_post')}</div>
               </button>
             )}
             <DatePicker onChange={setDate} date={date} />
@@ -621,7 +613,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                   </div>
                 )}
                 <div className={clsx(loading && 'invisible')}>
-                  {t('save_as_draft', 'Save as draft')}
+                  {t('save_as_draft')}
                 </div>
               </button>
             )}
@@ -633,7 +625,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                 }
                 onClick={schedule('draft')}
               >
-                {t('save_set', 'Save Set')}
+                {t('save_set')}
               </button>
             )}
             {!addEditSets && (
@@ -657,14 +649,14 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                     )}
                   >
                     {selectedIntegrations.length === 0
-                      ? t('check_circles_above', 'Check the circles above')
+                      ? t('check_circles_above')
                       : dummy
-                      ? t('create_output', 'Create output')
+                      ? t('create_output')
                       : !existingData?.integration
-                      ? t('add_to_calendar', 'Add to Calendar')
+                      ? t('add_to_calendar')
                       : existingData?.posts?.[0]?.state === 'DRAFT'
-                      ? t('schedule', 'Schedule')
-                      : t('update', 'Update')}
+                      ? t('schedule')
+                      : t('update')}
                   </div>
                   {!dummy && (
                     <div className="flex justify-center items-center h-[20px] w-[20px] pt-[4px] arrow-change">
@@ -682,7 +674,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                     className="rounded-[8px] z-[300] disabled:cursor-not-allowed disabled:opacity-80 hidden group-hover:flex absolute bottom-[100%] -left-[12px] p-[12px] w-[206px] bg-newBgColorInner"
                   >
                     <div className="text-white rounded-[8px] bg-[#D82D7E] h-[44px] w-full flex justify-center items-center post-now">
-                      {t('post_now', 'Post now')}
+                      {t('post_now')}
                     </div>
                   </button>
                 )}
@@ -706,10 +698,9 @@ Post content can be added using the addPostContentFor{num} function.
 After using the addPostFor{num} it will create a new addPostContentFor{num+ 1} function.
 `}
         labels={{
-          title: t('your_assistant', 'Your Assistant'),
+          title: t('your_assistant'),
           initial: t(
-            'assistant_initial_message',
-            'Hi! I can help you to refine your social media posts.'
+            'assistant_initial_message'
           ),
         }}
       />

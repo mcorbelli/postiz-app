@@ -103,7 +103,7 @@ export const PlugPop: FC<{
           ...acc,
           [field.name]: field.validation
             ? string().matches(convertBackRegex(field.validation), {
-                message: t('invalid_value', 'Invalid value'),
+                message: t('invalid_value'),
               })
             : null,
         };
@@ -126,7 +126,7 @@ export const PlugPop: FC<{
         })),
       }),
     });
-    toaster.show(t('plug_updated', 'Plug updated'), 'success');
+    toaster.show(t('plug_updated'), 'success');
     closeAll();
   }, []);
 
@@ -153,7 +153,7 @@ export const PlugPop: FC<{
             ))}
           </div>
           <div className="mt-[20px]">
-            <Button type="submit">{t('activate', 'Activate')}</Button>
+            <Button type="submit">{t('activate')}</Button>
           </div>
         </div>
       </form>
@@ -214,7 +214,7 @@ export const PlugItem: FC<{
           )}
         </div>
         <div className="flex-1">{plug.description}</div>
-        <Button>{!data ? t('set_plug', 'Set Plug') : t('edit_plug', 'Edit Plug')}</Button>
+        <Button>{!data ? t('set_plug') : t('edit_plug')}</Button>
       </div>
     </div>
   );
@@ -244,7 +244,7 @@ export const Plug = () => {
             mutate();
           },
           size: '500px',
-          title: t('top_title_auto_plug', `Auto Plug: ${p.title}`, {
+          title: t('top_title_auto_plug', {
             title: p.title,
           }),
           children: (

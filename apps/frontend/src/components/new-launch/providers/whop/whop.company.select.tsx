@@ -47,7 +47,7 @@ export const WhopCompanySelect: FC<{
       onChange={onChangeInner}
       value={currentCompany}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {companies.map((company: any) => (
         <option key={company.id} value={company.id}>
           {company.name}

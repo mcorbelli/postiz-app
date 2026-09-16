@@ -234,8 +234,7 @@ export const ShowAllProviders = forwardRef((props, ref) => {
           {global?.[0]?.content?.length === 0 ? (
             <div>
               {t(
-                'start_writing_your_post',
-                'Start writing your post for a preview'
+                'start_writing_your_post'
               )}
             </div>
           ) : (

@@ -178,12 +178,11 @@ export const InstagramAudioSelector: FC<{
           <div
             data-tooltip-id="tooltip"
             data-tooltip-content={t(
-              'instagram_audio_facebook_login_only',
-              'Only available on Instagram with Facebook Login'
+              'instagram_audio_facebook_login_only'
             )}
             className="h-[42px] px-[16px] inline-flex items-center cursor-not-allowed opacity-50 bg-newBgColorInner border-newTableBorder border rounded-[8px] text-[14px]"
           >
-            {t('instagram_add_audio', 'Add audio')}
+            {t('instagram_add_audio')}
           </div>
         </div>
       </div>
@@ -219,7 +218,7 @@ export const InstagramAudioSelector: FC<{
           <div className="flex gap-[18px]">
             <div className="flex-1 flex flex-col gap-[6px]">
               <div className="text-[12px]">
-                {t('instagram_audio_volume', 'Audio volume')} (
+                {t('instagram_audio_volume')} (
                 {value.audio_volume ?? 100})
               </div>
               <input
@@ -234,7 +233,7 @@ export const InstagramAudioSelector: FC<{
             </div>
             <div className="flex-1 flex flex-col gap-[6px]">
               <div className="text-[12px]">
-                {t('instagram_video_volume', 'Original video volume')} (
+                {t('instagram_video_volume')} (
                 {value.video_volume ?? 100})
               </div>
               <input
@@ -255,7 +254,7 @@ export const InstagramAudioSelector: FC<{
             className="h-[42px] px-[16px] inline-flex items-center cursor-pointer bg-newBgColorInner border-newTableBorder border rounded-[8px] text-[14px]"
             onClick={() => setOpen(true)}
           >
-            {t('instagram_add_audio', 'Add audio')}
+            {t('instagram_add_audio')}
           </div>
         </div>
       ) : (
@@ -271,17 +270,16 @@ export const InstagramAudioSelector: FC<{
                 setAudioType(e.target.value as 'music' | 'original_sound')
               }
             >
-              <option value="music">{t('instagram_music', 'Music')}</option>
+              <option value="music">{t('instagram_music')}</option>
               <option value="original_sound">
-                {t('instagram_original_sound', 'Original sound')}
+                {t('instagram_original_sound')}
               </option>
             </Select>
             <div className="flex-1 h-[42px] bg-newBgColorInner border-newTableBorder border rounded-[8px] flex items-center">
               <input
                 className="h-full w-full bg-transparent outline-none px-[16px] text-[14px] text-textColor placeholder-textColor"
                 placeholder={t(
-                  'instagram_search_audio',
-                  'Search audio (empty shows trending)'
+                  'instagram_search_audio'
                 )}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -294,17 +292,17 @@ export const InstagramAudioSelector: FC<{
                 setOpen(false);
               }}
             >
-              {t('cancel', 'Cancel')}
+              {t('cancel')}
             </div>
           </div>
           <div className="max-h-[250px] overflow-y-auto flex flex-col bg-newBgColorInner border-newTableBorder border rounded-[8px]">
             {loading ? (
               <div className="p-[12px] text-[14px] opacity-70">
-                {t('loading', 'Loading')}
+                {t('loading')}
               </div>
             ) : !results.length ? (
               <div className="p-[12px] text-[14px] opacity-70">
-                {t('instagram_no_audio_found', 'No audio found')}
+                {t('instagram_no_audio_found')}
               </div>
             ) : (
               results.map((audio) => (
@@ -340,8 +338,8 @@ export const InstagramAudioSelector: FC<{
                       }}
                     >
                       {playingId === audio.id
-                        ? t('stop', 'Stop')
-                        : t('play', 'Play')}
+                        ? t('stop')
+                        : t('play')}
                     </div>
                   )}
                 </div>

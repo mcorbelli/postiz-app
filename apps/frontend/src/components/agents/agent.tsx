@@ -47,7 +47,7 @@ export const MediaPortal: FC<{
       <MultiMediaComponent
         allData={[{ content: value }]}
         text={value}
-        label={t('attachments', 'Attachments')}
+        label={t('attachments')}
         description=""
         value={media}
         dummy={false}
@@ -114,7 +114,7 @@ export const AgentList: FC<{ onChange: (arr: any[]) => void }> = ({
       <div className="absolute top-0 start-0 w-full h-full p-[20px] overflow-auto scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor">
         <div className="flex items-center">
           <h2 className="group-[.sidebar]:hidden flex-1 text-[20px] font-[500] mb-[15px]">
-            {t('select_channels', 'Select Channels')}
+            {t('select_channels')}
           </h2>
           <div
             onClick={() => setCollapseMenu(collapseMenu === '1' ? '0' : '1')}
@@ -251,7 +251,7 @@ const Threads: FC = () => {
               />
             </svg>
             <div className="flex-1 text-start text-[16px] group-[.sidebar]:hidden">
-              {t('start_a_new_chat', 'Start a new chat')}
+              {t('start_a_new_chat')}
             </div>
           </Link>
         </div>

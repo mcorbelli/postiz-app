@@ -54,7 +54,7 @@ export const SkoolLabelSelect: FC<{
       onChange={onChangeInner}
       value={currentLabel}
     >
-      <option value="">{t('select_1', '--Select--')}</option>
+      <option value="">{t('select_1')}</option>
       {labels.map((label: any) => (
         <option key={label.id} value={label.id}>
           {label.name}

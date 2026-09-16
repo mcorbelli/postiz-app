@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   return {
     title: isGeneralServerSide() ? 'Postiz' : 'Gitroom',
-    description: t('add_integration_description', 'Connect a new integration to Postiz'),
+    description: t('add_integration_description'),
   };
 }
 

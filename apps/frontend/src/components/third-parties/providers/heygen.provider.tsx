@@ -98,13 +98,13 @@ const HeygenProviderComponent = () => {
   const [voiceLoading, setVoiceLoading] = useState(false);
 
   const aspectRatio = [
-    { key: 'portrait', value: t('portrait', 'Portrait') },
-    { key: 'story', value: t('story', 'Story') },
+    { key: 'portrait', value: t('portrait') },
+    { key: 'story', value: t('story') },
   ];
 
   const generateCaptions = [
-    { key: 'yes', value: t('yes', 'Yes') },
-    { key: 'no', value: t('no', 'No') },
+    { key: 'yes', value: t('yes') },
+    { key: 'no', value: t('no') },
   ];
 
   const form = useForm({
@@ -122,22 +122,21 @@ const HeygenProviderComponent = () => {
         voice: string().min(
           20,
           t(
-            'voice_must_be_at_least_20_characters_long',
-            'Voice must be at least 20 characters long'
+            'voice_must_be_at_least_20_characters_long'
           )
         ),
-        avatar: string().min(1, t('avatar_is_required', 'Avatar is required')),
+        avatar: string().min(1, t('avatar_is_required')),
         selectedVoice: string().min(
           1,
-          t('voice_is_required', 'Voice is required')
+          t('voice_is_required')
         ),
         aspect_ratio: string().min(
           1,
-          t('aspect_ratio_is_required', 'Aspect ratio is required')
+          t('aspect_ratio_is_required')
         ),
         captions: string().min(
           1,
-          t('captions_is_required', 'Captions is required')
+          t('captions_is_required')
         ),
       })
     ),
@@ -147,8 +146,7 @@ const HeygenProviderComponent = () => {
     if (
       !(await deleteDialog(
         t(
-          'are_you_sure_it_will_delete_the_current_text',
-          'Are you sure? it will delete the current text'
+          'are_you_sure_it_will_delete_the_current_text'
         )
       ))
     ) {
@@ -183,16 +181,14 @@ const HeygenProviderComponent = () => {
       {form.formState.isSubmitting && (
         <div className="fixed left-0 top-0 w-full leading-[50px] pt-[200px] h-screen bg-black/90 z-50 flex flex-col justify-center items-center text-center text-3xl">
           {t(
-            'grab_a_coffee_and_relax_this_may_take_a_while',
-            'Grab a coffee and relax, this may take a while...'
+            'grab_a_coffee_and_relax_this_may_take_a_while'
           )}
           <br />
           {t(
-            'you_can_also_track_the_progress_directly_in_heygen_dashboard',
-            'You can also track the progress directly in HeyGen Dashboard.'
+            'you_can_also_track_the_progress_directly_in_heygen_dashboard'
           )}
           <br />
-          {t('do_not_close_this_window', 'DO NOT CLOSE THIS WINDOW!')}
+          {t('do_not_close_this_window')}
           <br />
           <LoadingComponent width={200} height={200} />
         </div>
@@ -204,10 +200,10 @@ const HeygenProviderComponent = () => {
           className="w-full flex flex-col"
         >
           <Select
-            label={t('aspect_ratio', 'Aspect Ratio')}
+            label={t('aspect_ratio')}
             {...form.register('aspect_ratio')}
           >
-            <option value="">{t('select_placeholder', '--SELECT--')}</option>
+            <option value="">{t('select_placeholder')}</option>
             {aspectRatio.map((p) => (
               <option key={p.key} value={p.key}>
                 {p.value}
@@ -216,10 +212,10 @@ const HeygenProviderComponent = () => {
           </Select>
 
           <Select
-            label={t('generate_captions', 'Generate Captions')}
+            label={t('generate_captions')}
             {...form.register('captions')}
           >
-            <option value="">{t('select_placeholder', '--SELECT--')}</option>
+            <option value="">{t('select_placeholder')}</option>
             {generateCaptions.map((p) => (
               <option key={p.key} value={p.key}>
                 {p.value}
@@ -228,13 +224,12 @@ const HeygenProviderComponent = () => {
           </Select>
 
           <div className="text-lg mb-3">
-            {t('voice_to_generate', 'Voice to generate')}
+            {t('voice_to_generate')}
           </div>
           {!hideVoiceGenerator && (
             <Button onClick={generateVoice} loading={voiceLoading}>
               {t(
-                'generate_voice_from_my_post_text',
-                'Generate Voice From My Post Text'
+                'generate_voice_from_my_post_text'
               )}
             </Button>
           )}
@@ -242,7 +237,7 @@ const HeygenProviderComponent = () => {
           {!!data?.length && (
             <>
               <div className="text-lg my-3">
-                {t('select_avatar', 'Select Avatar')}
+                {t('select_avatar')}
               </div>
               <SelectAvatarComponent
                 avatarList={data.map((p: any) => ({
@@ -269,7 +264,7 @@ const HeygenProviderComponent = () => {
           {!!voices?.length && (
             <>
               <div className="text-lg my-3">
-                {t('select_voice', 'Select Voice')}
+                {t('select_voice')}
               </div>
               <SelectVoiceComponent
                 voiceList={voices}
@@ -281,7 +276,7 @@ const HeygenProviderComponent = () => {
             </>
           )}
 
-          <Button type="submit">{t('generate_video', 'Generate Video')}</Button>
+          <Button type="submit">{t('generate_video')}</Button>
         </form>
       </FormProvider>
     </div>

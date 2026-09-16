@@ -25,7 +25,7 @@ export const useMenuItem = () => {
 
   const handleAgentMediaClick = useCallback(() => {
     openModal({
-      title: t('agent_media_title', 'UGC videos by AgentMedia'),
+      title: t('agent_media_title'),
       closeOnClickOutside: true,
       closeOnEscape: true,
       children: <AgentMediaModal />,
@@ -34,7 +34,7 @@ export const useMenuItem = () => {
 
   const firstMenu = [
     {
-      name: isGeneral ? t('calendar', 'Calendar') : t('launches', 'Launches'),
+      name: isGeneral ? t('calendar') : t('launches'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export const useMenuItem = () => {
       path: '/agents',
     },
     {
-      name: t('analytics', 'Analytics'),
+      name: t('analytics'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export const useMenuItem = () => {
       path: '/analytics',
     },
     {
-      name: t('media', 'Media'),
+      name: t('media'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@ export const useMenuItem = () => {
       path: '/media',
     },
     {
-      name: t('plugs', 'Plugs'),
+      name: t('plugs'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@ export const useMenuItem = () => {
       path: '/plugs',
     },
     {
-      name: t('integrations', 'Integrations'),
+      name: t('integrations'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@ export const useMenuItem = () => {
 
   const secondMenu = [
     {
-      name: t('UGC', 'UGC'),
+      name: t('UGC'),
       icon: (
         <svg
           fill="#c52e2e"
@@ -193,7 +193,7 @@ export const useMenuItem = () => {
       onClick: handleAgentMediaClick,
     },
     {
-      name: t('affiliate', 'Affiliate'),
+      name: t('affiliate'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +251,7 @@ export const useMenuItem = () => {
       requireBilling: true,
     },
     {
-      name: t('billing', 'Billing'),
+      name: t('billing'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +274,7 @@ export const useMenuItem = () => {
       requireBilling: true,
     },
     {
-      name: t('settings', 'Settings'),
+      name: t('settings'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

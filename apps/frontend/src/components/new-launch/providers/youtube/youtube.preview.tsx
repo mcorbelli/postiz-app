@@ -68,7 +68,7 @@ export const YoutubePreview: FC<{
           <div>
             <img
               src={integration?.picture || '/no-picture.jpg'}
-              alt={t('social_icon_alt', 'social')}
+              alt={t('social_icon_alt')}
               className="rounded-full z-[2] w-[40px] h-[40px]"
             />
           </div>
@@ -78,7 +78,7 @@ export const YoutubePreview: FC<{
           </div>
           <div>
             <div className="h-[32px] text-[12px] text-newBgColor font-[500] px-[14px] flex justify-center items-center bg-youtubeButton rounded-[16px]">
-              {t('subscribe', 'Subscribe')}
+              {t('subscribe')}
             </div>
           </div>
         </div>

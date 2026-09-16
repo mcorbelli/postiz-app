@@ -216,7 +216,7 @@ export const Subreddit: FC<{
             label="Flair"
             name="flair"
           >
-            <option value="">{t('select_flair', '--Select Flair--')}</option>
+            <option value="">{t('select_flair')}</option>
             {value?.flairs?.map((f: any) => (
               <option key={f.name} value={f.id}>
                 {f.name}

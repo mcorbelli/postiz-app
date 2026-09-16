@@ -85,7 +85,7 @@ export const TiktokPreview: FC<{
         <div className="relative">
           <img
             src={integration?.picture || '/no-picture.jpg'}
-            alt={t('social_icon_alt', 'social')}
+            alt={t('social_icon_alt')}
             className="rounded-full z-[2] w-[29px] h-[29px]"
           />
           <div className="absolute left-[50%] -translate-x-[50%] bottom-0 translate-y-[50%] z-[1]">
@@ -175,7 +175,7 @@ export const TiktokPreview: FC<{
         <div>
           <img
             src={integration?.picture || '/no-picture.jpg'}
-            alt={t('social_icon_alt', 'social')}
+            alt={t('social_icon_alt')}
             className="rounded-full relative z-[2] w-[29px] h-[29px]"
           />
         </div>

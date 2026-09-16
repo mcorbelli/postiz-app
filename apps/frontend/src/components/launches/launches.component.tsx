@@ -249,8 +249,7 @@ export const MenuComponent: FC<
         onClick: refreshChannel(integration),
         'data-tooltip-id': 'tooltip',
         'data-tooltip-content': t(
-          'channel_disconnected_click_to_reconnect',
-          'Channel disconnected, click to reconnect.'
+          'channel_disconnected_click_to_reconnect'
         ),
       })}
       {...(collapsed
@@ -320,8 +319,7 @@ export const MenuComponent: FC<
           ? {
               'data-tooltip-id': 'tooltip',
               'data-tooltip-content': t(
-                'channel_disabled_upgrade_plan',
-                'This channel is disabled, please upgrade your plan to enable it.'
+                'channel_disabled_upgrade_plan'
               ),
             }
           : {})}
@@ -474,7 +472,7 @@ export const LaunchesComponent = () => {
       fireEvents('channel_added');
       window?.opener?.postMessage(
         {
-          msg: t('channel_added', 'Channel added'),
+          msg: t('channel_added'),
           success: true,
         },
         '*'
@@ -558,7 +556,7 @@ export const LaunchesComponent = () => {
                       className="mx-auto min-w-[100%]"
                     />
                     <div className="font-[600] text-[20px]">
-                      {t('no_channels', 'No channels yet')}
+                      {t('no_channels')}
                     </div>
                     <div className="text-[14px]">
                       {t('connect_your_accounts')}

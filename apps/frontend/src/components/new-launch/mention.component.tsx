@@ -85,17 +85,16 @@ const MentionList: FC = (props: any) => {
       {props?.items?.none ? (
         <div className="flex items-center justify-center p-2 text-gray-500">
           {t(
-            'no_autocomplete_for_this_social_media',
-            "We don't have autocomplete for this social media"
+            'no_autocomplete_for_this_social_media'
           )}
         </div>
       ) : props?.loading ? (
         <div className="flex items-center justify-center p-2 text-gray-500">
-          {t('loading', 'Loading')}
+          {t('loading')}
         </div>
       ) : props?.items ? (
         props.items.length === 0 ? (
-          <div className="p-2 text-gray-500 text-center">{t('no_results_found', 'No results found')}</div>
+          <div className="p-2 text-gray-500 text-center">{t('no_results_found')}</div>
         ) : (
           props?.items?.map((item: any, index: any) => (
             <button
@@ -115,7 +114,7 @@ const MentionList: FC = (props: any) => {
           ))
         )
       ) : (
-        <div className="p-2 text-gray-500 text-center">{t('loading', 'Loading')}</div>
+        <div className="p-2 text-gray-500 text-center">{t('loading')}</div>
       )}
     </div>
   );

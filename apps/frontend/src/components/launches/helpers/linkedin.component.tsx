@@ -64,7 +64,7 @@ export const LinkedinCompanyPop: FC<{
         });
       }}
       data-tooltip-id="tooltip"
-      data-tooltip-content={t('add_a_linkedin_company', 'Add a LinkedIn Company')}
+      data-tooltip-content={t('add_a_linkedin_company')}
       className="mx-[10px] cursor-pointer"
       width="20"
       height="20"
@@ -126,7 +126,7 @@ export const LinkedinCompany: FC<{
       onSelect(options.value);
       onClose();
     } catch (e) {
-      toast.show(t('failed_to_load_profile', 'Failed to load profile'), 'warning');
+      toast.show(t('failed_to_load_profile'), 'warning');
     }
   };
   return (
@@ -134,7 +134,7 @@ export const LinkedinCompany: FC<{
       <div className="flex flex-col w-[500px] h-[250px] bg-sixth border-tableBorder border-2 rounded-xl pb-[20px] px-[20px] relative">
         <div className="flex">
           <div className="flex-1">
-            <TopTitle title={t('select_company', 'Select Company')} />
+            <TopTitle title={t('select_company')} />
           </div>
           <button
             onClick={onClose}
@@ -161,12 +161,12 @@ export const LinkedinCompany: FC<{
           <Input
             name="url"
             disableForm={true}
-            label={t('url', 'URL')}
+            label={t('url')}
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="https://www.linkedin.com/company/gitroom"
           />
-          <Button onClick={getCompany}>{t('add', 'Add')}</Button>
+          <Button onClick={getCompany}>{t('add')}</Button>
         </div>
       </div>
     </div>

@@ -21,10 +21,9 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
     if (
       !(await deleteDialog(
         t(
-          'delete_account_confirm',
-          'Your account, organizations, channels and posts will be deleted. This action cannot be undone, are you sure?'
+          'delete_account_confirm'
         ),
-        t('yes_delete_my_account', 'Yes, delete my account')
+        t('yes_delete_my_account')
       ))
     ) {
       return;
@@ -42,7 +41,7 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
         }));
         toaster.show(
           message ||
-            t('could_not_delete_account', 'Could not delete your account'),
+            t('could_not_delete_account'),
           'warning'
         );
         return;
@@ -61,12 +60,11 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
     <div className="text-textColor fixed start-0 top-0 bg-primary/80 z-[500] w-full h-full animate-fade flex flex-col items-center justify-center gap-[24px]">
       <div className="w-[48px] h-[48px] border-[3px] border-forth border-t-transparent rounded-full animate-spin" />
       <div className="text-[20px] font-semibold">
-        {t('deleting_your_account', 'Deleting your account...')}
+        {t('deleting_your_account')}
       </div>
       <div className="text-[14px] text-textItemBlur">
         {t(
-          'deleting_your_account_description',
-          'We are removing your channels and posts, this can take a while. Please don’t close this window.'
+          'deleting_your_account_description'
         )}
       </div>
     </div>
@@ -81,7 +79,7 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
           onClick={deleteAccount}
         >
           <TrashIcon size={16} />
-          <div>{t('delete_account', 'Delete Account')}</div>
+          <div>{t('delete_account')}</div>
         </div>
       </>
     );
@@ -90,16 +88,15 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
   return (
     <div className="my-[16px] mt-[16px] bg-sixth border-fifth border rounded-[4px] p-[24px] flex flex-col gap-[24px]">
       {loadingOverlay}
-      <div className="mt-[4px]">{t('delete_account', 'Delete Account')}</div>
+      <div className="mt-[4px]">{t('delete_account')}</div>
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <div className="text-[14px]">
-            {t('delete_your_account', 'Delete your account')}
+            {t('delete_your_account')}
           </div>
           <div className="text-[12px] text-textItemBlur">
             {t(
-              'delete_account_description',
-              'Your account, organizations and channels will be deleted permanently'
+              'delete_account_description'
             )}
           </div>
         </div>
@@ -108,7 +105,7 @@ const DeleteAccountComponent: FC<{ isLink?: boolean }> = ({ isLink }) => {
           loading={loading}
           onClick={deleteAccount}
         >
-          {t('delete_account', 'Delete Account')}
+          {t('delete_account')}
         </Button>
       </div>
     </div>

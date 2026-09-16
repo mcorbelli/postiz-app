@@ -10,14 +10,14 @@ export const CopyClient = () => {
   const t = useT();
   const copyToClipboard = useCallback(() => {
     toast.show(
-      t('link_copied_to_clipboard', 'Link copied to clipboard'),
+      t('link_copied_to_clipboard'),
       'success'
     );
     copy(window.location.href.split?.('?')?.shift()!);
   }, []);
   return (
     <Button onClick={copyToClipboard}>
-      {t('share_with_a_client', 'Share with a client')}
+      {t('share_with_a_client')}
     </Button>
   );
 };

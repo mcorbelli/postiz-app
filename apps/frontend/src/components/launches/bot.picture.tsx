@@ -35,7 +35,7 @@ export const BotPicture: FC<{
         }),
       });
       props.mutate();
-      toast.show(t('updated', 'Updated'), 'success');
+      toast.show(t('updated'), 'success');
       modal.closeAll();
     },
     [nick, picture, props.mutate]
@@ -47,7 +47,7 @@ export const BotPicture: FC<{
   }, []);
   return (
     <div className="rounded-[4px] border border-customColor6 bg-sixth px-[16px] pb-[16px] relative w-full">
-      <TopTitle title={t('change_bot_picture_title', 'Change Bot Picture')} />
+      <TopTitle title={t('change_bot_picture_title')} />
       <button
         className="outline-none absolute end-[20px] top-[20px] mantine-UnstyledButton-root mantine-ActionIcon-root hover:bg-tableBorder cursor-pointer mantine-Modal-close mantine-1dcetaa"
         type="button"
@@ -75,11 +75,11 @@ export const BotPicture: FC<{
             <div className="flex items-center gap-[20px]">
               <img
                 src={picture}
-                alt={t('bot_picture', 'Bot Picture')}
+                alt={t('bot_picture')}
                 className="w-[100px] h-[100px] rounded-full"
               />
               <Button type="button" onClick={openMedia}>
-                {t('upload', 'Upload')}
+                {t('upload')}
               </Button>
             </div>
           )}
@@ -88,14 +88,14 @@ export const BotPicture: FC<{
               value={nick}
               onChange={(e) => setNickname(e.target.value)}
               name="Nickname"
-              label={t('label_nickname', 'Nickname')}
+              label={t('label_nickname')}
               placeholder=""
               disableForm={true}
             />
           )}
 
           <div className="mt-[50px]">
-            <Button type="submit">{t('save', 'Save')}</Button>
+            <Button type="submit">{t('save')}</Button>
           </div>
         </form>
       </div>

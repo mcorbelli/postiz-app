@@ -127,7 +127,7 @@ export const TikTokLocationSelector: FC<{
             className="h-[42px] px-[16px] inline-flex items-center cursor-pointer bg-newBgColorInner border-newTableBorder border rounded-[8px] text-[14px]"
             onClick={() => setOpen(true)}
           >
-            {t('tiktok_add_location', 'Add location')}
+            {t('tiktok_add_location')}
           </div>
         </div>
       ) : (
@@ -136,7 +136,7 @@ export const TikTokLocationSelector: FC<{
             <div className="flex-1 h-[42px] bg-newBgColorInner border-newTableBorder border rounded-[8px] flex items-center">
               <input
                 className="h-full w-full bg-transparent outline-none px-[16px] text-[14px] text-textColor placeholder-textColor"
-                placeholder={t('tiktok_search_location', 'Search location')}
+                placeholder={t('tiktok_search_location')}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
@@ -145,18 +145,18 @@ export const TikTokLocationSelector: FC<{
               className="h-[42px] px-[16px] flex items-center cursor-pointer bg-newBgColorInner border-newTableBorder border rounded-[8px] text-[14px]"
               onClick={() => setOpen(false)}
             >
-              {t('cancel', 'Cancel')}
+              {t('cancel')}
             </div>
           </div>
           {!!query && (
             <div className="max-h-[250px] overflow-y-auto flex flex-col bg-newBgColorInner border-newTableBorder border rounded-[8px]">
               {loading ? (
                 <div className="p-[12px] text-[14px] opacity-70">
-                  {t('loading', 'Loading...')}
+                  {t('loading')}
                 </div>
               ) : !results.length ? (
                 <div className="p-[12px] text-[14px] opacity-70">
-                  {t('tiktok_no_location_found', 'No location found')}
+                  {t('tiktok_no_location_found')}
                 </div>
               ) : (
                 results.map((location) => (

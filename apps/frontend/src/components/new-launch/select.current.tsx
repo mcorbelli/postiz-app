@@ -79,10 +79,9 @@ export const SelectCurrent: FC = () => {
       e.stopPropagation();
       e.preventDefault();
       const open = await modals.open({
-        title: t('remove_social_account', 'Remove Social Account'),
+        title: t('remove_social_account'),
         description: t(
-          'are_you_sure_you_want_to_remove_this_social',
-          'Are you sure you want to remove this social from scheduling?'
+          'are_you_sure_you_want_to_remove_this_social'
         ),
       });
 
@@ -165,7 +164,7 @@ export const SelectCurrent: FC = () => {
                 {integration.identifier === 'youtube' ? (
                   <img
                     src="/icons/platforms/youtube.svg"
-                            alt={t('youtube', 'YouTube')}
+                            alt={t('youtube')}
                     className="absolute z-10 bottom-[2px] end-[2px] min-w-[12px]"
                     width={12}
                   />
@@ -204,8 +203,7 @@ export const IsGlobal: FC<{ id: string }> = ({ id }) => {
     <div
       data-tooltip-id="tooltip"
       data-tooltip-content={t(
-        'no_longer_global_mode',
-        'No longer in global mode'
+        'no_longer_global_mode'
       )}
       className="w-[8px] h-[8px] bg-[#FC69FF] -top-[1px] -end-[3px] absolute rounded-full"
     />

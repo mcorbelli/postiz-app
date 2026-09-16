@@ -66,7 +66,7 @@ const ActionControls = ({ store }: any) => {
           close.close();
         }}
       >
-        {t('use_this_media', 'Use this media')}
+        {t('use_this_media')}
       </Button>
     </div>
   );

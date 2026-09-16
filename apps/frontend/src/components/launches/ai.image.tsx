@@ -40,7 +40,7 @@ const AiImageModal: FC<{
   const generate = useCallback(async () => {
     if (!prompt.trim()) {
       toaster.show(
-        t('please_type_your_prompt', 'Please type your prompt'),
+        t('please_type_your_prompt'),
         'warning'
       );
       return;
@@ -78,19 +78,18 @@ ${style}
   return (
     <div className="flex flex-col gap-[16px]">
       <div className="flex flex-col gap-[6px]">
-        <div className="text-[14px]">{t('prompt', 'Prompt')}</div>
+        <div className="text-[14px]">{t('prompt')}</div>
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder={t(
-            'describe_the_image_you_want_to_generate',
-            'Describe the image you want to generate'
+            'describe_the_image_you_want_to_generate'
           )}
           className="bg-input min-h-[150px] p-[16px] outline-none border-fifth border rounded-[4px] text-inputText placeholder-inputText"
         />
       </div>
       <div className="flex flex-col gap-[6px]">
-        <div className="text-[14px]">{t('style', 'Style')}</div>
+        <div className="text-[14px]">{t('style')}</div>
         <div className="flex flex-wrap gap-[8px]">
           {list.map((p) => (
             <div
@@ -110,7 +109,7 @@ ${style}
       </div>
       <div className="flex">
         <Button type="button" onClick={generate} className="flex-1">
-          {t('generate', 'Generate')}
+          {t('generate')}
         </Button>
       </div>
     </div>
@@ -131,7 +130,7 @@ export const AiImage: FC<{
       return;
     }
     modals.openModal({
-      title: t('generate_ai_image', 'Generate AI Image'),
+      title: t('generate_ai_image'),
       children: (close) => (
         <AiImageModal
           close={close}
@@ -186,7 +185,7 @@ export const AiImage: FC<{
             </svg>
           </div>
           <div className="text-[10px] font-[600] iconBreak:hidden block">
-            {t('ai', 'AI')} Image
+            {t('ai')} Image
           </div>
         </div>
       </div>
