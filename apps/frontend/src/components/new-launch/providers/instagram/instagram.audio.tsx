@@ -300,7 +300,7 @@ export const InstagramAudioSelector: FC<{
           <div className="max-h-[250px] overflow-y-auto flex flex-col bg-newBgColorInner border-newTableBorder border rounded-[8px]">
             {loading ? (
               <div className="p-[12px] text-[14px] opacity-70">
-                {t('loading', 'Loading...')}
+                {t('loading', 'Loading')}
               </div>
             ) : !results.length ? (
               <div className="p-[12px] text-[14px] opacity-70">

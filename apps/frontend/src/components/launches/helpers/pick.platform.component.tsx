@@ -95,7 +95,10 @@ export const PickPlatforms: FC<{
         if (
           !props.singleSelect &&
           !(await deleteDialog(
-            'Are you sure you want to remove this platform?'
+            t(
+              'are_you_sure_you_want_to_remove_this_platform',
+              'Are you sure you want to remove this platform?'
+            )
           ))
         ) {
           return;

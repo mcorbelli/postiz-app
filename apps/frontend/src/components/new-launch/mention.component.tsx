@@ -84,11 +84,14 @@ const MentionList: FC = (props: any) => {
     <div className="dropdown-menu bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto p-2">
       {props?.items?.none ? (
         <div className="flex items-center justify-center p-2 text-gray-500">
-          We don't have autocomplete for this social media
+          {t(
+            'no_autocomplete_for_this_social_media',
+            "We don't have autocomplete for this social media"
+          )}
         </div>
       ) : props?.loading ? (
         <div className="flex items-center justify-center p-2 text-gray-500">
-          Loading...
+          {t('loading', 'Loading')}
         </div>
       ) : props?.items ? (
         props.items.length === 0 ? (
@@ -112,7 +115,7 @@ const MentionList: FC = (props: any) => {
           ))
         )
       ) : (
-        <div className="p-2 text-gray-500 text-center">Loading...</div>
+        <div className="p-2 text-gray-500 text-center">{t('loading', 'Loading')}</div>
       )}
     </div>
   );

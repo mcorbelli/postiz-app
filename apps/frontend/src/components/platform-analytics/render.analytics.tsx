@@ -142,7 +142,7 @@ const EmptyState: FC<{ onRefresh: () => void }> = ({ onRefresh }) => {
       </div>
       <p className="text-[15px] text-newTableText text-center mb-[12px]">
         {t(
-          'this_channel_needs_to_be_refreshed',
+          'this_channel_needs_to_be_refreshed_to_display_analytics',
           'This channel needs to be refreshed to display analytics'
         )}
       </p>

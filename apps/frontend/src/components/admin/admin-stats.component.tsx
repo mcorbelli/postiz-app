@@ -189,7 +189,7 @@ export const AdminStatsComponent: FC = () => {
 
       <div className="flex flex-wrap gap-[12px] items-end bg-newBgColorInner border border-newTableBorder rounded-[8px] p-[12px]">
         <div className="flex flex-col gap-[6px]">
-          <div className="text-[12px] opacity-70">{t('from', 'From')}</div>
+          <div className="text-[12px] opacity-70">{t('label_from_date', 'From')}</div>
           <input
             type="date"
             value={fromInput}
@@ -199,7 +199,7 @@ export const AdminStatsComponent: FC = () => {
           />
         </div>
         <div className="flex flex-col gap-[6px]">
-          <div className="text-[12px] opacity-70">{t('to', 'To')}</div>
+          <div className="text-[12px] opacity-70">{t('label_to_date', 'To')}</div>
           <input
             type="date"
             value={toInput}
@@ -308,7 +308,10 @@ export const AdminStatsComponent: FC = () => {
             {data.activeOrgsBySource && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <SummaryCard
-                  label="Unique users - active (all sources combined)"
+                  label={t(
+                    'unique_users_active_all_sources_combined',
+                    'Unique users - active (all sources combined)'
+                  )}
                   value={data.activeOrgsBySource.total}
                 />
               </div>
@@ -373,7 +376,7 @@ export const AdminStatsComponent: FC = () => {
             {data.activeOrgsBySource && (
               <div className="flex-1 min-w-[220px] shrink-0">
                 <PerSocialTable
-                  title="Active users per source"
+                  title={t('active_users_per_source', 'Active users per source')}
                   block={data.activeOrgsBySource}
                 />
               </div>
