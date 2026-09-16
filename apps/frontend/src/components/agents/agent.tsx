@@ -259,13 +259,23 @@ const Threads: FC = () => {
           {data?.threads?.map((p: any) => (
             <Link
               className={clsx(
-                'overflow-ellipsis overflow-hidden whitespace-nowrap hover:bg-newBgColor px-[10px] py-[6px] rounded-[10px] cursor-pointer',
-                p.id === id && 'bg-newBgColor'
+                'group flex items-center gap-[8px] h-[40px] rounded-e-[8px] hover:bg-boxHover transition-colors overflow-ellipsis overflow-hidden whitespace-nowrap cursor-pointer',
+                p.id === id ? 'bg-boxHover text-newTextColor' : 'text-textItemBlur'
               )}
               href={`/agents/${p.id}`}
               key={p.id}
             >
-              {p.title}
+              <div
+                className={clsx(
+                  'h-full w-[4px] shrink-0 rounded-s-[3px] opacity-0 group-hover:opacity-100 transition-opacity',
+                  p.id === id && 'opacity-100'
+                )}
+              >
+                <SVGLine />
+              </div>
+              <div className="flex-1 overflow-ellipsis overflow-hidden whitespace-nowrap pe-[10px]">
+                {p.title}
+              </div>
             </Link>
           ))}
         </div>
