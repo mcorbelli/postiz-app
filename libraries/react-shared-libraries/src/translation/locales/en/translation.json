@@ -590,6 +590,8 @@
   "add_autopost_title": "Add Autopost",
   "webhook_deleted_successfully": "Webhook deleted successfully",
   "all_integrations": "All integrations",
+  "n_integrations_one": "{{count}} specific",
+  "n_integrations_other": "{{count}} specific",
   "specific_integrations": "Specific integrations",
   "post_on_next_available_slot": "Post on the next available slot",
   "post_immediately": "Post Immediately",
@@ -769,5 +771,12 @@
   "republish_the_post": "Republish the post",
   "post_already_published_republish_warning": "This post was already published. Republishing will publish it again to",
   "republish_at": "at",
-  "republish_recurring_note": "This is a recurring post: your changes apply to all future recurrences starting now."
+  "republish_recurring_note": "This is a recurring post: your changes apply to all future recurrences starting now.",
+  "no_webhooks_yet": "No webhooks yet.",
+  "no_sets_yet": "No sets yet.",
+  "no_signatures_yet": "No signatures yet.",
+  "no_autopost_yet": "No autopost yet.",
+  "no_approved_apps": "No approved apps yet.",
+  "add_a_set": "Add a set",
+  "approved_apps": "Approved Apps"
 }

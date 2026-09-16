@@ -13,7 +13,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Select } from '@gitroom/react/form/select';
 import { PickPlatforms } from '@gitroom/frontend/components/launches/helpers/pick.platform.component';
 import { useToaster } from '@gitroom/react/toaster/toaster';
-import clsx from 'clsx';
 import { deleteDialog } from '@gitroom/react/helpers/delete.dialog';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 
@@ -71,7 +70,16 @@ export const Webhooks: FC = () => {
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
-          {!!data?.length && (
+          <div className="flex items-center justify-end mb-[16px]">
+            <Button onClick={addWebhook()}>
+              {t('add_a_webhook', 'Add a webhook')}
+            </Button>
+          </div>
+          {!data?.length ? (
+            <div className="text-customColor18 text-center py-[24px]">
+              {t('no_webhooks_yet', 'No webhooks yet.')}
+            </div>
+          ) : (
             <div className="grid grid-cols-[1fr,1fr,1fr,1fr] w-full gap-y-[10px]">
               <div>{t('name', 'Name')}</div>
               <div>{t('url', 'URL')}</div>
@@ -99,14 +107,6 @@ export const Webhooks: FC = () => {
               ))}
             </div>
           )}
-          <div>
-            <Button
-              onClick={addWebhook()}
-              className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
-            >
-              {t('add_a_webhook', 'Add a webhook')}
-            </Button>
-          </div>
         </div>
       </div>
     </div>

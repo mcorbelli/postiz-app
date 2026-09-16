@@ -8,7 +8,6 @@ import { useUser } from '@gitroom/frontend/components/layout/user.context';
 import { Button } from '@gitroom/react/form/button';
 import { Input } from '@gitroom/react/form/input';
 import { useToaster } from '@gitroom/react/toaster/toaster';
-import clsx from 'clsx';
 import { deleteDialog } from '@gitroom/react/helpers/delete.dialog';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import { AddEditModal } from '@gitroom/frontend/components/new-launch/add.edit.modal';
@@ -173,7 +172,14 @@ export const Sets: FC = () => {
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
-          {!!data?.length && (
+          <div className="flex items-center justify-end mb-[16px]">
+            <Button onClick={addSet()}>{t('add_a_set', 'Add a set')}</Button>
+          </div>
+          {!data?.length ? (
+            <div className="text-customColor18 text-center py-[24px]">
+              {t('no_sets_yet', 'No sets yet.')}
+            </div>
+          ) : (
             <div className="grid grid-cols-[2fr,1fr,1fr] w-full gap-y-[10px]">
               <div>{t('name', 'Name')}</div>
               <div>{t('edit', 'Edit')}</div>
@@ -197,14 +203,6 @@ export const Sets: FC = () => {
               ))}
             </div>
           )}
-          <div>
-            <Button
-              onClick={addSet()}
-              className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
-            >
-              Add a set
-            </Button>
-          </div>
         </div>
       </div>
     </div>

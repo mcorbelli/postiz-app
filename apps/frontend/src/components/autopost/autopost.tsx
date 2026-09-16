@@ -79,7 +79,16 @@ export const Autopost: FC = () => {
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
-          {!!data?.length && (
+          <div className="flex items-center justify-end mb-[16px]">
+            <Button onClick={addWebhook()}>
+              {t('add_an_autopost', 'Add an autopost')}
+            </Button>
+          </div>
+          {!data?.length ? (
+            <div className="text-customColor18 text-center py-[24px]">
+              {t('no_autopost_yet', 'No autopost yet.')}
+            </div>
+          ) : (
             <div className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr] w-full gap-y-[10px]">
               <div>{t('title', 'Title')}</div>
               <div>{t('url', 'URL')}</div>
@@ -115,14 +124,6 @@ export const Autopost: FC = () => {
               ))}
             </div>
           )}
-          <div>
-            <Button
-              onClick={addWebhook()}
-              className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
-            >
-              {t('add_an_autopost', 'Add an autopost')}
-            </Button>
-          </div>
         </div>
       </div>
     </div>

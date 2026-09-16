@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, Fragment, useCallback } from 'react';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import useSWR from 'swr';
@@ -69,7 +71,16 @@ export const SignaturesComponent: FC<{
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
-          {!!data?.length && (
+          <div className="flex items-center justify-end mb-[16px]">
+            <Button onClick={addSignature()}>
+              {t('add_a_signature', 'Add a signature')}
+            </Button>
+          </div>
+          {!data?.length ? (
+            <div className="text-customColor18 text-center py-[24px]">
+              {t('no_signatures_yet', 'No signatures yet.')}
+            </div>
+          ) : (
             <div
               className={`grid ${
                 !!appendSignature
@@ -121,14 +132,6 @@ export const SignaturesComponent: FC<{
               ))}
             </div>
           )}
-          <div>
-            <Button
-              onClick={addSignature()}
-              className={clsx((data?.length || 0) > 0 && 'my-[16px]')}
-            >
-              {t('add_a_signature', 'Add a signature')}
-            </Button>
-          </div>
         </div>
       </div>
     </div>
