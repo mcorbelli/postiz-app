@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import type { TranslationKey } from '@gitroom/react/translation/i18next.types';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import clsx from 'clsx';
 import { ExpandIcon, CollapseIcon } from '@gitroom/frontend/components/ui/icons';
@@ -17,14 +18,16 @@ export const TopTitle: FC<{
     props;
   const t = useT();
 
-  // Translate the title using a key derived from the title itself
-  // This creates a consistent key pattern for each title
+  // Translate the title using a key derived from the title itself - this
+  // creates a consistent key pattern for each title, but genuinely can't be
+  // checked against the real key union at compile time since it's built
+  // from arbitrary runtime text.
   const translatedTitle = t(
     // Convert to lowercase, replace spaces with underscores
     `top_title_${title
       .toLowerCase()
       .replace(/\s+/g, '_')
-      .replace(/[^\w]/g, '')}`,
+      .replace(/[^\w]/g, '')}` as TranslationKey,
     title
   );
 

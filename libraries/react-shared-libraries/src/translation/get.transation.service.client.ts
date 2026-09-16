@@ -4,8 +4,9 @@ import i18next from './i18next';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UseTranslationOptions } from 'react-i18next/index';
+import { FlatNamespace } from 'i18next';
 
-export function useT(ns?: string, options?: UseTranslationOptions<any>) {
+export function useT(ns?: FlatNamespace, options?: UseTranslationOptions<any>) {
   const { t } = useTranslation(ns, options);
   return t;
 }
