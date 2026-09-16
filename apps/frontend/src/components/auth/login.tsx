@@ -5,7 +5,8 @@ import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import Link from 'next/link';
 import { Button } from '@gitroom/react/form/button';
 import { Input } from '@gitroom/react/form/input';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import useCookie from 'react-use-cookie';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { LoginUserDto } from '@gitroom/nestjs-libraries/dtos/auth/login.user.dto';
 import { GithubProvider } from '@gitroom/frontend/components/auth/providers/github.provider';
@@ -16,6 +17,7 @@ import { useVariables } from '@gitroom/react/helpers/variable.context';
 import { FarcasterProvider } from '@gitroom/frontend/components/auth/providers/farcaster.provider';
 import WalletProvider from '@gitroom/frontend/components/auth/providers/wallet.provider';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
+import { InviteCard } from '@gitroom/frontend/components/auth/invite-card';
 type Inputs = {
   email: string;
   password: string;
@@ -26,6 +28,18 @@ export function Login() {
   const t = useT();
   const [loading, setLoading] = useState(false);
   const [notActivated, setNotActivated] = useState(false);
+  // Set by the proxy when this login came from an invite link (see
+  // proxy.ts) - useCookie reads document.cookie synchronously, so trusting
+  // it on the very first client render would mismatch the server-rendered
+  // (cookie-less) markup. Defer to an effect so the first render always
+  // matches SSR, same as register.tsx.
+  const [invited] = useCookie('invited', '');
+  const [isInvited, setIsInvited] = useState(false);
+  useEffect(() => {
+    if (invited === 'true') {
+      setIsInvited(true);
+    }
+  }, [invited]);
   const {
     isGeneral,
     neynarClientId,
@@ -75,6 +89,10 @@ export function Login() {
               {t('sign_in', 'Sign In')}
             </h1>
           </div>
+          <InviteCard
+            isInvited={isInvited}
+            onDecline={() => setIsInvited(false)}
+          />
           <div className="text-[14px] mt-[32px] mb-[12px]">
             {t('continue_with', 'Continue With')}
           </div>

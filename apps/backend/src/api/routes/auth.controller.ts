@@ -121,6 +121,14 @@ export class AuthController {
     }
   }
 
+  @Get('/invite-info')
+  async inviteInfo(@Req() req: Request) {
+    // Same NOT_SECURED cookie/header fallback as register/login below.
+    return this._authService.getInviteOrganizationName(
+      req?.cookies?.org || (req?.headers?.org as string)
+    );
+  }
+
   @Post('/login')
   async login(
     @Req() req: Request,

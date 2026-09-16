@@ -466,6 +466,8 @@
   "faq_we_automate_chatgpt_to_help_you_write": "Automatizziamo ChatGPT per aiutarti a scrivere post social e articoli.",
   "enter_email": "Inserisci email",
   "invited_you_will_join_an_existing_team": "Sei stato invitato a entrare in un team - il tuo account verrà aggiunto automaticamente.",
+  "invited_you_will_join_organization": "Sei stato invitato a unirti a {{- name}} - il tuo account verrà aggiunto automaticamente.",
+  "decline_invite": "Rifiuta",
   "name_optional": "Nome (facoltativo)",
   "enter_name": "Inserisci nome",
   "are_you_sure": "Sei sicuro?",

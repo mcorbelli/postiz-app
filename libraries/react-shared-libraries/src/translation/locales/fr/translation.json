@@ -767,5 +767,7 @@
   "republish_the_post": "Republier la publication",
   "post_already_published_republish_warning": "Cette publication a déjà été publiée. La republier la publiera à nouveau sur",
   "republish_at": "à",
-  "republish_recurring_note": "Il s'agit d'une publication récurrente : vos modifications s'appliquent à toutes les récurrences futures à partir de maintenant."
+  "republish_recurring_note": "Il s'agit d'une publication récurrente : vos modifications s'appliquent à toutes les récurrences futures à partir de maintenant.",
+  "invited_you_will_join_organization": "Vous avez été invité à rejoindre {{- name}} - votre compte y sera automatiquement ajouté.",
+  "decline_invite": "Refuser"
 }

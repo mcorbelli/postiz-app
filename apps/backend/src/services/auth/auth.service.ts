@@ -164,6 +164,27 @@ export class AuthService {
     }
   }
 
+  // Display-only lookup for the invite banner shown pre-auth on the
+  // register/login pages - never exposes anything beyond the org's name.
+  // `valid: false` means the invite cookie is absent, garbled, or past its
+  // timeLimit; there's no invite record, so it can never mean "already
+  // redeemed".
+  public async getInviteOrganizationName(cookie?: string) {
+    const invite = this.getOrgFromCookie(cookie);
+    if (!invite) {
+      return { valid: false as const };
+    }
+
+    const organization = await this._organizationService.getOrgById(
+      invite.orgId
+    );
+    if (!organization || organization.deletedAt) {
+      return { valid: false as const };
+    }
+
+    return { valid: true as const, organizationName: organization.name };
+  }
+
   private async loginOrRegisterProvider(
     provider: Provider,
     body: CreateOrgUserDto,

@@ -24,6 +24,7 @@ import dynamic from 'next/dynamic';
 import { WalletUiProvider } from '@gitroom/frontend/components/auth/providers/placeholder/wallet.ui.provider';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import useCookie from 'react-use-cookie';
+import { InviteCard } from '@gitroom/frontend/components/auth/invite-card';
 const WalletProvider = dynamic(
   () => import('@gitroom/frontend/components/auth/providers/wallet.provider'),
   {
@@ -135,6 +136,10 @@ export function RegisterAfter({
       form.setValue('company', 'invited');
     }
   }, [invited]);
+  const handleDeclineInvite = useCallback(() => {
+    form.setValue('company', '');
+    setIsInvited(false);
+  }, [form]);
   const fetchData = useFetch();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
@@ -180,6 +185,7 @@ export function RegisterAfter({
               {t('sign_up', 'Sign Up')}
             </h1>
           </div>
+          <InviteCard isInvited={isInvited} onDecline={handleDeclineInvite} />
           <div className="text-[14px] mt-[32px] mb-[12px]">
             {t('continue_with', 'Continue With')}
           </div>
@@ -230,14 +236,7 @@ export function RegisterAfter({
                     />
                   </>
                 )}
-                {isInvited ? (
-                  <div className="text-[12px]">
-                    {t(
-                      'invited_you_will_join_an_existing_team',
-                      "You've been invited to join a team - your account will be added to it automatically."
-                    )}
-                  </div>
-                ) : (
+                {!isInvited && (
                   <Input
                     label="Company"
                     translationKey="label_company"
