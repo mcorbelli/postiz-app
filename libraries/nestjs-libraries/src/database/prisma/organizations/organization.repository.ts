@@ -295,12 +295,7 @@ export class OrganizationRepository {
     });
   }
 
-  async addUserToOrg(
-    userId: string,
-    id: string,
-    orgId: string,
-    role: 'USER' | 'ADMIN'
-  ) {
+  async canAddUserToOrg(id: string, orgId: string) {
     const checkIfInviteExists = await this._user.model.user.findFirst({
       where: {
         inviteId: id,
@@ -326,6 +321,19 @@ export class OrganizationRepository {
       checkForSubscription?.subscription?.subscriptionTier ===
         SubscriptionTier.STANDARD
     ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  async addUserToOrg(
+    userId: string,
+    id: string,
+    orgId: string,
+    role: 'USER' | 'ADMIN'
+  ) {
+    if (!(await this.canAddUserToOrg(id, orgId))) {
       return false;
     }
 

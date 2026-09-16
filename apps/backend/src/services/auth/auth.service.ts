@@ -58,13 +58,23 @@ export class AuthService {
           throw new Error('Registration is disabled');
         }
 
-        const invite =
-          addToOrg && typeof addToOrg !== 'boolean' ? addToOrg : undefined;
-
         // Registering through an invite link joins that organization instead
         // of also creating a throwaway one from the (in that case ignored)
         // company field - otherwise every invited signup left a duplicate org
-        // behind.
+        // behind. The invite is only honored if it can still be redeemed
+        // (canAddUserToOrg), so an already-used or seat-limited invite falls
+        // back to the normal signup instead of leaving the user in a
+        // just-created account with no organization at all.
+        const invite =
+          addToOrg &&
+          typeof addToOrg !== 'boolean' &&
+          (await this._organizationService.canAddUserToOrg(
+            addToOrg.id,
+            addToOrg.orgId
+          ))
+            ? addToOrg
+            : undefined;
+
         const newUser = invite
           ? await this._userService.createUser(
               { ...body, name: invite.name },

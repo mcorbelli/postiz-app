@@ -323,7 +323,7 @@ export class UsersRepository {
         password: body.password ? AuthService.hashPassword(body.password) : '',
         providerName: body.provider,
         providerId: body.providerId || '',
-        name: body.name,
+        name: body.name || undefined,
         timezone: 0,
         ip,
         agent: userAgent,

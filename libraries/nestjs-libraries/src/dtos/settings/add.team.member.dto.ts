@@ -26,8 +26,10 @@ export class AddTeamMemberDto {
   // Pre-fills the invited member's name once they register through the
   // invite link, instead of leaving it blank until they set it themselves.
   // ValidateIf (not IsOptional) so an empty string from the form is also
-  // skipped, not just undefined.
-  @ValidateIf((o) => !!o.name)
+  // skipped, not just undefined. Checked against undefined/'' explicitly
+  // (not truthiness) so a non-string value such as 0 or false still hits
+  // @IsString() below instead of bypassing validation entirely.
+  @ValidateIf((o) => o.name !== undefined && o.name !== '')
   @IsString()
   @MinLength(1)
   @MaxLength(128)

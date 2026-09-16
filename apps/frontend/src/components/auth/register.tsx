@@ -108,7 +108,10 @@ export function RegisterAfter({
   // proxy.ts) - the actual invite is a separate httpOnly cookie the backend
   // reads directly, this is only a non-sensitive UI flag.
   const [invited] = useCookie('invited', '');
-  const isInvited = invited === 'true';
+  // useCookie reads document.cookie synchronously, so trusting it on the
+  // very first client render would mismatch the server-rendered (cookie-less)
+  // markup. Defer to an effect so the first render always matches SSR.
+  const [isInvited, setIsInvited] = useState(false);
   const isAfterProvider = useMemo(() => {
     return !!token && !!provider;
   }, [token, provider]);
@@ -126,6 +129,12 @@ export function RegisterAfter({
       company: isInvited ? 'invited' : undefined,
     },
   });
+  useEffect(() => {
+    if (invited === 'true') {
+      setIsInvited(true);
+      form.setValue('company', 'invited');
+    }
+  }, [invited]);
   const fetchData = useFetch();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
@@ -222,7 +231,7 @@ export function RegisterAfter({
                   </>
                 )}
                 {isInvited ? (
-                  <div className="text-[12px] text-customColor18">
+                  <div className="text-[12px]">
                     {t(
                       'invited_you_will_join_an_existing_team',
                       "You've been invited to join a team - your account will be added to it automatically."

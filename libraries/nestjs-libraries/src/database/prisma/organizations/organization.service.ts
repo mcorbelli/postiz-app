@@ -47,6 +47,10 @@ export class OrganizationService {
     return this._organizationRepository.addUserToOrg(userId, id, orgId, role);
   }
 
+  canAddUserToOrg(id: string, orgId: string) {
+    return this._organizationRepository.canAddUserToOrg(id, orgId);
+  }
+
   getOrgById(id: string) {
     return this._organizationRepository.getOrgById(id);
   }
