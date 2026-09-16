@@ -1,15 +1,22 @@
 'use client';
 
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import useSWR from 'swr';
 import { useUser } from '@gitroom/frontend/components/layout/user.context';
-import clsx from 'clsx';
+import { useClickOutside } from '@mantine/hooks';
+import {
+  dropdownPanelClass,
+  DropdownRow,
+} from '@gitroom/frontend/components/layout/dropdown.styles';
 export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
   asOpenSelect,
 }) => {
   const fetch = useFetch();
   const user = useUser();
+  const [open, setOpen] = useState(false);
+  const ref = useClickOutside<HTMLDivElement>(() => setOpen(false));
+  const toggleOpen = useCallback(() => setOpen((prev) => !prev), []);
   const load = useCallback(async () => {
     return await (await fetch('/user/organizations')).json();
   }, []);
@@ -22,10 +29,15 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
   });
   const current = useMemo(() => {
     return data?.find((d: any) => d.id === user?.orgId);
+  }, [data, user?.orgId]);
+  const sorted = useMemo(() => {
+    return [...(data || [])].sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
+    );
   }, [data]);
   const withoutCurrent = useMemo(() => {
-    return data?.filter((d: any) => d.id !== user?.orgId);
-  }, [current, data]);
+    return sorted?.filter((d: any) => d.id !== user?.orgId);
+  }, [sorted, user?.orgId]);
   const changeOrg = useCallback(
     (org: { name: string; id: string }) => async () => {
       await fetch('/user/change-org', {
@@ -44,12 +56,15 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
   return (
     <>
       <div className="hover:text-newTextColor">
-        <div className="group text-[12px] relative">
+        <div className="text-[12px] relative" ref={asOpenSelect ? undefined : ref}>
           {asOpenSelect && (
             <div className="bg-btnPrimary !flex !relative max-w-[500px] mx-auto py-[12px] px-[12px]">Select Organization</div>
           )}
           {!asOpenSelect && (
-            <div className="flex items-center gap-[6px]">
+            <div
+              className="flex items-center gap-[6px] cursor-pointer"
+              onClick={toggleOpen}
+            >
               <svg
                 className={user?.tier.current === 'FREE' ? 'animate-bounce drop-shadow-glow': ''}
                 width="24"
@@ -68,13 +83,8 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
               )}
             </div>
           )}
-          {data?.length > 1 && (
-            <div
-              className={clsx(
-                'hidden py-[12px] px-[12px] group-hover:flex absolute top-[100%] end-0 w-max max-w-[400px] bg-third border-tableBorder border gap-[12px] cursor-pointer flex-col',
-                asOpenSelect ? '!flex !relative max-w-[500px] mx-auto mb-[10px]' : '',
-              )}
-            >
+          {data?.length > 1 && asOpenSelect && (
+            <div className="!flex !relative max-w-[500px] mx-auto mb-[10px] py-[12px] px-[12px] bg-third border-tableBorder border gap-[12px] flex-col">
               {withoutCurrent?.map(
                 (org: {
                   name: string;
@@ -84,7 +94,7 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
                   <div
                     key={org?.id}
                     onClick={changeOrg(org)}
-                    className="whitespace-nowrap truncate"
+                    className="whitespace-nowrap truncate cursor-pointer"
                   >
                     {org?.name}
                     {!!org?.users?.[0]?.role && (
@@ -101,6 +111,46 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
                     )}
                   </div>
                 )
+              )}
+            </div>
+          )}
+          {data?.length > 1 && !asOpenSelect && (
+            <div className={dropdownPanelClass(open, 'min-w-[200px]')}>
+              {sorted?.map(
+                (org: {
+                  name: string;
+                  id: string;
+                  users: { role: 'SUPERADMIN' | 'ADMIN' | 'USER' }[];
+                }) =>
+                  org.id === user?.orgId ? (
+                    <DropdownRow
+                      key={org.id}
+                      selected
+                      className="truncate cursor-default"
+                    >
+                      {org.name}
+                    </DropdownRow>
+                  ) : (
+                    <DropdownRow
+                      key={org.id}
+                      onClick={changeOrg(org)}
+                      className="truncate"
+                    >
+                      {org.name}
+                      {!!org?.users?.[0]?.role && (
+                        <span className="text-customColor18">
+                          {' '}
+                          (
+                          {org.users[0].role === 'SUPERADMIN'
+                            ? 'Super-Admin'
+                            : org.users[0].role === 'ADMIN'
+                            ? 'Admin'
+                            : 'User'}
+                          )
+                        </span>
+                      )}
+                    </DropdownRow>
+                  )
               )}
             </div>
           )}
