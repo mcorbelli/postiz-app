@@ -69,8 +69,7 @@ export const SignaturesComponent: FC<{
       </div>
       <div className="my-[16px] mt-[16px] bg-sixth border-fifth items-center border rounded-[4px] p-[24px] flex gap-[24px]">
         <div className="flex flex-col w-full">
-          <div className="flex items-center justify-between mb-[16px]">
-            <div className="mt-[4px]">{t('signatures', 'Signatures')}</div>
+          <div className="flex items-center justify-end mb-[16px]">
             <Button onClick={addSignature()}>
               {t('add_a_signature', 'Add a signature')}
             </Button>

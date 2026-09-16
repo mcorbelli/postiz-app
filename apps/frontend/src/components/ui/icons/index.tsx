@@ -139,6 +139,7 @@ export const CloseIconSmall: FC<IconProps> = ({
   </svg>
 );
 
+// Edit/Pencil Icon
 export const EditIcon: FC<IconProps> = ({
   size = 20,
   className,
@@ -162,40 +163,6 @@ export const EditIcon: FC<IconProps> = ({
     />
     <path
       d="M11.6667 5L15 8.33333"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-// Mail/Send Email Icon
-export const MailIcon: FC<IconProps> = ({
-  size = 20,
-  className,
-  ...props
-}) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 20 20"
-    fill="none"
-    className={className}
-    {...props}
-  >
-    <rect
-      x="2.5"
-      y="4.5"
-      width="15"
-      height="11"
-      rx="2"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
-    <path
-      d="M3 5.5L10 11L17 5.5"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"

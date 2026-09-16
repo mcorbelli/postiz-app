@@ -776,5 +776,7 @@
   "no_sets_yet": "No sets yet.",
   "no_signatures_yet": "No signatures yet.",
   "no_autopost_yet": "No autopost yet.",
-  "no_approved_apps": "No approved apps yet."
+  "no_approved_apps": "No approved apps yet.",
+  "add_a_set": "Add a set",
+  "approved_apps": "Approved Apps"
 }
