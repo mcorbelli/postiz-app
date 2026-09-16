@@ -179,7 +179,6 @@ export class OrganizationService {
 
     // @ts-ignore
     const myLevel = roleLevel(org.users[0].role);
-    // @ts-ignore
     const userLevel = roleLevel(findOrgToDelete.users[0].role);
 
     // Strictly greater: also blocks removing a peer (same level) and
@@ -217,7 +216,6 @@ export class OrganizationService {
 
     // @ts-ignore
     const myLevel = roleLevel(org.users[0].role);
-    // @ts-ignore
     const userLevel = roleLevel(targetOrg.users[0].role);
 
     if (myLevel <= userLevel) {
@@ -261,14 +259,18 @@ export class OrganizationService {
   }
 
   async createOrgForUser(userId: string, name: string) {
-    const cap = process.env.MAX_ORGS_PER_USER
-      ? Number(process.env.MAX_ORGS_PER_USER)
+    const parsedCap = Number(process.env.MAX_ORGS_PER_USER);
+    const cap = process.env.MAX_ORGS_PER_USER && !Number.isNaN(parsedCap)
+      ? parsedCap
       : 10;
 
     const existing = await this._organizationRepository.getOrgsByUserId(
       userId
     );
-    if (existing.length >= cap) {
+    // MAX_ORGS_PER_USER caps organizations the user created (SUPERADMIN
+    // here), not every org they were invited into.
+    const owned = existing.filter((org) => org.users[0]?.role === 'SUPERADMIN');
+    if (owned.length >= cap) {
       throw new HttpException(
         `You can create up to ${cap} organizations`,
         400
@@ -287,7 +289,6 @@ export class OrganizationService {
     // currently selected one, since @CheckPolicies only sees the latter.
     // Also reject a membership that's disabled in this org even if the
     // caller is authenticated via another, still-enabled org.
-    // @ts-ignore
     if (
       !target ||
       target.users[0].disabled ||
@@ -310,7 +311,6 @@ export class OrganizationService {
     const orgs = await this._organizationRepository.getOrgsByUserId(userId);
     const target = orgs.find((org) => org.id === orgId);
 
-    // @ts-ignore
     if (
       !target ||
       target.users[0].disabled ||

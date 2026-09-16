@@ -3,7 +3,7 @@
 import { Button } from '@gitroom/react/form/button';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import useSWR from 'swr';
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useUser } from '@gitroom/frontend/components/layout/user.context';
 import { capitalize } from 'lodash';
 import { useModals } from '@gitroom/frontend/components/layout/new-modal';
@@ -50,7 +50,6 @@ export const AddMember = () => {
   const form = useForm({
     values: {
       email: '',
-      name: '',
       role: '',
       sendEmail: true,
     },
@@ -64,7 +63,6 @@ export const AddMember = () => {
   const submit = useCallback(
     async (values: {
       email: string;
-      name: string;
       role: string;
       sendEmail: boolean;
     }) => {
@@ -97,11 +95,6 @@ export const AddMember = () => {
               name="email"
             />
           )}
-          <Input
-            label={t('name_optional', 'Name (optional)')}
-            placeholder={t('enter_name', 'Enter name')}
-            name="name"
-          />
           <Select label="Role" name="role">
             <option value="">{t('select_role', 'Select Role')}</option>
             {roleOptions(t).map((role) => (
@@ -141,17 +134,28 @@ const EditSelfForm: FC<{
   const toaster = useToaster();
   const [loading, setLoading] = useState(false);
   const resolver = useMemo(() => classValidatorResolver(UserDetailDto), []);
-  const form = useForm({
+  const form = useForm<UserDetailDto>({
     resolver,
-    values: { fullname: member.user.name || '' },
+    defaultValues: { fullname: member.user.name || '' } as UserDetailDto,
   });
 
-  const submit = useCallback(async (values: { fullname: string }) => {
+  // /user/personal replaces bio/picture wholesale on every save, so they
+  // have to be loaded and resent even though this form only exposes name.
+  useEffect(() => {
+    (async () => {
+      const personal = await (await fetch('/user/personal')).json();
+      form.setValue('fullname', personal.name || '');
+      form.setValue('bio', personal.bio || '');
+      form.setValue('picture', personal.picture);
+    })();
+  }, []);
+
+  const submit = useCallback(async (values: UserDetailDto) => {
     setLoading(true);
     try {
       const response = await fetch('/user/personal', {
         method: 'POST',
-        body: JSON.stringify({ fullname: values.fullname }),
+        body: JSON.stringify(values),
       });
 
       if (response.status !== 200 && response.status !== 201) {

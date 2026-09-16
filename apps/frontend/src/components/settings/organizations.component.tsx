@@ -108,8 +108,10 @@ const OrganizationRow: FC<{
   const fetch = useFetch();
   const toaster = useToaster();
   const modals = useModals();
+  const user = useUser();
   const role = org.users[0]?.role;
-  const canManage = role === 'ADMIN' || role === 'SUPERADMIN';
+  const canManage =
+    !user?.impersonate && (role === 'ADMIN' || role === 'SUPERADMIN');
   const membersCount = org._count?.users ?? 1;
 
   const edit = useCallback(() => {

@@ -306,8 +306,15 @@ export class UsersController {
     );
   }
 
+  // No @CheckPolicies here: creating a new organization isn't an action on
+  // the currently selected one (which is what Sections.ADMIN resolves
+  // against), so a USER-role member of someone else's org would otherwise
+  // be refused with a billing/permission error just for trying to create
+  // their own - the actual limit is createOrgForUser's MAX_ORGS_PER_USER
+  // cap, same as renameOrganization/deleteOrganization below have no
+  // @CheckPolicies either and do their own role check against the target
+  // org instead.
   @Post('/organizations')
-  @CheckPolicies([AuthorizationActions.Create, Sections.ADMIN])
   async createOrganization(
     @GetUserFromRequest() user: User,
     @Req() req: Request,
@@ -376,7 +383,6 @@ export class UsersController {
     }
 
     await this._orgService.finalizeOrganizationDeletion(id);
-    const deleted = { id };
 
     // The deleted org was the one selected in the cookie, so fall back to
     // another organization the user still belongs to.
@@ -404,7 +410,7 @@ export class UsersController {
       }
     }
 
-    return deleted;
+    return { id };
   }
 
   @Post('/change-org')

@@ -439,9 +439,6 @@ export class OrganizationRepository {
       },
       select: {
         users: {
-          where: {
-            disabled: false,
-          },
           select: {
             role: true,
             user: {
@@ -629,9 +626,12 @@ export class OrganizationRepository {
           );
         }
 
-        return tx.organization.update({
+        // updateMany (not update) so a duplicate call - the org already
+        // soft-deleted - is a no-op instead of a Prisma "record not found".
+        return tx.organization.updateMany({
           where: {
             id: orgId,
+            deletedAt: null,
           },
           data: {
             deletedAt: new Date(),
