@@ -118,10 +118,20 @@ export async function proxy(request: NextRequest) {
               path: '/',
               secure: true,
               httpOnly: true,
-              sameSite: false,
+              sameSite: 'none',
               domain: getCookieUrlFromDomain(process.env.FRONTEND_URL!),
             }
           : {}),
+        expires: new Date(Date.now() + 15 * 60 * 1000),
+      });
+      // Non-sensitive companion cookie (no token, just a flag) so the
+      // registration form can hide the company field - the invite JWT
+      // itself stays httpOnly.
+      redirect.cookies.set('invited', 'true', {
+        path: '/',
+        secure: !process.env.NOT_SECURED,
+        sameSite: false,
+        domain: getCookieUrlFromDomain(process.env.FRONTEND_URL!),
         expires: new Date(Date.now() + 15 * 60 * 1000),
       });
       return redirect;
@@ -148,7 +158,7 @@ export async function proxy(request: NextRequest) {
                 path: '/',
                 secure: true,
                 httpOnly: true,
-                sameSite: false,
+                sameSite: 'none',
                 domain: getCookieUrlFromDomain(process.env.FRONTEND_URL!),
               }
             : {}),
