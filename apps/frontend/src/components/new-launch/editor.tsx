@@ -15,6 +15,8 @@ import clsx from 'clsx';
 import { makeId } from '@gitroom/nestjs-libraries/services/make.is';
 import EmojiPicker from 'emoji-picker-react';
 import { Theme } from 'emoji-picker-react';
+import { getCookie } from 'react-use-cookie';
+import { modeEmitter } from '@gitroom/frontend/components/layout/mode.component';
 import { BoldText } from '@gitroom/frontend/components/new-launch/bold.text';
 import { UText } from '@gitroom/frontend/components/new-launch/u.text';
 import { SignatureBox } from '@gitroom/frontend/components/signature';
@@ -560,8 +562,17 @@ export const Editor: FC<{
   } = props;
   const [id] = useState(makeId(10));
   const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
+  const [mode, setMode] = useState(() => getCookie('mode', 'dark'));
   const t = useT();
   const toaster = useToaster();
+
+  useEffect(() => {
+    const handleModeChange = (value: string) => setMode(value);
+    modeEmitter.on('mode', handleModeChange);
+    return () => {
+      modeEmitter.off('mode', handleModeChange);
+    };
+  }, []);
   const editorRef = useRef<undefined | { editor: any }>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -826,10 +837,7 @@ export const Editor: FC<{
                         >
                           <EmojiPicker
                             height={400}
-                            theme={
-                              (localStorage.getItem('mode') as Theme) ||
-                              Theme.DARK
-                            }
+                            theme={mode === 'light' ? Theme.LIGHT : Theme.DARK}
                             onEmojiClick={(e) => {
                               addText(e.emoji);
                               setEmojiPickerOpen(false);

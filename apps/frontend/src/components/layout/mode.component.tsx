@@ -31,15 +31,17 @@ const resolveMode = (preference: Preference): Mode =>
   preference === 'system' ? getSystemMode() : preference;
 
 // A returning user already has a `mode` cookie holding their explicit past
-// choice (dark/light) - use it as the initial preference instead of
-// resetting everyone to 'system' the day this ships.
+// choice (dark/light) - migrate it as the initial preference instead of
+// resetting everyone to 'system' the day this ships. A visitor with neither
+// cookie has never chosen anything, so they get the real default: 'system'.
 const readPreference = (): Preference => {
   const preference = getCookie(PREFERENCE_COOKIE, '');
   if (preference === 'light' || preference === 'dark' || preference === 'system') {
     return preference;
   }
 
-  return getCookie(MODE_COOKIE, '') === 'light' ? 'light' : 'dark';
+  const legacyMode = getCookie(MODE_COOKIE, '');
+  return legacyMode === 'light' || legacyMode === 'dark' ? legacyMode : 'system';
 };
 
 const ModeComponent = () => {
@@ -49,14 +51,14 @@ const ModeComponent = () => {
   const ref = useClickOutside<HTMLDivElement>(() => setOpen(false));
 
   // Only ever writes 'dark'/'light' to the `mode` cookie and only emits when
-  // the resolved value actually changes - NoMediaIcon / embedded.billing
-  // subscribe to this emitter without ever unsubscribing by reference
-  // (they call removeAllListeners on cleanup), so a silent re-mount must not
-  // fire it.
+  // the resolved value actually changes, so a silent re-mount (e.g. this
+  // component remounting with the same preference) doesn't cause listeners
+  // to redundantly react to a "change" that never happened.
   const applyMode = useCallback((mode: Mode) => {
     const previous = getCookie(MODE_COOKIE, '');
     document.body.classList.remove('dark', 'light');
     document.body.classList.add(mode);
+    document.documentElement.style.colorScheme = mode;
     setCookie(MODE_COOKIE, mode, COOKIE_DAYS);
     if (previous && previous !== mode) {
       modeEmitter.emit('mode', mode);

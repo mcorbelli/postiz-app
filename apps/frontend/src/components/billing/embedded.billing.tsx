@@ -10,7 +10,7 @@ import {
   useCheckout,
 } from '@stripe/react-stripe-js/checkout';
 import { modeEmitter } from '@gitroom/frontend/components/layout/mode.component';
-import useCookie from 'react-use-cookie';
+import { getCookie } from 'react-use-cookie';
 import { Button } from '@gitroom/react/form/button';
 import dayjs from 'dayjs';
 import { useToaster } from '@gitroom/react/toaster/toaster';
@@ -24,16 +24,16 @@ export const EmbeddedBilling: FC<{
 }> = ({ stripe, secret, showCoupon = false, autoApplyCoupon }) => {
   const [saveSecret, setSaveSecret] = useState(secret);
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useCookie('mode', 'dark');
+  const [mode, setMode] = useState(() => getCookie('mode', 'dark'));
 
   useEffect(() => {
-    modeEmitter.on('mode', (value) => {
+    const handleModeChange = (value: string) => {
       setMode(value);
       setLoading(true);
-    });
-
+    };
+    modeEmitter.on('mode', handleModeChange);
     return () => {
-      modeEmitter.removeAllListeners();
+      modeEmitter.off('mode', handleModeChange);
     };
   }, []);
 

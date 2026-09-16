@@ -8,6 +8,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import clsx from 'clsx';
 import { VariableContextComponent } from '@gitroom/react/helpers/variable.context';
 import UtmSaver from '@gitroom/helpers/utils/utm.saver';
+import { ThemeFlashScript } from '@gitroom/frontend/components/layout/theme-flash-script';
 
 const jakartaSans = Plus_Jakarta_Sans({
   weight: ['600', '500'],
@@ -17,13 +18,15 @@ const jakartaSans = Plus_Jakarta_Sans({
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={clsx(jakartaSans.className, 'dark text-primary !bg-primary')}
+        suppressHydrationWarning
+        className={clsx(jakartaSans.className, 'text-primary !bg-primary')}
       >
+        <ThemeFlashScript />
         <VariableContextComponent
           language="en"
           storageProvider={
