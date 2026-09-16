@@ -220,7 +220,7 @@
   "branded_content_policy": "Markalı İçerik Politikası",
   "select_1": "--Seç--",
   "select_flair": "--Flair Seç--",
-  "link": "Bağlantı",
+  "link_label": "Bağlantı",
   "add_subreddit": "Subreddit Ekle",
   "please_add_at_least_one_subreddit": "Lütfen en az bir Subreddit ekleyin",
   "add_community": "Topluluk Ekle",

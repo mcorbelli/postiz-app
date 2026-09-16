@@ -220,7 +220,7 @@
   "branded_content_policy": "品牌内容政策",
   "select_1": "--请选择--",
   "select_flair": "--选择标识--",
-  "link": "链接",
+  "link_label": "链接",
   "add_subreddit": "添加子版块",
   "please_add_at_least_one_subreddit": "请至少添加一个子版块",
   "add_community": "添加社区",

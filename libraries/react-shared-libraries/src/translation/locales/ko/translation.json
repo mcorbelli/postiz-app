@@ -220,7 +220,7 @@
   "branded_content_policy": "브랜드 콘텐츠 정책",
   "select_1": "--선택--",
   "select_flair": "--플레어 선택--",
-  "link": "링크",
+  "link_label": "링크",
   "add_subreddit": "서브레딧 추가",
   "please_add_at_least_one_subreddit": "최소한 하나의 서브레딧을 추가해 주세요.",
   "add_community": "커뮤니티 추가",

@@ -220,7 +220,7 @@
   "branded_content_policy": "ブランドコンテンツポリシー",
   "select_1": "--選択--",
   "select_flair": "--フレアを選択--",
-  "link": "リンク",
+  "link_label": "リンク",
   "add_subreddit": "サブレディットを追加",
   "please_add_at_least_one_subreddit": "少なくとも1つのサブレディットを追加してください",
   "add_community": "コミュニティを追加",

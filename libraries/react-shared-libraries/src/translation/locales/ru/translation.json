@@ -220,7 +220,7 @@
   "branded_content_policy": "Политика брендированного контента",
   "select_1": "--Выбрать--",
   "select_flair": "--Выбрать метку--",
-  "link": "Ссылка",
+  "link_label": "Ссылка",
   "add_subreddit": "Добавить сабреддит",
   "please_add_at_least_one_subreddit": "Пожалуйста, добавьте хотя бы один сабреддит",
   "add_community": "Добавить сообщество",

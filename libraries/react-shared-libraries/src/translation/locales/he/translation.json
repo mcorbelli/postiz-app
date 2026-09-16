@@ -220,7 +220,7 @@
   "branded_content_policy": "מדיניות תוכן ממותג",
   "select_1": "--בחר--",
   "select_flair": "--בחר תיוג--",
-  "link": "קישור",
+  "link_label": "קישור",
   "add_subreddit": "הוסף סאב-רדיט",
   "please_add_at_least_one_subreddit": "אנא הוסף לפחות סאב-רדיט אחד",
   "add_community": "הוסף קהילה",

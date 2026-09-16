@@ -220,7 +220,7 @@
   "branded_content_policy": "Branded Content Policy",
   "select_1": "--Select--",
   "select_flair": "--Select Flair--",
-  "link": "Link",
+  "link_label": "Link",
   "add_subreddit": "Add Subreddit",
   "please_add_at_least_one_subreddit": "Please add at least one Subreddit",
   "add_community": "Add Community",
@@ -1390,5 +1390,6 @@
   "no_autocomplete_for_this_social_media": "We don't have autocomplete for this social media",
   "are_you_sure_you_want_to_remove_this_platform": "Are you sure you want to remove this platform?",
   "subscribe": "Subscribe",
-  "my_application": "My Application"
+  "my_application": "My Application",
+  "total": "Total"
 }

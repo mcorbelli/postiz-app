@@ -220,7 +220,7 @@
   "branded_content_policy": "ব্র্যান্ডেড কন্টেন্ট নীতি",
   "select_1": "--নির্বাচন করুন--",
   "select_flair": "--ফ্লেয়ার নির্বাচন করুন--",
-  "link": "লিংক",
+  "link_label": "লিংক",
   "add_subreddit": "সাবরেডিট যোগ করুন",
   "please_add_at_least_one_subreddit": "অনুগ্রহ করে কমপক্ষে একটি সাবরেডিট যোগ করুন",
   "add_community": "কমিউনিটি যোগ করুন",

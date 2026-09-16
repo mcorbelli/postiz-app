@@ -220,7 +220,7 @@
   "branded_content_policy": "سياسة المحتوى الممول",
   "select_1": "--اختر--",
   "select_flair": "--اختر الوسم--",
-  "link": "رابط",
+  "link_label": "رابط",
   "add_subreddit": "أضف منتدى فرعي",
   "please_add_at_least_one_subreddit": "يرجى إضافة منتدى فرعي واحد على الأقل",
   "add_community": "أضف مجتمع",

@@ -220,7 +220,7 @@
   "branded_content_policy": "Chính sách nội dung thương hiệu",
   "select_1": "--Chọn--",
   "select_flair": "--Chọn nhãn--",
-  "link": "Liên kết",
+  "link_label": "Liên kết",
   "add_subreddit": "Thêm Subreddit",
   "please_add_at_least_one_subreddit": "Vui lòng thêm ít nhất một Subreddit",
   "add_community": "Thêm cộng đồng",

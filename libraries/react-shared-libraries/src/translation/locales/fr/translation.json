@@ -220,7 +220,7 @@
   "branded_content_policy": "Politique sur le contenu de marque",
   "select_1": "--Sélectionner--",
   "select_flair": "--Sélectionner un flair--",
-  "link": "Lien",
+  "link_label": "Lien",
   "add_subreddit": "Ajouter un subreddit",
   "please_add_at_least_one_subreddit": "Veuillez ajouter au moins un subreddit",
   "add_community": "Ajouter une communauté",
