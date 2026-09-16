@@ -18,8 +18,8 @@ export const MenuItem: FC<{ label: string; icon: ReactNode; path: string; onClic
   // surface plus the purple edge indicator - adapted to this rail's
   // vertical icon+label tiles instead of horizontal label rows.
   const className = clsx(
-    'group w-full min-w-0 minCustom:h-[54px] custom:h-[44px] flex items-center rounded-e-[12px] hover:bg-boxHover transition-colors',
-    isActive && 'bg-boxHover'
+    'group w-full min-w-0 minCustom:h-[54px] custom:h-[44px] flex items-center rounded-e-[12px] hover:bg-boxHover hover:text-newTextColor transition-colors',
+    isActive ? 'bg-boxHover text-newTextColor' : 'text-textItemBlur'
   );
 
   const inner = (

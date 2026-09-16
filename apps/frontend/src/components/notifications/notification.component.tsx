@@ -67,7 +67,7 @@ export const NotificationOpenComponent = () => {
       className={dropdownPanelClass(true, 'w-[420px] min-h-[200px]')}
     >
       <div
-        className={`p-[16px] border-b border-tableBorder font-bold`}
+        className={`-m-[8px] mb-0 p-[16px] rounded-t-[12px] border-b border-tableBorder font-bold`}
       >
         {t('notifications', 'Notifications')}
       </div>

@@ -58,7 +58,7 @@ const ModeComponent = () => {
     document.body.classList.remove('dark', 'light');
     document.body.classList.add(mode);
     setCookie(MODE_COOKIE, mode, COOKIE_DAYS);
-    if (previous !== mode) {
+    if (previous && previous !== mode) {
       modeEmitter.emit('mode', mode);
     }
   }, []);

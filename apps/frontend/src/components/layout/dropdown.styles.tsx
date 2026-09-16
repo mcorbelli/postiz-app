@@ -10,7 +10,7 @@ import { SVGLine } from '@gitroom/frontend/components/launches/launches.componen
 // surface plus the same purple edge indicator, not a solid brand-color fill.
 export const dropdownPanelClass = (open: boolean, extra?: string) =>
   clsx(
-    'z-[300] absolute top-[100%] end-0 translate-y-[10px] p-[8px] gap-[2px] bg-newBgColorInner shadow-menu rounded-[12px] border border-tableBorder flex-col animate-fadeIn text-newTextColor',
+    'z-[600] absolute top-[100%] end-0 translate-y-[10px] p-[8px] gap-[2px] bg-newBgColorInner shadow-menu rounded-[12px] border border-tableBorder flex-col animate-fadeIn text-newTextColor',
     open ? 'flex' : 'hidden',
     extra
   );

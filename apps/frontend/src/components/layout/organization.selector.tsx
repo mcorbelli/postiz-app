@@ -126,7 +126,7 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
                     <DropdownRow
                       key={org.id}
                       selected
-                      className="truncate cursor-default"
+                      className="truncate !cursor-default"
                     >
                       {org.name}
                     </DropdownRow>

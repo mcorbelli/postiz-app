@@ -18,7 +18,7 @@ export const EmptyState: FC<{
     <div className="flex flex-col gap-[8px] items-center">
       <div className="text-[20px] font-[600]">{title}</div>
       {!!description && (
-        <div className="text-[14px] text-customColor18 whitespace-pre-line max-w-[420px]">
+        <div className="text-[14px] text-newTextColor/[0.6] whitespace-pre-line max-w-[420px]">
           {description}
         </div>
       )}
