@@ -4,18 +4,26 @@ import { OrganizationRepository } from '@gitroom/nestjs-libraries/database/prism
 import { NotificationService } from '@gitroom/nestjs-libraries/database/prisma/notifications/notification.service';
 import { AddTeamMemberDto } from '@gitroom/nestjs-libraries/dtos/settings/add.team.member.dto';
 import { AdminAddTeamMemberDto } from '@gitroom/nestjs-libraries/dtos/settings/admin.add.team.member.dto';
+import { UpdateTeamMemberDto } from '@gitroom/nestjs-libraries/dtos/settings/update.team.member.dto';
 import { pricing } from '@gitroom/nestjs-libraries/database/prisma/subscriptions/pricing';
 import { AuthService } from '@gitroom/helpers/auth/auth.service';
 import dayjs from 'dayjs';
 import { makeId } from '@gitroom/nestjs-libraries/services/make.is';
-import { Organization, ShortLinkPreference, User } from '@prisma/client';
+import { Organization, Role, ShortLinkPreference, User } from '@prisma/client';
 import { AutopostService } from '@gitroom/nestjs-libraries/database/prisma/autopost/autopost.service';
+import { IntegrationRepository } from '@gitroom/nestjs-libraries/database/prisma/integrations/integration.repository';
+
+// Shared org-role hierarchy used everywhere a caller's role needs to be
+// compared against a target member's role (delete/edit team members).
+const roleLevel = (role: Role | string) =>
+  role === Role.USER ? 0 : role === Role.ADMIN ? 1 : 2;
 
 @Injectable()
 export class OrganizationService {
   constructor(
     private _organizationRepository: OrganizationRepository,
-    private _notificationsService: NotificationService
+    private _notificationsService: NotificationService,
+    private _integrationRepository: IntegrationRepository
   ) {}
   async createOrgAndUser(
     body: Omit<CreateOrgUserDto, 'providerToken'> & { providerId?: string },
@@ -166,20 +174,72 @@ export class OrganizationService {
     const userOrgs = await this._organizationRepository.getOrgsByUserId(userId);
     const findOrgToDelete = userOrgs.find((orgUser) => orgUser.id === org.id);
     if (!findOrgToDelete) {
-      throw new Error('User is not part of this organization');
+      throw new HttpException('User is not part of this organization', 404);
     }
 
     // @ts-ignore
-    const myRole = org.users[0].role;
-    const userRole = findOrgToDelete.users[0].role;
-    const myLevel = myRole === 'USER' ? 0 : myRole === 'ADMIN' ? 1 : 2;
-    const userLevel = userRole === 'USER' ? 0 : userRole === 'ADMIN' ? 1 : 2;
+    const myLevel = roleLevel(org.users[0].role);
+    // @ts-ignore
+    const userLevel = roleLevel(findOrgToDelete.users[0].role);
 
-    if (myLevel < userLevel) {
-      throw new Error('You do not have permission to delete this user');
+    // Strictly greater: also blocks removing a peer (same level) and
+    // removing yourself (comparing your own level to itself).
+    if (myLevel <= userLevel) {
+      throw new HttpException(
+        'You do not have permission to delete this user',
+        403
+      );
     }
 
     return this._organizationRepository.deleteTeamMember(org.id, userId);
+  }
+
+  async updateTeamMember(
+    org: Organization,
+    actorUserId: string,
+    targetUserId: string,
+    body: UpdateTeamMemberDto
+  ) {
+    if (targetUserId === actorUserId) {
+      throw new HttpException(
+        'Use your personal settings to edit your own name',
+        403
+      );
+    }
+
+    const userOrgs = await this._organizationRepository.getOrgsByUserId(
+      targetUserId
+    );
+    const targetOrg = userOrgs.find((orgUser) => orgUser.id === org.id);
+    if (!targetOrg) {
+      throw new HttpException('User is not part of this organization', 404);
+    }
+
+    // @ts-ignore
+    const myLevel = roleLevel(org.users[0].role);
+    // @ts-ignore
+    const userLevel = roleLevel(targetOrg.users[0].role);
+
+    if (myLevel <= userLevel) {
+      throw new HttpException(
+        'You do not have permission to edit this user',
+        403
+      );
+    }
+
+    // Only a super admin can change roles, regardless of what the client
+    // sends - the DTO already rejects SUPERADMIN as a target role.
+    if (body.role && myLevel < 2) {
+      throw new HttpException(
+        "Only a super admin can change a team member's role",
+        403
+      );
+    }
+
+    return this._organizationRepository.updateTeamMember(org.id, targetUserId, {
+      name: body.name,
+      role: body.role as Role | undefined,
+    });
   }
 
   disableOrEnableNonSuperAdminUsers(orgId: string, disable: boolean) {
@@ -198,5 +258,93 @@ export class OrganizationService {
       orgId,
       shortlink
     );
+  }
+
+  async createOrgForUser(userId: string, name: string) {
+    const cap = process.env.MAX_ORGS_PER_USER
+      ? Number(process.env.MAX_ORGS_PER_USER)
+      : 10;
+
+    const existing = await this._organizationRepository.getOrgsByUserId(
+      userId
+    );
+    if (existing.length >= cap) {
+      throw new HttpException(
+        `You can create up to ${cap} organizations`,
+        400
+      );
+    }
+
+    return this._organizationRepository.createOrgForUser(userId, name);
+  }
+
+  async renameOrganization(userId: string, orgId: string, name: string) {
+    const orgs = await this._organizationRepository.getOrgsByUserId(userId);
+    const target = orgs.find((org) => org.id === orgId);
+
+    // Same "ADMIN or SUPERADMIN" bar as every other org-management action
+    // (Sections.ADMIN), just resolved against the target org instead of the
+    // currently selected one, since @CheckPolicies only sees the latter.
+    // Also reject a membership that's disabled in this org even if the
+    // caller is authenticated via another, still-enabled org.
+    // @ts-ignore
+    if (
+      !target ||
+      target.users[0].disabled ||
+      target.users[0].role === Role.USER
+    ) {
+      throw new HttpException(
+        'You do not have permission to rename this organization',
+        403
+      );
+    }
+
+    return this._organizationRepository.renameOrganization(orgId, name);
+  }
+
+  // Split in three so the controller can cancel Stripe billing (via
+  // PaymentService) between the atomic guard and the destructive cleanup -
+  // PaymentService can't be injected here directly, it depends on
+  // SubscriptionService which already depends back on OrganizationService.
+  async assertCanDeleteOrganization(userId: string, orgId: string) {
+    const orgs = await this._organizationRepository.getOrgsByUserId(userId);
+    const target = orgs.find((org) => org.id === orgId);
+
+    // @ts-ignore
+    if (
+      !target ||
+      target.users[0].disabled ||
+      target.users[0].role === Role.USER
+    ) {
+      throw new HttpException(
+        'You do not have permission to delete this organization',
+        403
+      );
+    }
+
+    const team = await this._organizationRepository.getTeam(orgId);
+    if (team?.users?.some((member) => member.user.id !== userId)) {
+      throw new HttpException(
+        'Please remove your team members before deleting this organization',
+        400
+      );
+    }
+  }
+
+  // Atomically confirms this isn't the user's last organization and marks it
+  // deleted before any destructive cleanup runs.
+  softDeleteOrganizationIfNotLast(userId: string, orgId: string) {
+    return this._organizationRepository.deleteOrganizationIfNotLast(
+      userId,
+      orgId
+    );
+  }
+
+  restoreOrganization(orgId: string) {
+    return this._organizationRepository.restoreOrganization(orgId);
+  }
+
+  finalizeOrganizationDeletion(orgId: string) {
+    return this._integrationRepository.deleteIntegrationsForAccount(orgId);
   }
 }
