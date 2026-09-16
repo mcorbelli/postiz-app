@@ -38,6 +38,7 @@ export const AddMember = () => {
   const form = useForm({
     values: {
       email: '',
+      name: '',
       role: '',
       sendEmail: true,
     },
@@ -49,7 +50,12 @@ export const AddMember = () => {
     name: 'sendEmail',
   });
   const submit = useCallback(
-    async (values: { email: string; role: string; sendEmail: boolean }) => {
+    async (values: {
+      email: string;
+      name: string;
+      role: string;
+      sendEmail: boolean;
+    }) => {
       const { url } = await (
         await fetch('/settings/team', {
           method: 'POST',
@@ -81,6 +87,11 @@ export const AddMember = () => {
               name="email"
             />
           )}
+          <Input
+            label={t('name_optional', 'Name (optional)')}
+            placeholder={t('enter_name', 'Enter name')}
+            name="name"
+          />
           <Select label="Role" name="role">
             <option value="">{t('select_role', 'Select Role')}</option>
             {roles.map((role) => (

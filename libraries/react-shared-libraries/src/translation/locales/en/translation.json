@@ -466,6 +466,8 @@
   "faq_we_automate_chatgpt_to_help_you_write": "We automate ChatGPT to help you write social posts and articles.",
   "enter_email": "Enter email",
   "invited_you_will_join_an_existing_team": "You've been invited to join a team - your account will be added to it automatically.",
+  "name_optional": "Name (optional)",
+  "enter_name": "Enter name",
   "are_you_sure": "Are you sure?",
   "no_cancel": "No, cancel!",
   "are_you_sure_you_want_to_delete": "Are you sure you want to delete {{name}}?",
