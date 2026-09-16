@@ -14,7 +14,10 @@ import { OrganizationNameDto } from '@gitroom/nestjs-libraries/dtos/organization
 import { useToaster } from '@gitroom/react/toaster/toaster';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import { useClickOutside } from '@mantine/hooks';
-import { DropdownArrowIcon } from '@gitroom/frontend/components/ui/icons';
+import {
+  DropdownArrowIcon,
+  PlusIcon,
+} from '@gitroom/frontend/components/ui/icons';
 import {
   dropdownPanelClass,
   dropdownRowClass,
@@ -204,9 +207,12 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
                 <div className="border-t border-newTextColor/10 my-[8px]" />
                 <div
                   onClick={createOrganization}
-                  className={dropdownRowClass(false, 'truncate text-customColor18')}
+                  className={dropdownRowClass(false, 'text-customColor18')}
                 >
-                  + {t('create_organization', 'Create organization')}
+                  <PlusIcon size={14} />
+                  <span className="truncate">
+                    {t('create_organization', 'Create organization')}
+                  </span>
                 </div>
               </>
             )}
