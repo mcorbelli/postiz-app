@@ -35,6 +35,7 @@ import { MediaComponentInner } from '@gitroom/frontend/components/launches/helpe
 import { AiVideo } from '@gitroom/frontend/components/launches/ai.video';
 import { useModals } from '@gitroom/frontend/components/layout/new-modal';
 import { ThirdPartyMediaLibrary } from '@gitroom/frontend/components/third-parties/third-party.media-library';
+import { EmptyState } from '@gitroom/frontend/components/ui/empty-state.component';
 import { Dashboard } from '@uppy/react';
 import {
   ChevronLeftIcon,
@@ -479,10 +480,10 @@ export const MediaBox: FC<{
             )}
           >
             {!isLoading && !data?.results?.length && (
-              <>
-                <NoMediaIcon />
-                <div className="text-[20px] font-[600]">
-                  {debouncedSearch
+              <EmptyState
+                icon={<NoMediaIcon />}
+                title={
+                  debouncedSearch
                     ? t(
                         'no_media_match_search',
                         'No media matches your search'
@@ -490,24 +491,28 @@ export const MediaBox: FC<{
                     : t(
                         'you_dont_have_any_media_yet',
                         "You don't have any media yet"
-                      )}
-                </div>
-                <div className="whitespace-pre-line text-newTextColor/[0.6] text-center">
-                  {t(
-                    'select_or_upload_pictures_max_1gb',
-                    'Select or upload pictures (maximum 1 GB per upload).'
-                  )}{' '}
-                  {'\n'}
-                  {t(
-                    'you_can_drag_drop_pictures',
-                    'You can also drag & drop pictures.'
-                  )}
-                </div>
-                <div className="forceChange flex gap-[8px]">
-                  {btn}
-                  <ThirdPartyMediaLibrary onImported={() => mutate()} />
-                </div>
-              </>
+                      )
+                }
+                description={
+                  <>
+                    {t(
+                      'select_or_upload_pictures_max_1gb',
+                      'Select or upload pictures (maximum 1 GB per upload).'
+                    )}{' '}
+                    {'\n'}
+                    {t(
+                      'you_can_drag_drop_pictures',
+                      'You can also drag & drop pictures.'
+                    )}
+                  </>
+                }
+                action={
+                  <div className="forceChange flex gap-[8px]">
+                    {btn}
+                    <ThirdPartyMediaLibrary onImported={() => mutate()} />
+                  </div>
+                }
+              />
             )}
             {isLoading && (
               <>
